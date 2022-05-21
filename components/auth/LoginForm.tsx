@@ -1,14 +1,20 @@
 /* eslint-disable object-shorthand */
 /* eslint-disable no-console */
 /* eslint-disable func-names */
-/* eslint-disable no-alert */
-import React, { Dispatch, SetStateAction, useCallback, useState } from "react";
-import { NextPage } from "next";
-import styled from "styled-components";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
-import userPool from "../../src/userPool";
+import React, { useCallback, useState, useEffect } from "react";
 
-const LoginFormContainer = styled.div`
+import { useDispatch } from "react-redux";
+import styled from "styled-components";
+import userPool from "../../src/userPool";
+import Input from "../common/input";
+import MailIcon from "../../public/static/svg/logo/MailIcon.svg";
+import useValidateMode from "../../hooks/useValidateMode";
+import ClosedEyeIcon from "../../public/static/svg/logo/ClosedEyeIcon.svg";
+import OpenedEyeIcon from "../../public/static/svg/logo/OpendEyeIcon.svg";
+import { userActions } from "../../store/user";
+
+const Container = styled.div`
   z-index: 11;
   .loginFormBox {
     padding: 24px;
@@ -56,36 +62,49 @@ const LoginFormContainer = styled.div`
 
 interface IProps {
   goSignup: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  setUserId: Dispatch<SetStateAction<string | null>>;
+  setUserId: any;
+  closeModalPortal: () => void;
 }
 
-const LoginForm: NextPage<IProps> = ({ goSignup, setUserId }: IProps) => {
+const LoginForm: React.FC<IProps> = ({
+  goSignup,
+  setUserId,
+  closeModalPortal,
+}: IProps) => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onChangeEmail = useCallback((e) => {
-    setEmail(e.target.value);
-  }, []);
-  const onChangePassword = useCallback((e) => {
-    setPassword(e.target.value);
-  }, []);
+  const [isPasswordHided, setIsPasswordHided] = useState(true);
+
+  const { validateMode, setValidateMode } = useValidateMode();
+
+  //*비밀번호 숨김 토글하기
+  const togglePasswordHiding = () => {
+    setIsPasswordHided(!isPasswordHided);
+  };
 
   const authenticate = useCallback((email, Password) => {
     const congnitoUser = new CognitoUser({
       Username: email,
       Pool: userPool,
     });
+
     const authDetails = new AuthenticationDetails({
       Username: email,
       Password,
     });
+
     congnitoUser.authenticateUser(authDetails, {
+      //성공시
       onSuccess: function (result: any) {
-        console.log(result);
+        dispatch(userActions.setUser({ email }));
+        closeModalPortal();
         //result.idToken.payload에 가입한 회원의 정보가 들어있음
         setUserId(result.idToken.payload.email);
-        console.log(result.idToken.payload);
+        alert("로그인 성공");
       },
+
       //실패시
       onFailure: function (err) {
         console.log(err);
@@ -98,34 +117,59 @@ const LoginForm: NextPage<IProps> = ({ goSignup, setUserId }: IProps) => {
     });
   }, []);
 
-  const onSubmit = useCallback(
+  useEffect(() => {
+    return () => {
+      setValidateMode(false);
+    };
+  }, []);
+
+  const onSubmitLogin = useCallback(
     (e) => {
       e.preventDefault();
-      authenticate(email, password);
+      setValidateMode(true);
+      if (!email || !password) {
+        alert("이메일과 비밀번호를 입력해 주세요.");
+      } else {
+        authenticate(email, password);
+      }
     },
     [email, password]
   );
 
   return (
-    <LoginFormContainer>
-      <form className="loginFormBox" onSubmit={onSubmit}>
+    <Container>
+      <form className="loginFormBox" onSubmit={onSubmitLogin}>
         <h1>LOGIN</h1>
         <div className="inputContainer">
-          <input
-            value={email}
-            onChange={onChangeEmail}
-            placeholder="이메일"
+          <Input
+            placeholder="이메일 주소"
+            name="email"
             type="email"
-            required
+            icon={<MailIcon />}
+            value={email}
+            isValid={email !== ""}
+            useValidation={validateMode}
+            onChange={(e) => setEmail(e.target.value)}
+            errorMessage="이메일이 필요합니다."
           />
         </div>
-        <div className="inputContainer">
-          <input
+        <div className="inputContainer sign-up-password-input-wrapper">
+          <Input
+            placeholder="비밀번호 설정하기"
+            name="password"
+            type={isPasswordHided ? "password" : "text"}
+            icon={
+              isPasswordHided ? (
+                <ClosedEyeIcon onClick={togglePasswordHiding} />
+              ) : (
+                <OpenedEyeIcon onClick={togglePasswordHiding} />
+              )
+            }
             value={password}
-            onChange={onChangePassword}
-            placeholder="비밀번호"
-            type="password"
-            required
+            isValid={password !== ""}
+            useValidation={validateMode}
+            onChange={(e) => setPassword(e.target.value)}
+            errorMessage="비밀번호를 입력하세요."
           />
         </div>
         <button type="submit">로그인</button>
@@ -133,7 +177,7 @@ const LoginForm: NextPage<IProps> = ({ goSignup, setUserId }: IProps) => {
           회원가입
         </button>
       </form>
-    </LoginFormContainer>
+    </Container>
   );
 };
 export default LoginForm;

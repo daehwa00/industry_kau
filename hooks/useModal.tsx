@@ -95,9 +95,13 @@ const useModal = () => {
           />
           <>
             {signupCheck ? (
-              <LoginForm goSignup={turnOver} setUserId={setUserId} />
+              <LoginForm
+                closeModalPortal={closeModal}
+                goSignup={turnOver}
+                setUserId={setUserId}
+              />
             ) : (
-              <SignupForm goLogin={turnOver} />
+              <SignupForm closeModalPortal={closeModal} goLogin={turnOver} />
             )}
           </>
         </Container>,

@@ -1,10 +1,28 @@
 /* eslint-disable no-alert */
-import React, { useCallback, useState, useRef } from "react";
+import React, {
+  useCallback,
+  useState,
+  useRef,
+  useMemo,
+  useEffect,
+} from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import userPool from "../../src/userPool";
+import Input from "../common/input";
+import MailIcon from "../../public/static/svg/logo/MailIcon.svg";
+import useValidateMode from "../../hooks/useValidateMode";
+import ClosedEyeIcon from "../../public/static/svg/logo/ClosedEyeIcon.svg";
+import OpenedEyeIcon from "../../public/static/svg/logo/OpendEyeIcon.svg";
+import PasswordWarning from "./PasswordWarning";
 
 const SignupFormContainer = styled.div`
   z-index: 11;
+  .sign-up-password-input-wrapper {
+    svg {
+      cursor: pointer;
+    }
+  }
   .singupFormBox {
     padding: 24px;
     width: 568px;
@@ -64,13 +82,34 @@ const ErrorMessage = styled.div`
 
 type IProps = {
   goLogin: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  closeModalPortal: () => void;
 };
-
-const SignupForm = ({ goLogin }: IProps) => {
+const PASSWORD_MIN_LENGTH = 8;
+const SignupModal = ({ goLogin, closeModalPortal }: IProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState(false);
+  const [passwordFocused, setPasswordFocused] = useState(false);
+  const [isPasswordHided, setIsPasswordHided] = useState(true);
   const gologinBtn = useRef<HTMLButtonElement>(null);
+  const { validateMode, setValidateMode } = useValidateMode();
+
+  //*비밀번호 숨김 토글하기
+  const togglePasswordHiding = () => {
+    setIsPasswordHided(!isPasswordHided);
+  };
+
+  //* password가 이름이나 이메일을 포함하는지
+  const isPasswordHasNameOrEmail = useMemo(
+    () => !password || password.includes(email.split("@")[0]),
+    [password, email]
+  );
+
+  //* 비밀번호가 최수 자리수 이상인지
+  const isPasswordOverMinLength = useMemo(
+    () => password.length >= PASSWORD_MIN_LENGTH,
+    [password]
+  );
 
   //이메일이 입력될 때
   const onChangeEmail = useCallback(
@@ -80,28 +119,37 @@ const SignupForm = ({ goLogin }: IProps) => {
     },
     []
   );
-
-  //적절한 비밀번호인지 체크합니다.
-  const CheckPass = (str: string) => {
-    const reg1 = /^[a-z0-9]{8,20}$/; // a-z 0-9 중에 8자리 부터 20자리만 허용
-    const reg2 = /[a-z]/g; //매칭되는걸 모두 찾는다.
-    const reg3 = /[0-9]/g;
-    return reg1.test(str) && reg2.test(str) && reg3.test(str);
-  };
-
-  //비밀번호를 입력할 때마다 적절한 비밀번호인지 체크하며, 비밀번호를 바꾸어줍니다.
-  const onChangePassword = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setPassword(event.target.value);
-      setPasswordError(!CheckPass(event.target.value));
-    },
-    []
+  //* 비밀번호가 숫자나 특수기호를 포함하는지
+  const isPasswordHasNumberOrSymbol = useMemo(
+    () =>
+      /[{}[\]/?.,;:|)*~`!^\-_+<>@#$%&\\=('"]/g.test(password) ||
+      /[0-9]/g.test(password),
+    [password]
   );
 
-  //제출합니다.
-  const onSubmit = useCallback(
-    (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
+  //* 인풋값 발리데이션 체크 하기
+  const validateSignUpForm = () => {
+    if (!email) {
+      return false;
+    }
+    if (
+      !password ||
+      isPasswordHasNameOrEmail ||
+      !isPasswordHasNumberOrSymbol ||
+      !isPasswordOverMinLength
+    ) {
+      return false;
+    }
+    return true;
+  };
+
+  //회원 가입을 제출합니다.
+  const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setValidateMode(true);
+
+    //제대로 된 값이 들어오면 실행
+    if (validateSignUpForm()) {
       userPool.signUp(email, password, [], [], (err) => {
         if (err) {
           //이미 계정이 존재할 경우
@@ -111,34 +159,74 @@ const SignupForm = ({ goLogin }: IProps) => {
             alert("이미 존재하는 계정입니다.");
           }
         }
+        closeModalPortal();
         alert("가입 완료");
-        return null;
       });
-    },
-    [email, password]
-  );
+    }
+
+    //인풋값이 아예 없다면 api를 보내지 않음
+    if (!email || !password) {
+      return undefined;
+    }
+    return null;
+  };
+
+  useEffect(() => {
+    setValidateMode(false);
+  }, []);
 
   return (
     <SignupFormContainer>
-      <form className="singupFormBox" onSubmit={onSubmit}>
+      <form className="singupFormBox" onSubmit={onSubmitSignUp}>
         <h1>SIGNUP</h1>
         <div className="inputContainer">
-          <input
-            placeholder="이메일"
+          <Input
+            placeholder="이메일 주소"
             type="email"
             onChange={onChangeEmail}
-            required
+            icon={<MailIcon />}
+            name="email"
+            value={email}
+            useValidation
+            isValid={!email}
+            errorMessage="이메일을 넣어주세요"
           />
         </div>
         <div className="inputContainer">
-          <input
-            placeholder="비밀번호"
-            type="password"
-            onChange={onChangePassword}
-            minLength={8}
-            required
+          <Input
+            placeholder="비밀번호 설정하기"
+            type={isPasswordHided ? "password" : "text"}
+            onChange={(e) => setPassword(e.target.value)}
+            icon={
+              isPasswordHided ? (
+                <ClosedEyeIcon onClick={togglePasswordHiding} />
+              ) : (
+                <OpenedEyeIcon onClick={togglePasswordHiding} />
+              )
+            }
+            onFocus={() => setPasswordFocused(true)}
+            value={password}
+            isValid={!!password}
+            useValidation={validateMode}
+            errorMessage="비밀번호를 입력하세요."
           />
         </div>
+        {passwordFocused && (
+          <>
+            <PasswordWarning
+              isValid={!isPasswordHasNameOrEmail}
+              errorMessage="비밀번호에 본인 이름이나 이메일 주소를 포함할 수 없습니다."
+            />
+            <PasswordWarning
+              isValid={isPasswordOverMinLength}
+              errorMessage="최소 8자"
+            />
+            <PasswordWarning
+              isValid={isPasswordHasNumberOrSymbol}
+              errorMessage="숫자나 기호를 포함하세요."
+            />
+          </>
+        )}
         {passwordError && (
           <ErrorMessage>
             8 or more characters, must include numbers and letters
@@ -155,4 +243,4 @@ const SignupForm = ({ goLogin }: IProps) => {
   );
 };
 
-export default SignupForm;
+export default SignupModal;
