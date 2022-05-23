@@ -10,9 +10,10 @@ const Container = styled.div`
 const Index: NextPage = () => {
   return (
     <Container>
-      <Board worry="안녕" />
+      <Board/>
     </Container>
   );
 };
 
 export default Index;
+export {Container};

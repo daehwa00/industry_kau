@@ -1,25 +1,18 @@
 import { NextPage } from "next";
 import styled from "styled-components";
+import Layout from "./Layout";
+import Main from "./Main";
 
-const Container = styled.div`
-  width: 300px;
-  height: 400px;
-  box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px;
-  margin-left: 20px;
-  margin-top: 20px;
-  .board {
-    margin-left: 20px;
-    margin-top: 10px;
-  }
-`;
+const Container = styled.div``;
 interface IProps {
   worry: string;
 }
-const Board: NextPage<IProps> = ({ worry }) => {
+
+const Board: NextPage = props => {
   return (
     <Container>
-      <h1>{worry}게시판</h1>
-      <div className="board">안녕</div>
+      <Layout/>
+      <Main/>
     </Container>
   );
 };
