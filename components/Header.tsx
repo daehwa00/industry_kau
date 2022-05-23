@@ -10,7 +10,7 @@ import palette from "../styles/palette";
 import useModal from "../hooks/useModal";
 import HamburgerIcon from "../public/static/svg/logo/HamburgerIcon.svg";
 import { logoutAPI } from "../lib/api/auth";
-import { userActions, authActions } from "../store/user";
+import { userActions } from "../store/user";
 
 const Container = styled.div`
   position: sticky;
