@@ -10,6 +10,11 @@
       "StackName": "amplify-industrykau-dev-141039",
       "StackId": "arn:aws:cloudformation:ap-northeast-2:363124488706:stack/amplify-industrykau-dev-141039/87f4a5d0-d4d6-11ec-88ca-025be15e0728",
       "AmplifyAppId": "dygiymb8ermv5"
+    },
+    "categories": {
+      "auth": {
+        "industrykau77884ccd": {}
+      }
     }
   }
 }

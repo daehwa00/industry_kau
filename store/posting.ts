@@ -5,9 +5,8 @@ type writeState = {
   mainCategoryType: string | null; //게시판 분류
   subCategoryType: string | null;
   anonymousType: string | null;
-  writer: string;
-  purpose: string | null;
-  text: string | null;
+  email: string;
+  contents: string | null;
 };
 
 //* 초기 상태
@@ -19,11 +18,9 @@ const initialState: writeState = {
   //익명인지 아닌지
   anonymousType: null,
   //작성자
-  writer: null,
-  //작성 목적
-  purpose: null,
+  email: null,
   //본문
-  text: null,
+  contents: null,
 };
 
 const posting = createSlice({
@@ -58,7 +55,7 @@ const posting = createSlice({
 
     //text 설정
     setText(state, action: PayloadAction<string>) {
-      state.text = action.payload;
+      state.contents = action.payload;
     },
   },
 });
