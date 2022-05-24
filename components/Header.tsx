@@ -3,26 +3,25 @@ import styled from "styled-components";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import OutsideClickHandler from "react-outside-click-handler";
-import { useSelector } from "../store";
 import Logo from "../public/static/svg/logo/Logo.svg";
-import LogoText from "../public/static/svg/logo/LogoText.svg";
+import { useSelector } from "../store";
 import palette from "../styles/palette";
 import useModal from "../hooks/useModal";
 import HamburgerIcon from "../public/static/svg/logo/HamburgerIcon.svg";
 import { logoutAPI } from "../lib/api/auth";
 import { userActions } from "../store/user";
+import Pagelist from "./board/PageList";
 
 const Container = styled.div`
   position: sticky;
   top: 0;
   width: 100%;
-  height: 80px;
+  height: 20%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 80px;
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px !important;
+  padding: 32px 36px;
+  background-color: transparent;
   z-index: 10;
   .header-logo-wrapper {
     display: flex;
@@ -136,9 +135,9 @@ const Header: React.FC = () => {
       <Link href="/">
         <a className="header-logo-wrapper">
           <Logo className="header-logo" />
-          <LogoText />
         </a>
       </Link>
+      <Pagelist />
       {!user.isLogged && (
         <>
           <div className="header-auth-buttons">

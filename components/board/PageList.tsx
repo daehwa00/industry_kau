@@ -1,32 +1,43 @@
 import Link from "next/link";
+import styled from "styled-components";
 
-const HorizonLine = () => {
-    return (
-      <div
-        style={{
-          width: "97%",
-          borderBottom: "1px solid #ccc",
-          marginTop:"3%",
-          marginBottom:"3%"
-        }}
-      >
-      </div>
-    );
-  };
+const Container = styled.div`
+  .all {
+    margin: 30px;
+    font-size: 20px;
+    color: white;
+    font-weight: 800;
+    transition: all 0.3s linear;
+    &:hover {
+      font-size: 23px;
+    }
+  }
+`;
 
 const Pagelist = () => {
-    return(
-        <div>
-          <section style={{textAlign:"center"}}>
-            <Link href="/board/study" replace={false} style={{textDecoration:"none"}}><a style={{marginLeft:"3%"}}>학업</a></Link><a style={{marginLeft:"3%"}}> | </a>
-            <Link href="/board/employ" replace={false} style={{textDecoration:"none"}}><a style={{marginLeft:"3%"}}>취업</a></Link><a style={{marginLeft:"3%"}}> | </a>
-            <Link href="/board/daily" replace={false} style={{textDecoration:'none'}}><a style={{marginLeft:"3%"}}>일상</a></Link><a style={{marginLeft:"3%"}}> | </a>
-            <Link href="/board/human" replace={false} style={{textDecoration:'none'}}><a style={{marginLeft:"3%"}}>인간관계</a></Link><a style={{marginLeft:"3%"}}> | </a>
-            <Link href="/board/disease" replace={false} style={{textDecoration:'none'}}><a style={{marginLeft:"3%"}}>질병</a></Link><a style={{marginLeft:"3%"}}> | </a>
-            <Link href="/board/etc" replace={false} style={{textDecoration:'none'}}><a style={{marginLeft:"3%"}}>기타</a></Link><a style={{marginLeft:"3%"}}/>
-            <HorizonLine/>
-          </section>
-        </div>
-    )
-}
+  return (
+    <Container>
+      <Link href="/board/study">
+        <a className="all">취업/진로</a>
+      </Link>
+
+      <Link href="/board/daily">
+        <a className="all">연애</a>
+      </Link>
+
+      <Link href="/board/human">
+        <a className="all">대인관계</a>
+      </Link>
+
+      <Link href="/board/disease">
+        <a className="all">가계</a>
+      </Link>
+
+      <Link href="/board/etc">
+        <a className="all">기타</a>
+      </Link>
+      <a />
+    </Container>
+  );
+};
 export default Pagelist;

@@ -8,13 +8,8 @@ interface IProps {
   worry: string;
 }
 
-const Board: NextPage = props => {
-  return (
-    <Container>
-      <Layout/>
-      <Main/>
-    </Container>
-  );
+const Board: NextPage = (props) => {
+  return <Main />;
 };
 
 export default Board;
