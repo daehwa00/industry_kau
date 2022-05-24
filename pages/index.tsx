@@ -1,8 +1,5 @@
 import type { NextPage } from "next";
-import Link from "next/link";
 import styled from "styled-components";
-import Board from "../components/board/Board";
-import Button from "../components/button/Button";
 import BackgroundSlider from "react-background-slider";
 
 const Container = styled.div`

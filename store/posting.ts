@@ -54,7 +54,7 @@ const posting = createSlice({
     },
 
     //text 설정
-    setText(state, action: PayloadAction<string>) {
+    setContents(state, action: PayloadAction<string>) {
       state.contents = action.payload;
     },
   },

@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import palette from "../../styles/palette";
+// 글의 상세내용을 적는 컴포넌트
 import { useSelector } from "../../store";
 import { postingActions } from "../../store/posting";
 import Textarea from "../common/Textarea";
@@ -31,12 +32,11 @@ const Container = styled.div`
 `;
 const RegisterPostingDescription: React.FC = () => {
   const dispatch = useDispatch();
-
-  const text = useSelector((state) => state.posting.text);
+  const contents = useSelector((state) => state.posting.contents);
 
   // 고민 설명 변경시
-  const onChangeText = (event: React.ChangeEvent<HTMLTextAreaElement>) =>
-    dispatch(postingActions.setText(event.target.value));
+  const onChangeContents = (event: React.ChangeEvent<HTMLTextAreaElement>) =>
+    dispatch(postingActions.setContents(event.target.value));
 
   return (
     <Container>
@@ -46,7 +46,7 @@ const RegisterPostingDescription: React.FC = () => {
         당신의 이야기, 하고 싶은만큼 해요
       </p>
       <div className="register-posting-text-wrapper">
-        <Textarea value={text} onChange={onChangeText} />
+        <Textarea value={contents} onChange={onChangeContents} />
       </div>
     </Container>
   );
