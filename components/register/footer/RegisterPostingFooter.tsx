@@ -47,16 +47,6 @@ const RegisterPostingFooter: React.FC<IProps> = ({
     };
   }, []);
 
-  //* 제출 버튼 클릭시
-  const onClickNext = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    if (!isValid) {
-      event.preventDefault();
-      setValidateMode(true);
-    }
-  };
-
   return (
     <Container>
       <Link href={prevHref || ""}>
@@ -67,12 +57,22 @@ const RegisterPostingFooter: React.FC<IProps> = ({
       </Link>
       <Link href={nextHref || ""}>
         <a>
-          {/*onClickNext 추가 요망*/}
-          <Button color="dark_cyan">제출</Button>
+          <Button
+            // onClick={(e) => {
+            //   if (!isValid) {
+            //     //유효하지 않다면 가지 않습니다.
+            //     e.preventDefault();
+            //     setValidateMode(true);
+            //   }
+            // }}
+            color="dark_cyan"
+          >
+            제출
+          </Button>
         </a>
       </Link>
     </Container>
   );
 };
 
-export default RegisterPostingFooter;
+export default React.memo(RegisterPostingFooter);
