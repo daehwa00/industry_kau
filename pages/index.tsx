@@ -1,8 +1,5 @@
 import type { NextPage } from "next";
-import Link from "next/link";
 import styled from "styled-components";
-import Board from "../components/board/Board";
-import Button from "../components/button/Button";
 import BackgroundSlider from "react-background-slider";
 
 const Container = styled.div`
@@ -13,12 +10,16 @@ const Container = styled.div`
     top: 45%;
     left: 15%;
     color: white;
-
     .first-context {
       font-size: 80px;
     }
     .second-context {
-      font-size: 70px;
+      margin-top: 10px;
+      font-size: 68px;
+    }
+    .third-context {
+      margin-top: 20px;
+      font-size: 20px;
     }
   }
 `;
@@ -40,6 +41,7 @@ const Index: NextPage = () => {
       <div className="context-wrapper">
         <div className="first-context">모두에게 기쁨이 </div>
         <div className="second-context">찾아오는 그 순간까지</div>
+        <div className="third-context">당신이 행복했으면 좋겠어요</div>
       </div>
     </Container>
   );
