@@ -6,26 +6,11 @@ import { ChatbotChattingResponseBody } from "../../types/api/chatbot";
 export const getChatbotChatting = async (request: string, email: string) => {
   await axios({
     method: "post",
-    url: "https://b64q7h7pw5.execute-api.ap-northeast-2.amazonaws.com/dev/createConsole",
+    url: "https://7psvdxocg7.execute-api.ap-northeast-2.amazonaws.com/dev/createConsole",
     data: {
       request: request,
       email: email,
     },
-    headers: { "x-api-key": "jr7VLmRJ20afbWdWusGlA3cEC1v94M5L2GKUE25C" },
+    headers: { "x-api-key": "T2obpw5w3w4dH4u6wo2Qr1QAqSgRCDxC2VvRqNN0" },
   });
 };
-
-//axios.post('/api',{name:name},{headers:{Authorization:token}})
-// export const getChatbotChatting = async (request: string, email: string) => {
-//     const data = { request: request, email: email };
-//     await Axios.post(
-//       "https://b64q7h7pw5.execute-api.ap-northeast-2.amazonaws.com/dev/createConsole",
-//       { request: request, email: email },
-//       {
-//         headers: {
-//           "Content-Type": "application/json",
-//           "X-API-KEY": "jr7VLmRJ20afbWdWusGlA3cEC1v94M5L2GKUE25C",
-//         },
-//       }
-//     );
-//   };

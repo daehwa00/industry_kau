@@ -34,9 +34,13 @@ const Container = styled.div`
 `;
 
 const Index: NextPage = () => {
-  console.log(
-    getChatbotChatting("이게 인생일까요 ...", "james1212312312@naver.com")
-  );
+  try {
+    console.log(
+      getChatbotChatting("이게 인생일까요 ...", "james1212312312@naver.com")
+    );
+  } catch (e) {
+    console.log(e);
+  }
   return (
     <Container>
       <BackgroundSlider
