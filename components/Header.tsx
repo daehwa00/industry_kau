@@ -88,7 +88,7 @@ const Container = styled.div`
   .header-usermenu {
     position: absolute;
     right: 0;
-    top: 52px;
+    top: 90px;
     width: 240px;
     padding: 8px 0;
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);

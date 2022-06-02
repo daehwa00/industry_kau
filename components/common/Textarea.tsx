@@ -1,6 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import ReactAutosizeTextarea from "react-autosize-textarea";
+import styled, { css } from "styled-components";
+import { useSelector } from "../../store";
 import palette from "../../styles/palette";
 
 type InputContainerProps = {
@@ -8,7 +9,11 @@ type InputContainerProps = {
   useValidation: boolean;
 };
 
-const StyledTextArea = styled(ReactAutosizeTextarea)`
+const Container = styled.div<InputContainerProps>`
+  label {
+    display: block;
+    margin-bottom: 8px;
+  }
   textarea {
     position: relative;
     width: 100%;
@@ -27,12 +32,64 @@ const StyledTextArea = styled(ReactAutosizeTextarea)`
       border-color: ${palette.dark_cyan};
     }
   }
+  svg {
+    position: absolute;
+    right: 11px;
+    height: 46px;
+  }
+  .input-error-message {
+    margin-top: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: ${palette.tawny};
+  }
+  ${({ useValidation, isValid }) =>
+    useValidation &&
+    !isValid &&
+    css`
+      textarea {
+        background-color: ${palette.snow};
+        border-color: ${palette.orange};
+        & :focus {
+          border-color: ${palette.orange};
+        }
+      }
+    `}
+  ${({ useValidation, isValid }) =>
+    useValidation &&
+    isValid &&
+    css`
+      textarea {
+        border-color: ${palette.dark_cyan};
+      }
+    `}
 `;
 
-const Textarea: React.FC<React.TextareaHTMLAttributes<HTMLTextAreaElement>> = ({
+interface IProps extends React.InputHTMLAttributes<HTMLTextAreaElement> {
+  label?: string;
+  isValid?: boolean;
+  useValidation?: boolean;
+  errorMessage?: string;
+}
+
+const Textarea: React.FC<IProps> = ({
+  label,
+  isValid = false,
+  useValidation = true,
+  errorMessage,
   ...props
 }) => {
-  return <StyledTextArea {...props} />;
+  const validateMode = useSelector((state) => state.common.validateMode);
+
+  return (
+    <Container isValid={isValid} useValidation={useValidation && validateMode}>
+      {label && <label>{label}</label>}
+      <ReactAutosizeTextarea {...props} />
+      {useValidation && validateMode && !isValid && errorMessage && (
+        <p className="input-error-message">{errorMessage}</p>
+      )}
+    </Container>
+  );
 };
 
 export default React.memo(Textarea);

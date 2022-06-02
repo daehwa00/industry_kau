@@ -16,6 +16,8 @@
     "babel-plugin-styled-components": "^2.0.7",
     "next": "12.1.6",
     "next-redux-wrapper": "^7.0.5",
+    "nextjs-cors": "^2.1.1",
+    "qs": "^6.10.3",
     "react": "18.1.0",
     "react-autosize-textarea": "^7.1.0",
     "react-background-slider": "^2.0.0",
