@@ -34,7 +34,7 @@ const Container = styled.div`
 
 const options = ["선택해주세요."];
 
-const RegisterWriting: React.FC = () => {
+const RegisterPostingOptions: React.FC = () => {
   const dispatch = useDispatch();
 
   //고민 대분류
@@ -171,10 +171,10 @@ const RegisterWriting: React.FC = () => {
       <RegisterPostingFooter
         isValid={false}
         prevHref="/"
-        nextHref="/board/post/postingText"
+        nextHref="/board/post/contents"
       />
     </Container>
   );
 };
 
-export default RegisterWriting;
+export default RegisterPostingOptions;

@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ChangeEventHandler } from "react";
 
-type writeState = {
+export type writeState = {
   mainCategoryType: string | null; //게시판 분류
   subCategoryType: string | null;
   anonymousType: string | null;
   email: string;
+  title: string | null;
   contents: string | null;
 };
 
@@ -19,6 +20,8 @@ const initialState: writeState = {
   anonymousType: null,
   //작성자
   email: null,
+  //제목
+  title: null,
   //본문
   contents: null,
 };

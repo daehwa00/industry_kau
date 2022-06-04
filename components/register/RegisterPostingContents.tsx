@@ -2,12 +2,13 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import palette from "../../styles/palette";
-// 글의 상세내용을 적는 컴포넌트
 import { useSelector } from "../../store";
 import { postingActions } from "../../store/posting";
 import Textarea from "../common/Textarea";
+import RegisterPostingFooter from "./footer/RegisterPostingFooter";
 
 const Container = styled.div`
+  height: 1200px;
   padding: 62px 30px 100px;
   h2 {
     font-size: 19px;
@@ -30,6 +31,7 @@ const Container = styled.div`
     margin-bottom: 16px;
   }
 `;
+
 const RegisterPostingDescription: React.FC = () => {
   const dispatch = useDispatch();
   const contents = useSelector((state) => state.posting.contents);
@@ -43,11 +45,18 @@ const RegisterPostingDescription: React.FC = () => {
       <h2>어떤 상황인지 자세히 말해볼래요?</h2>
       <h3>다 들어줄게요</h3>
       <p className="register-posting-text-wrapper">
-        당신의 이야기, 하고 싶은만큼 해요
+        당신의 이야기, 하고 싶은만큼 해요. 다 들어주려고, 여백을 많이
+        내어뒀어요.
       </p>
       <div className="register-posting-text-wrapper">
-        <Textarea value={contents} onChange={onChangeContents} />
+        <Textarea
+          value={contents}
+          isValid={!!contents} //contents가 없으면 Valid하지 않음
+          errorMessage="입력해줘요~"
+          onChange={(e) => dispatch(postingActions.setContents(e.target.value))}
+        />
       </div>
+      <RegisterPostingFooter isValid={false} prevHref="/" nextHref="/" />
     </Container>
   );
 };
