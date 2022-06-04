@@ -14,7 +14,7 @@ const PostLine = () => {
   );
 };
 
-const Post = () => {
+const Postlist = () => {
   const router = useRouter();
   const { id } = router.query;
 
@@ -23,7 +23,7 @@ const Post = () => {
       <h1>목록 {id}</h1>
       <section style={{ marginLeft: "80px", marginTop: "30px" }}>
         <li>
-          <Link href="/post/[id]/[comment]" as={`/post/${id}/first-comment`}>
+          <Link href="./" as={`./postview`}>
             <a>고민 내용 1</a>
           </Link>
         </li>
@@ -81,4 +81,5 @@ const Post = () => {
   );
 };
 
-export default Post;
+export default Postlist;
+export { PostLine };

@@ -1,11 +1,12 @@
+import React from "react";
 import Layout from "../../components/board/Layout";
-import Post from "./post";
+import Postlist from "./postlist";
 
 const Etc = () => {
   return (
     <Layout>
       기타 페이지
-      <Post />
+      <Postlist />
     </Layout>
   );
 };

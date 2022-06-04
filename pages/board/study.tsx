@@ -1,11 +1,11 @@
 import Layout from "../../components/board/Layout";
-import Post from "./post";
+import Postlist from "./postlist";
 
 const Study = () => {
   return (
     <Layout>
       학업 페이지
-      <Post />
+      <Postlist />
     </Layout>
   );
 };

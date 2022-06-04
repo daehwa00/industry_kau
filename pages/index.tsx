@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import styled from "styled-components";
 import BackgroundSlider from "react-background-slider";
 
+
 const Container = styled.div`
   font-size: 21px;
   color: gray;
@@ -18,9 +19,16 @@ const Container = styled.div`
       font-size: 70px;
     }
   }
+  .bot-position {
+    display: flex;
+    justify-content: right;
+    padding-right:20px;
+    padding-top: 20px;
+  }
 `;
 
 const Index: NextPage = () => {
+  
   return (
     <Container>
       <BackgroundSlider
