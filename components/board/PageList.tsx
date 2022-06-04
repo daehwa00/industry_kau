@@ -36,7 +36,6 @@ const Pagelist = () => {
       <Link href="/board/etc">
         <a className="all">기타</a>
       </Link>
-      <a />
     </Container>
   );
 };

@@ -4,6 +4,7 @@ import BackgroundSlider from "react-background-slider";
 import { getChatbotChatting } from "../lib/api/chatbot";
 import { createConsolePost } from "./api/auth/post/createConsolePost";
 
+
 const Container = styled.div`
   font-size: 21px;
   color: gray;
@@ -36,14 +37,24 @@ const Container = styled.div`
     color: white;
     font-weight: bold;
   }
+  .bot-position {
+    display: flex;
+    justify-content: right;
+    padding-right:20px;
+    padding-top: 20px;
+  }
 `;
 
 const Index: NextPage = () => {
+<<<<<<< HEAD
+  
+=======
   try {
     console.log(createConsolePost());
   } catch (e) {
     console.log(e);
   }
+>>>>>>> d0d21537993988075572ba5e542cda18ab2e48cf
   return (
     <Container>
       <BackgroundSlider

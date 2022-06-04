@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/_document.jsx", "components/Header.tsx"  ],
+, "pages/_document.jsx", "components/Header.tsx", "components/Chatbot/steps.js"  ],
   "exclude": [
     "node_modules"
   ]

@@ -1,11 +1,11 @@
 import Layout from "../../components/board/Layout";
-import Post from "./post";
+import Postlist from "./postlist";
 
 const Daily = () => {
   return (
     <Layout>
       일상 페이지
-      <Post />
+      <Postlist />
     </Layout>
   );
 };
