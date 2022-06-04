@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import styled from "styled-components";
 import BackgroundSlider from "react-background-slider";
 import { getChatbotChatting } from "../lib/api/chatbot";
+import { createConsolePost } from "./api/auth/post/createConsolePost";
 
 const Container = styled.div`
   font-size: 21px;
@@ -11,12 +12,16 @@ const Container = styled.div`
     top: 45%;
     left: 15%;
     color: white;
-
     .first-context {
       font-size: 80px;
     }
     .second-context {
-      font-size: 70px;
+      margin-top: 10px;
+      font-size: 68px;
+    }
+    .third-context {
+      margin-top: 20px;
+      font-size: 20px;
     }
 
     .third-context {
@@ -35,9 +40,7 @@ const Container = styled.div`
 
 const Index: NextPage = () => {
   try {
-    console.log(
-      getChatbotChatting("이게 인생일까요 ...", "james1212312312@naver.com")
-    );
+    console.log(createConsolePost());
   } catch (e) {
     console.log(e);
   }

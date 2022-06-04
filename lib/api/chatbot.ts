@@ -1,7 +1,4 @@
 import axios from "axios";
-import Axios from "axios";
-import qs from "qs";
-import { ChatbotChattingResponseBody } from "../../types/api/chatbot";
 
 export const getChatbotChatting = async (request: string, email: string) => {
   await axios({
