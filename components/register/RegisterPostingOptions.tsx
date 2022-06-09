@@ -12,6 +12,8 @@ import RegisterPostingFooter from "./footer/RegisterPostingFooter";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
+  float: left;
+  padding: 0 400px 0 200px;
   h2 {
     font-size: 19px;
     font-weight: 800;
@@ -60,7 +62,9 @@ const RegisterPostingOptions: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     dispatch(postingActions.setSubCategoryType(event.target.value));
-  }; //대분류 안의 소분류 options
+  };
+
+  //대분류 안의 소분류 options
   const subCategoryOptions = useMemo(() => {
     switch (mainCategoryType) {
       case "a": {
@@ -91,17 +95,17 @@ const RegisterPostingOptions: React.FC = () => {
   //익명 options
   const anonymousTypeRadioOptions = [
     {
-      label: "익명으로 할게요",
+      label: "익명으로 할래요",
       value: "anonymous",
       description: "이름을 밝히고 싶지 않을 때 사용해요",
     },
     {
-      label: "닉네임으로 할게요",
+      label: "닉네임으로 할래요",
       value: "nickname",
       description: "닉네임으로 활동하고 싶을 때 사용해요",
     },
     {
-      label: "이메일으로 할게요",
+      label: "이메일으로 할래요",
       value: "email",
       description: "이메일로 따로 도움을 받고 싶을 때 사용해요",
     },
@@ -114,7 +118,7 @@ const RegisterPostingOptions: React.FC = () => {
     const selected = event;
     dispatch(
       postingActions.setAnonymousType(
-        selected as unknown as "anonymous" | "nickname" | "email"
+        (selected as unknown) as "anonymous" | "nickname" | "email"
       )
     );
   };
@@ -151,7 +155,8 @@ const RegisterPostingOptions: React.FC = () => {
             value={subCategoryType || undefined}
             defaultValue="하나를 선택해주세요."
             disabled={!mainCategoryType}
-            label="좀 더 자세하게 알려주세요"
+            disabledOptions={options}
+            label="좀 더 자세하게 알고 싶어요"
             options={subCategoryOptions}
             onChange={onChangeSubCategoryType}
           />
@@ -168,11 +173,7 @@ const RegisterPostingOptions: React.FC = () => {
           />
         </div>
       )}
-      <RegisterPostingFooter
-        isValid={false}
-        prevHref="/"
-        nextHref="/board/post/contents"
-      />
+      <RegisterPostingFooter isValid={false} prevHref="/" />
     </Container>
   );
 };

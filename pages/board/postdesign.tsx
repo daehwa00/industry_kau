@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   padding: 50px 100px 40px;
-  .
+  .;
 `;
 
 const data = [

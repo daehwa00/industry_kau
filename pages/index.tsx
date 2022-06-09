@@ -2,8 +2,8 @@ import type { NextPage } from "next";
 import styled from "styled-components";
 import BackgroundSlider from "react-background-slider";
 import { getChatbotChatting } from "../lib/api/chatbot";
-import { createConsolePost } from "./api/auth/post/createConsolePost";
-
+import { createConsolePost } from "./api/post/createConsolePost";
+import { getMcConsolePosts } from "./api/getMcConsolePosts";
 
 const Container = styled.div`
   font-size: 21px;
@@ -40,21 +40,17 @@ const Container = styled.div`
   .bot-position {
     display: flex;
     justify-content: right;
-    padding-right:20px;
+    padding-right: 20px;
     padding-top: 20px;
   }
 `;
 
 const Index: NextPage = () => {
-<<<<<<< HEAD
-  
-=======
   try {
-    console.log(createConsolePost());
+    console.log(getMcConsolePosts());
   } catch (e) {
     console.log(e);
   }
->>>>>>> d0d21537993988075572ba5e542cda18ab2e48cf
   return (
     <Container>
       <BackgroundSlider

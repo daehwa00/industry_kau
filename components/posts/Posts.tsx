@@ -111,7 +111,7 @@ const Posts = ({ posts }) => {
                 </div>
                 <div className="post-footer-comments">
                   <Comment />
-                  {post.comments > 99 ? `99+` : post.comments}
+                  {post.comments > 99 ? "99+" : post.comments}
                 </div>
               </div>
             </div>

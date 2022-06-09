@@ -5,6 +5,8 @@ import { UserState } from "../types/reduxState";
 // * 초기 상태
 const initialState: UserState = {
   email: "",
+  lastname: "",
+  firstname: "",
   isLogged: false,
 };
 
@@ -12,12 +14,8 @@ const user = createSlice({
   name: "user",
   initialState,
   reducers: {
-    // * 로그인한 유저 변경하기
-    setLoggerUser(state, action: PayloadAction<UserType>) {
-      state = { ...action.payload, isLogged: true };
-      return state;
-    },
-    setUser(state, action: PayloadAction<UserType>) {
+    //* 유저 변경하기
+    setUser(state, action: PayloadAction<UserState>) {
       state = { ...action.payload, isLogged: true };
       return state;
     },

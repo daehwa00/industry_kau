@@ -1,14 +1,13 @@
 import App, { AppContext, AppProps } from "next/app";
+import Router from "next/router";
+import cookies from "next-cookies";
 import dynamic from "next/dynamic";
 import React from "react";
-import ReactDOM from "react-dom";
-import styled from "styled-components";
-import FloatingButtons from "react-floating-buttons";
 import GlobalStyle from "../styles/GlobalStyle";
 import Header from "../components/Header";
 import { wrapper } from "../store";
-import axios from "../lib/api";
-import { meAPI } from "../lib/api/auth";
+
+import { userActions } from "../store/user";
 
 const ChatApp = dynamic(import("../components/Chatbot/chat"), { ssr: false });
 
@@ -22,6 +21,30 @@ const app = ({ Component, pageProps }: AppProps) => {
       <ChatApp />
     </>
   );
+};
+
+app.getInitialProps = async (context: AppContext) => {
+  const appInitialProps = await App.getInitialProps(context);
+  const { ctx } = context;
+  const allCookies = cookies(ctx);
+  const emailCookie = allCookies.email;
+
+  const userBody = {
+    email: emailCookie,
+    lastname: "대화",
+    fistname: "고",
+  };
+
+  const { store } = context.ctx;
+  const { isLogged } = store.getState().user;
+  try {
+    if (!isLogged && emailCookie) {
+      store.dispatch(userActions.setUser(userBody));
+    }
+  } catch (e) {
+    console.log(e);
+  }
+  return { ...appInitialProps };
 };
 
 export default wrapper.withRedux(app);
