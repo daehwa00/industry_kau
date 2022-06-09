@@ -7,3 +7,8 @@ export type PostingAPIBody = {
   mainCategory: string;
   subCategory: string;
 };
+
+export type GetPostAPIBody = {
+  mainCategory: string;
+  pageNumber: number;
+};

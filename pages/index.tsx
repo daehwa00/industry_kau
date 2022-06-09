@@ -1,9 +1,6 @@
 import type { NextPage } from "next";
 import styled from "styled-components";
 import BackgroundSlider from "react-background-slider";
-import { getChatbotChatting } from "../lib/api/chatbot";
-import { createConsolePost } from "./api/post/createConsolePost";
-import { getMcConsolePosts } from "./api/getMcConsolePosts";
 
 const Container = styled.div`
   font-size: 21px;
@@ -46,11 +43,7 @@ const Container = styled.div`
 `;
 
 const Index: NextPage = () => {
-  try {
-    console.log(getMcConsolePosts());
-  } catch (e) {
-    console.log(e);
-  }
+
   return (
     <Container>
       <BackgroundSlider

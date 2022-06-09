@@ -1,6 +1,8 @@
-import Posts from "../../components/posts/Posts";
 import { NextPage } from "next";
 import styled from "styled-components";
+import React from "react";
+import { getpostAPI } from "../../lib/api/posting";
+import Posts from "../../components/posts/Posts";
 
 const Container = styled.div`
   padding: 50px 100px 40px;
@@ -47,9 +49,26 @@ const data = [
 ];
 
 const PostList: NextPage = () => {
+  //* 포스팅 폼 제출하기
+  const getPosting = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    try {
+      const postingBody = { mainCategory: "대분류2", pageNumber: 1 };
+      const body = getpostAPI(postingBody);
+      console.log(body);
+    } catch (e) {
+      console.log("HIHI");
+      console.log(e);
+    }
+  };
+
   return (
     <Container>
-      <Posts posts={data} />
+      <form onSubmit={getPosting}>
+        <Posts posts={data} />
+        <button type="submit">제출</button>
+      </form>
     </Container>
   );
 };
