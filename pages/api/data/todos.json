@@ -1,0 +1,13 @@
+[
+  { "id": 1, "text": "마트 가서 장보기", "color": "red", "checked": true },
+  {
+    "id": 2,
+    "text": "NEXTJS 문서 만들기",
+    "color": "orange",
+    "checked": false
+  },
+  { "id": 3, "text": "학교 가기", "color": "yellow", "checked": false },
+  { "id": 4, "text": "밥먹기", "color": "green", "checked": false },
+  { "id": 5, "text": "청소하기", "color": "blue", "checked": false },
+  { "id": 6, "text": "잠 자기", "color": "navy", "checked": false }
+]

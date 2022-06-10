@@ -5,15 +5,12 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   justify-content: right;
-  padding-right: 20px;
-  padding-bottom: 10px;
   align-items: bottom;
   .all {
     height: 65vh;
     width: 50vh;
     overflow: auto;
     box-sizing: border-box;
-    padding: 5px;
   }
 `; // 어떻게 적용해야할지 아직 잘 모르겠음,, 위치 살짝 아래로 !
 
