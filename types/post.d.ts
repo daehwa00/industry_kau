@@ -1,18 +1,8 @@
-//* 포스팅 body
-export type PostingAPIBody = {
-  title: string;
-  contents: string;
-  email: string;
-  anonymous: string;
-  mainCategory: string;
-  subCategory: string;
-};
-
-export type GetPostAPIBody = {
+export type postType = {
   consolePostId: number;
   createdAt: string;
   updatedAt: string;
-  status: "ACTIVE";
+  status: string;
   contents: string;
   title: string;
   email: string;

@@ -1,6 +1,7 @@
 import { Chat } from "@progress/kendo-react-conversational-ui";
-import * as React from "react";
+import { useState } from "react";
 import styled from "styled-components";
+import { chatbotAPI } from "../../lib/api/chatbot";
 
 const Container = styled.div`
   display: flex;
@@ -44,27 +45,30 @@ const initialMessages = [
       },
     ],
     timestamp: new Date(),
-    text: "챗봇입니다.",
+    text: "반가워요! 보고 싶었어요!",
   },
 ];
 
 const Chatapp = (props) => {
-  const [messages, setMessages] = React.useState(initialMessages);
+  // 응답
+  const countReplayLength = (text) => {
+    const email = "daehwa001210@gmail.com";
+    const { data } = chatbotAPI({ request: text, email });
+    console.log(data);
+    return data;
+  };
+
+  const [messages, setMessages] = useState(initialMessages);
   //addNewMessage 메시지 타이핑
   const addNewMessage = (event) => {
+    console.log(event.message);
     let botResponse = Object.assign({}, event.message);
-    botResponse.text = countReplayLength(event.message.text);
+    botResponse.text = countReplayLength(event.message.text); //보내는 메세지
     botResponse.author = bot;
     setMessages([...messages, event.message]);
     setTimeout(() => {
       setMessages((oldMessages) => [...oldMessages, botResponse]);
     }, 1000);
-  };
-
-  // 응답
-  const countReplayLength = () => {
-    const answer = "답변 종료";
-    return answer;
   };
 
   return (
@@ -79,7 +83,7 @@ const Chatapp = (props) => {
           user={user}
           messages={messages}
           onMessageSend={addNewMessage}
-          placeholder={"입력창"}
+          placeholder="입력창"
           className="all"
         />
       </div>

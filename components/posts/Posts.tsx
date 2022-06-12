@@ -1,10 +1,11 @@
-import Index from "../../pages";
 import styled from "styled-components";
 import palette from "../../styles/palette";
 import UpArrow from "../../public/static/svg/posting/posting-up-arrow.svg";
 import DownArrow from "../../public/static/svg/posting/posting-down-arrow.svg";
 import Comment from "../../public/static/svg/posting/comment.svg";
 import User from "../../public/static/svg/posting/user/post-user.svg";
+import { useSelector } from "../../store";
+import { getpostAPI } from "../../lib/api/posting";
 
 const Container = styled.div`
   width: 100%;
@@ -69,21 +70,16 @@ const Container = styled.div`
   }
 `;
 
-const Posts = ({ posts }) => {
-  const onUpClick = (post) => {
-    post.likes++;
-  };
+const Posts = (body) => {
+  const posts = useSelector((state) => state.posts.posts);
   return (
     <Container>
       <ul>
         {posts.map((post) => (
-          <li className="post-wrapper" key={post.id}>
+          <li className="post-wrapper" key={post.consolePostId}>
             <div className="post-left-block">
-              <UpArrow
-                onClick={() => onUpClick(post)}
-                style={{ fill: "rgb(42,169,224)" }}
-              />
-              <div className="post-likes">{post.likes}</div>
+              <UpArrow style={{ fill: "rgb(42,169,224)" }} />
+              <div className="post-likes">{11}</div>
               <DownArrow />
             </div>
             <div className="post-right-block">
@@ -93,11 +89,11 @@ const Posts = ({ posts }) => {
                     ? post.title
                     : `${post.title.slice(0, 25)}...`}
                 </div>
-                <div className="post-subCategory">{post.subCategoryType}</div>
+                <div className="post-subCategory">{post.subCategory}</div>
               </div>
-              <div className="post-time"></div>
+              {/* <div className="post-time"></div> */}
               <div className="post-contents">
-                {post.contents.legnth < 500
+                {post.contents.length < 500
                   ? post.contents
                   : `${post.contents.slice(0, 500)}...`}
               </div>
@@ -111,7 +107,7 @@ const Posts = ({ posts }) => {
                 </div>
                 <div className="post-footer-comments">
                   <Comment />
-                  {post.comments > 99 ? "99+" : post.comments}
+                  {100 > 99 ? "99+" : 11}
                 </div>
               </div>
             </div>
