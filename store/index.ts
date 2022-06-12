@@ -8,12 +8,16 @@ import user from "./user";
 import common from "./common";
 import posting from "./posting";
 import auth from "./auth";
+import posts from "./posts";
+import search from "./search";
 
 const rootReducer = combineReducers({
   common: common.reducer,
   user: user.reducer,
   posting: posting.reducer,
   auth: auth.reducer,
+  posts: posts.reducer,
+  search: search.reducer,
 });
 
 //* 스토어의 타입
