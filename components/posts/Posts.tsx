@@ -89,9 +89,9 @@ const Posts = ({ posts }) => {
             <div className="post-right-block">
               <div className="post-header">
                 <div className="post-title">
-                  {post.title.length < 20
+                  {post.title.length < 25
                     ? post.title
-                    : `${post.title.slice(0, 20)}...`}
+                    : `${post.title.slice(0, 25)}...`}
                 </div>
                 <div className="post-subCategory">{post.subCategoryType}</div>
               </div>
@@ -111,7 +111,7 @@ const Posts = ({ posts }) => {
                 </div>
                 <div className="post-footer-comments">
                   <Comment />
-                  {post.comments > 99 ? `99+` : post.comments}
+                  {post.comments > 99 ? "99+" : post.comments}
                 </div>
               </div>
             </div>

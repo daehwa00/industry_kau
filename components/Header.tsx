@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import OutsideClickHandler from "react-outside-click-handler";
+import { useRouter } from "next/router";
 import Logo from "../public/static/svg/logo/Logo.svg";
 import { useSelector } from "../store";
 import palette from "../styles/palette";
-import useModal from "../hooks/useModal";
 import HamburgerIcon from "../public/static/svg/logo/HamburgerIcon.svg";
 import { logoutAPI } from "../lib/api/auth";
 import { userActions } from "../store/user";
 import Pagelist from "./board/PageList";
+import usePortal from "../hooks/usePortal";
+import { authActions } from "../store/auth";
+import AuthModal from "./auths/AuthModal";
 
 const Container = styled.div`
   position: sticky;
@@ -115,10 +118,11 @@ const Container = styled.div`
 `;
 
 const Header: React.FC = () => {
-  const { openLoginModal, openSignUpModal, ModalPortal } = useModal();
+  const { closeModalPortal, openModalPortal, ModalPortal } = usePortal();
   const [isUsermenuOpened, setIsUsermenuOpened] = useState(false);
 
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user); //리덕스에 user를 연결함
+
   const dispatch = useDispatch();
 
   //* 로그아웃 하기
@@ -139,25 +143,28 @@ const Header: React.FC = () => {
       </Link>
       <Pagelist />
       {!user.isLogged && (
-        <>
-          <div className="header-auth-buttons">
-            <button
-              type="button"
-              className="header-sign-up-button"
-              onClick={openSignUpModal}
-            >
-              회원가입
-            </button>
-            <button
-              type="button"
-              className="header-login-button"
-              onClick={openLoginModal}
-            >
-              로그인
-            </button>
-          </div>
-          <ModalPortal />
-        </>
+        <div className="header-auth-buttons">
+          <button
+            type="button"
+            className="header-sign-up-button"
+            onClick={() => {
+              dispatch(authActions.setAuthMode("signup"));
+              openModalPortal();
+            }}
+          >
+            회원가입
+          </button>
+          <button
+            type="button"
+            className="header-login-button"
+            onClick={() => {
+              dispatch(authActions.setAuthMode("login"));
+              openModalPortal();
+            }}
+          >
+            로그인
+          </button>
+        </div>
       )}
       {user.isLogged && (
         <OutsideClickHandler
@@ -182,7 +189,9 @@ const Header: React.FC = () => {
           {isUsermenuOpened && (
             <ul className="header-usermenu">
               <li>내 정보</li>
-              <li>게시판 작성하기</li>
+              <Link href="/board/post/options">
+                <li>게시판 작성하기</li>
+              </Link>
               <div className="header-usermenu-divider" />
               <li role="presentation" onClick={logout}>
                 로그아웃
@@ -191,7 +200,9 @@ const Header: React.FC = () => {
           )}
         </OutsideClickHandler>
       )}
-      <ModalPortal />
+      <ModalPortal>
+        <AuthModal closeModalPortal={closeModalPortal} />
+      </ModalPortal>
     </Container>
   );
 };

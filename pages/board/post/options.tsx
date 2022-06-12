@@ -1,14 +1,19 @@
 import React from "react";
 import { NextPage } from "next";
-import RegisterPostingOptions from "../../../components/register/RegisterPostingOptions";
 import styled from "styled-components";
+import RegisterPostingOptions from "../../../components/register/RegisterPostingOptions";
 
 const Container = styled.div`
-  display: flex;
-  justify-content: center;
+  clear: both;
+  content: "";
+  display: block;
 `;
 const posting: NextPage = () => {
-  return <RegisterPostingOptions />;
+  return (
+    <Container>
+      <RegisterPostingOptions />
+    </Container>
+  );
 };
 
 export default posting;

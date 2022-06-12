@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: ["airbnb","prettier"],
+  extends: ["airbnb", "prettier"],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly",
@@ -18,7 +18,7 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint"],
   rules: {
-    "@next/next/no-html-link-for-pages": ["error", "packages/my-app/pages/"],
+    "@next/next/no-html-link-for-pages": "off",
     "linebreak-style": 0,
     quotes: ["error", "double"], //더블 쿼터 사용
     "@typescript-eslint/quotes": ["error", "double"], //더블 쿼터 사용

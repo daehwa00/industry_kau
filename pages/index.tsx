@@ -1,8 +1,6 @@
 import type { NextPage } from "next";
 import styled from "styled-components";
 import BackgroundSlider from "react-background-slider";
-import { getChatbotChatting } from "../lib/api/chatbot";
-
 
 const Container = styled.div`
   font-size: 21px;
@@ -39,28 +37,20 @@ const Container = styled.div`
   .bot-position {
     display: flex;
     justify-content: right;
-    padding-right:20px;
+    padding-right: 20px;
     padding-top: 20px;
   }
 `;
 
 const Index: NextPage = () => {
-  try {
-    console.log(
-      getChatbotChatting("이게 인생일까요 ...", "james1212312312@naver.com")
-    );
-  } catch (e) {
-    console.log(e);
-  }
   return (
     <Container>
       <BackgroundSlider
         images={[
-          "main/png/위로1.jpg",
-          "main/png/위로2.jpg",
-          "main/png/위로3.jpg",
-          "main/png/위로4.jpg",
-          "main/png/위로5.jpg",
+          "main/png/bg1.jpg",
+          "main/png/bg2.jpg",
+          "main/png/bg3.jpg",
+          "main/png/bg4.jpg",
         ]}
         duration={10}
         transition={2}

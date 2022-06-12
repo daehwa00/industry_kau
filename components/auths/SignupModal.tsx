@@ -1,98 +1,73 @@
-/* eslint-disable no-alert */
-import React, {
-  useCallback,
-  useState,
-  useRef,
-  useMemo,
-  useEffect,
-} from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useMemo, useEffect } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import userPool from "../../src/userPool";
-import Input from "../common/input";
-import MailIcon from "../../public/static/svg/logo/MailIcon.svg";
+import Input from "../common/Input";
+import MailIcon from "../../public/static/svg/auth/MailIcon.svg";
 import useValidateMode from "../../hooks/useValidateMode";
 import ClosedEyeIcon from "../../public/static/svg/logo/ClosedEyeIcon.svg";
 import OpenedEyeIcon from "../../public/static/svg/logo/OpendEyeIcon.svg";
 import PasswordWarning from "./PasswordWarning";
+import PersonIcon from "../../public/static/svg/auth/PersonIcon.svg";
+import { userActions } from "../../store/user";
+import { authActions } from "../../store/auth";
+import Button from "../common/Button";
 
-const SignupFormContainer = styled.div`
-  z-index: 11;
+const Container = styled.div`
+  .sign-up-input-wrapper {
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    margin-top: 48px;
+    margin-bottom: 84px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+  }
+
   .sign-up-password-input-wrapper {
     svg {
       cursor: pointer;
     }
   }
-  .singupFormBox {
-    padding: 24px;
-    width: 568px;
-    height: 614px;
-    background-color: white;
-    justify-content: center;
 
-    h1 {
-      margin-top: 48px;
-      margin-bottom: 84px;
-      text-align: center;
-      font-size: 30px;
-      font-weight: bold;
-    }
-
-    .inputContainer {
-      margin-bottom: 12px;
-
-      input {
-        padding: 13px 12px;
-        width: 100%;
-        height: 48px;
-        line-height: 1.47;
-        font-size: 15px;
-        border: 1px solid #dee2e6;
-        letter-spacing: -0.3px;
-        border-radius: 4px;
-        background-color: #fff;
-      }
-    }
-    .buttonContainer {
-      margin-top: 69px;
-      button {
-        width: 100%;
-        height: 48px;
-        border: 1px solid;
-        border-color: #3b613b;
-        border-radius: 4px;
-        font-weight: 600;
-        background-color: #3b613b;
-        cursor: pointer;
-        color: #fff;
-        margin-top: 12px;
-        border-radius: 15px;
-      }
+  .buttonContainer {
+    margin-top: 40px;
+    button {
+      width: 100%;
+      height: 48px;
+      border: 1px solid;
+      border-color: #3b613b;
+      border-radius: 4px;
+      font-weight: 600;
+      background-color: #3b613b;
+      cursor: pointer;
+      color: #fff;
+      margin-top: 12px;
+      border-radius: 15px;
     }
   }
 `;
 
-const ErrorMessage = styled.div`
-  color: red;
-  font-size: 12px;
-  float: right;
-  line-height: 30px;
-  font-weight: 600;
-`;
-
 type IProps = {
-  goLogin: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   closeModalPortal: () => void;
 };
 const PASSWORD_MIN_LENGTH = 8;
-const SignupModal = ({ goLogin, closeModalPortal }: IProps) => {
+
+const SignupModal = ({ closeModalPortal }: IProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState(false);
-  const [passwordFocused, setPasswordFocused] = useState(false);
+  const [lastname, setLastname] = useState("");
+  const [firstname, setFirstname] = useState("");
+
   const [isPasswordHided, setIsPasswordHided] = useState(true);
-  const gologinBtn = useRef<HTMLButtonElement>(null);
+  const [passwordFocused, setPasswordFocused] = useState(false);
+
   const { validateMode, setValidateMode } = useValidateMode();
+
+  const dispatch = useDispatch();
 
   //*비밀번호 숨김 토글하기
   const togglePasswordHiding = () => {
@@ -101,24 +76,20 @@ const SignupModal = ({ goLogin, closeModalPortal }: IProps) => {
 
   //* password가 이름이나 이메일을 포함하는지
   const isPasswordHasNameOrEmail = useMemo(
-    () => !password || password.includes(email.split("@")[0]),
-    [password, email]
+    () =>
+      !password ||
+      !lastname ||
+      password.includes(lastname) ||
+      password.includes(email.split("@")[0]),
+    [password, lastname, email]
   );
 
-  //* 비밀번호가 최수 자리수 이상인지
+  //* 비밀번호가 최소 자리수 이상인지
   const isPasswordOverMinLength = useMemo(
     () => password.length >= PASSWORD_MIN_LENGTH,
     [password]
   );
 
-  //이메일이 입력될 때
-  const onChangeEmail = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      event.preventDefault();
-      setEmail(event.target.value);
-    },
-    []
-  );
   //* 비밀번호가 숫자나 특수기호를 포함하는지
   const isPasswordHasNumberOrSymbol = useMemo(
     () =>
@@ -132,6 +103,12 @@ const SignupModal = ({ goLogin, closeModalPortal }: IProps) => {
     if (!email) {
       return false;
     }
+    if (!lastname) {
+      return false;
+    }
+    if (!firstname) {
+      return false;
+    }
     if (
       !password ||
       isPasswordHasNameOrEmail ||
@@ -143,13 +120,24 @@ const SignupModal = ({ goLogin, closeModalPortal }: IProps) => {
     return true;
   };
 
-  //회원 가입을 제출합니다.
+  //* 언마운트 될 때마다 꺼주어야
+  useEffect(() => {
+    setValidateMode(false);
+  }, []);
+
+  //* 회원 가입을 제출합니다.
   const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setValidateMode(true);
 
     //제대로 된 값이 들어오면 실행
     if (validateSignUpForm()) {
+      const signUpBody = {
+        email,
+        lastname,
+        firstname,
+      };
+
       userPool.signUp(email, password, [], [], (err) => {
         if (err) {
           //이미 계정이 존재할 경우
@@ -157,42 +145,57 @@ const SignupModal = ({ goLogin, closeModalPortal }: IProps) => {
             err.message === "An account with the given email already exists."
           ) {
             alert("이미 존재하는 계정입니다.");
+            return;
           }
         }
+        dispatch(userActions.setUser(signUpBody));
         closeModalPortal();
         alert("가입 완료");
       });
     }
-
-    //인풋값이 아예 없다면 api를 보내지 않음
-    if (!email || !password) {
-      return undefined;
-    }
-    return null;
   };
-
-  useEffect(() => {
-    setValidateMode(false);
-  }, []);
-
   return (
-    <SignupFormContainer>
-      <form className="singupFormBox" onSubmit={onSubmitSignUp}>
+    <Container>
+      <form onSubmit={onSubmitSignUp}>
         <h1>SIGNUP</h1>
-        <div className="inputContainer">
+        <div className="sign-up-input-wrapper">
           <Input
+            name="email"
             placeholder="이메일 주소"
             type="email"
-            onChange={onChangeEmail}
             icon={<MailIcon />}
-            name="email"
             value={email}
-            useValidation
-            isValid={!email}
-            errorMessage="이메일을 넣어주세요"
+            isValid={!!email}
+            useValidation={validateMode}
+            onChange={(e) => setEmail(e.target.value)}
+            errorMessage="이메일이 필요합니다."
           />
         </div>
-        <div className="inputContainer">
+        <div className="sign-up-input-wrapper">
+          <Input
+            name="lastname"
+            placeholder="이름(예:길동)"
+            icon={<PersonIcon />}
+            value={lastname}
+            isValid={!!lastname}
+            useValidation={validateMode}
+            onChange={(e) => setLastname(e.target.value)}
+            errorMessage="이름을 입력하세요."
+          />
+        </div>
+        <div className="sign-up-input-wrapper">
+          <Input
+            name="firstname"
+            placeholder="성(예:홍)"
+            icon={<PersonIcon />}
+            value={firstname}
+            isValid={!!firstname}
+            useValidation={validateMode}
+            onChange={(e) => setFirstname(e.target.value)}
+            errorMessage="이름을 입력하세요."
+          />
+        </div>
+        <div className="sign-up-input-wrapper">
           <Input
             placeholder="비밀번호 설정하기"
             type={isPasswordHided ? "password" : "text"}
@@ -227,19 +230,19 @@ const SignupModal = ({ goLogin, closeModalPortal }: IProps) => {
             />
           </>
         )}
-        {passwordError && (
-          <ErrorMessage>
-            8 or more characters, must include numbers and letters
-          </ErrorMessage>
-        )}
         <div className="buttonContainer">
-          <button type="submit">회원가입</button>
-          <button type="button" ref={gologinBtn} onClick={goLogin}>
+          <Button type="submit" color="dark_cyan">
+            회원가입
+          </Button>
+          <Button
+            type="button"
+            onClick={() => dispatch(authActions.setAuthMode("login"))}
+          >
             로그인하러 가기
-          </button>
+          </Button>
         </div>
       </form>
-    </SignupFormContainer>
+    </Container>
   );
 };
 

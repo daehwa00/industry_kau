@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import React from "react";
 import ReactAutosizeTextarea from "react-autosize-textarea";
 import styled, { css } from "styled-components";
@@ -7,6 +8,7 @@ import palette from "../../styles/palette";
 type InputContainerProps = {
   isValid: boolean;
   useValidation: boolean;
+  type?: "title";
 };
 
 const Container = styled.div<InputContainerProps>`
@@ -16,8 +18,18 @@ const Container = styled.div<InputContainerProps>`
   }
   textarea {
     position: relative;
-    width: 100%;
-    min-height: 216px;
+    min-width: 800px;
+    ${({ type }) => {
+      if (type === "title") {
+        return css`
+          min-height: 50px;
+        `;
+      }
+      return css`
+        min-height: 400px;
+      `;
+    }}
+
     padding: 11px;
     border: 1px solid ${palette.gray_eb};
     border-radius: 4px;
@@ -70,6 +82,7 @@ interface IProps extends React.InputHTMLAttributes<HTMLTextAreaElement> {
   isValid?: boolean;
   useValidation?: boolean;
   errorMessage?: string;
+  type?: "title";
 }
 
 const Textarea: React.FC<IProps> = ({
@@ -77,12 +90,17 @@ const Textarea: React.FC<IProps> = ({
   isValid = false,
   useValidation = true,
   errorMessage,
+  type,
   ...props
 }) => {
   const validateMode = useSelector((state) => state.common.validateMode);
 
   return (
-    <Container isValid={isValid} useValidation={useValidation && validateMode}>
+    <Container
+      isValid={isValid}
+      useValidation={useValidation && validateMode}
+      type={type}
+    >
       {label && <label>{label}</label>}
       <ReactAutosizeTextarea {...props} />
       {useValidation && validateMode && !isValid && errorMessage && (

@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import BackArrowIcon from "../../../public/static/svg/register/register_posting_footer_back_arrow.svg";
-import Button from "../../button/Button";
+import Button from "../../common/Button";
 import palette from "../../../styles/palette";
 import useValidateMode from "../../../hooks/useValidateMode";
 
@@ -67,7 +67,7 @@ const RegisterPostingFooter: React.FC<IProps> = ({
             // }}
             color="dark_cyan"
           >
-            제출
+            다음
           </Button>
         </a>
       </Link>
