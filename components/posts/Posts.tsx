@@ -5,16 +5,16 @@ import DownArrow from "../../public/static/svg/posting/posting-down-arrow.svg";
 import Comment from "../../public/static/svg/posting/comment.svg";
 import User from "../../public/static/svg/posting/user/post-user.svg";
 import { useSelector } from "../../store";
-import { getpostAPI } from "../../lib/api/posting";
+import { useDispatch } from "react-redux";
+import { postActions } from "../../store/post";
 
 const Container = styled.div`
   width: 100%;
-  padding: 0px 15%;
+  cursor: pointer;
   .post-wrapper {
     display: flex;
-    justify-content: space-between;
     padding: 12px;
-    width: 100%;
+    width: 70%;
     height: auto;
     border-radius: 20px;
     box-shadow: 2px 2px 2px 2px gray;
@@ -28,6 +28,7 @@ const Container = styled.div`
       }
     }
     .post-right-block {
+      width: 100%;
       .post-header {
         display: flex;
         justify-content: space-between;
@@ -72,11 +73,22 @@ const Container = styled.div`
 
 const Posts = (body) => {
   const posts = useSelector((state) => state.posts.posts);
+
+  const dispatch = useDispatch();
+
+  const onClickPost = (postID: number) => {
+    dispatch(postActions.setPostClicked(postID));
+    console.log("HI");
+  };
   return (
     <Container>
       <ul>
         {posts.map((post) => (
-          <li className="post-wrapper" key={post.consolePostId}>
+          <li
+            className="post-wrapper"
+            key={post.consolePostId}
+            onClick={() => onClickPost(post.consolePostId)}
+          >
             <div className="post-left-block">
               <UpArrow style={{ fill: "rgb(42,169,224)" }} />
               <div className="post-likes">{11}</div>
