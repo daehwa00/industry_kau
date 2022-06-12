@@ -1,5 +1,7 @@
 import App, { AppContext, AppProps } from "next/app";
+import { Store } from "redux";
 import Router from "next/router";
+import { NextPageContext } from "next";
 import cookies from "next-cookies";
 import dynamic from "next/dynamic";
 import React from "react";
@@ -53,5 +55,10 @@ app.getInitialProps = async (context: AppContext) => {
   }
   return { ...appInitialProps };
 };
+
+export interface MyPageContext extends NextPageContext {
+  store: Store;
+  isServer: boolean;
+}
 
 export default wrapper.withRedux(app);

@@ -1,39 +1,29 @@
 import { NextPage } from "next";
 import styled from "styled-components";
-import React from "react";
-import { getpostAPI } from "../../lib/api/posting";
+import React, { useState } from "react";
 import Posts from "../../components/posts/Posts";
 import { wrapper } from "../../store";
 import { searchActions } from "../../store/search";
 import SearchBar from "../../components/common/SearchBar";
+import palette from "../../styles/palette";
 
 const Container = styled.div`
+  background-color: ${palette.tawny}
+  display: flex;
+  flex-direction: column;
+
   padding: 50px 100px 40px;
   .;
 `;
 
 const PostList: NextPage = () => {
-  const body = {
-    mainCategory: "대분류2",
-    pageNumber: 1,
-  };
+  const [postClicked, setPostClicked] = useState("");
   return (
     <Container>
       <SearchBar />
-      <Posts body={body} />
+      <Posts />
     </Container>
   );
 };
-
-export const getServerSideProps = wrapper.getServerSideProps(
-  async ({ store, query }) => {
-    const { mainCategory, page } = query;
-    try {
-      await getpostAPI(postBody);
-    } catch (e) {
-      console.log("오류");
-    }
-  }
-);
 
 export default PostList;

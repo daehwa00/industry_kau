@@ -48,24 +48,27 @@ const initialMessages = [
 
 const Chatapp = (props) => {
   // 응답
-  const countReplayLength = (text) => {
-    const email = "daehwa001210@gmail.com";
-    const { data } = chatbotAPI({ request: text, email });
-    console.log(data);
-    return data;
-  };
+  const countReplayLength = (text) =>
+    new Promise(async (res) => {
+      const email = "daehwa001210@gmail.com";
+      const { data } = await chatbotAPI({ request: text, email });
+      console.log("data : ", data);
+      res(data);
+    });
 
   const [messages, setMessages] = useState(initialMessages);
   //addNewMessage 메시지 타이핑
   const addNewMessage = (event) => {
-    console.log(event.message);
+    console.log("event message : ", event.message);
     let botResponse = Object.assign({}, event.message);
-    botResponse.text = countReplayLength(event.message.text); //보내는 메세지
-    botResponse.author = bot;
     setMessages([...messages, event.message]);
-    setTimeout(() => {
+
+    countReplayLength(event.message.text).then(function(ret) {
+      console.log("ret : ", ret);
+      botResponse.text = ret; //보내는 메세지
+      botResponse.author = bot;
       setMessages((oldMessages) => [...oldMessages, botResponse]);
-    }, 1000);
+    });
   };
 
   return (
@@ -80,7 +83,7 @@ const Chatapp = (props) => {
           user={user}
           messages={messages}
           onMessageSend={addNewMessage}
-          placeholder="입력창"
+          placeholder="입력해주세요!"
           className="all"
         />
       </div>

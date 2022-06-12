@@ -12,13 +12,14 @@ import { postsActions } from "../../store/posts";
 
 const Container = styled.div`
   position: relative;
-  width: 100%;
+  width: 70%;
   height: 100px;
   display: flex;
   border: 2px solid transparent;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.58);
   border-radius: 12px;
   cursor: pointer;
+  margin-bottom: 50px;
   &:hover {
     border-color: ${palette.gray_dd};
   }

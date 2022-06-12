@@ -1,4 +1,5 @@
 import { postType } from "./post";
+import { commentType } from "./comment";
 
 //* 유저 redux state
 export type UserState = {
@@ -22,4 +23,10 @@ export type PostState = {
 export type SearchPost = {
   mainCategory: string;
   pageNumber: number;
+};
+
+//* 특정 Post detail
+export type PostDetail = {
+  post: postType;
+  comments: commentType[];
 };
