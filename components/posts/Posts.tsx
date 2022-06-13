@@ -6,7 +6,9 @@ import Comment from "../../public/static/svg/posting/comment.svg";
 import User from "../../public/static/svg/posting/user/post-user.svg";
 import { useSelector } from "../../store";
 import { useDispatch } from "react-redux";
-import { postActions } from "../../store/post";
+import { postActions, rightPostActions } from "../../store/rightPost";
+import RightPost from "../post/RightPost";
+import { getCommentsAPI, getPostAPI } from "../../lib/api/post";
 
 const Container = styled.div`
   width: 100%;
@@ -71,15 +73,27 @@ const Container = styled.div`
   }
 `;
 
-const Posts = (body) => {
+const Posts = () => {
   const posts = useSelector((state) => state.posts.posts);
+
+  const clicked = useSelector((state) => state.post.clicked);
 
   const dispatch = useDispatch();
 
   const onClickPost = (postID: number) => {
-    dispatch(postActions.setPostClicked(postID));
+    dispatch(rightPostActions.setPostClicked());
+
+    const { post } = getPostAPI(postID);
+
+    dispatch(rightPostActions.setPostDetail(post));
+
+    const { comments } = getCommentsAPI(postID);
+
+    dispatch(rightPostActions.setPostCommmets(comments));
+
     console.log("HI");
   };
+
   return (
     <Container>
       <ul>
@@ -126,6 +140,7 @@ const Posts = (body) => {
           </li>
         ))}
       </ul>
+      {clicked === true && <RightPost />}
     </Container>
   );
 };

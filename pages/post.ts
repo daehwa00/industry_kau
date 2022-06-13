@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import { getPostDetailAPI } from "../lib/api/post";
-import { postActions } from "../store/post";
+import { postActions } from "../store/rightPost";
 import { MyPageContext } from "./_app";
 
 const postDetail: NextPage = () => {

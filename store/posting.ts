@@ -45,9 +45,6 @@ const posting = createSlice({
       state,
       action: PayloadAction<"anonymous" | "nickname" | "email">
     ) {
-      if (action.payload === "") {
-        state.anonymousType = null;
-      }
       state.anonymousType = action.payload;
       return state;
     },

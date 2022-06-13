@@ -1,5 +1,5 @@
 import axios from "axios";
 
-//* 포스팅 검색 api
+//* 챗봇 대화
 export const chatbotAPI = (body: { request: string; email: string }) =>
   axios.post("/api/chatbot/createConsole", body);

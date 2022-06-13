@@ -9,6 +9,8 @@ import useDebounce from "../../hooks/useDebounce";
 import palette from "../../styles/palette";
 import { getPostListAPI, searchWordAPI } from "../../lib/api/posting";
 import { postsActions } from "../../store/posts";
+import { getRecommendPostListAPI } from "../../lib/api/posting";
+import { postActions } from "../../store/rightPost";
 
 const Container = styled.div`
   position: relative;
@@ -78,6 +80,8 @@ const SearchBar: React.FC = () => {
 
   const searchWord = useSelector((state) => state.search.searchWord);
 
+  const email = useSelector((state) => state.user.email);
+
   const dispatch = useDispatch();
 
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -114,6 +118,7 @@ const SearchBar: React.FC = () => {
   //* 검색된 keyword 클릭시
   const onClickResult = async (result: string) => {
     try {
+      console.log(result);
       const { data } = await getPostListAPI(result);
       dispatch(postsActions.setPosts(data));
       setPopupOpened(false);
@@ -122,17 +127,15 @@ const SearchBar: React.FC = () => {
     }
   };
 
-  //* 근처 추천 장소 클릭시
-  const onClickNearPlaces = () => {
-    setPopupOpened(false);
-    navigator.geolocation.getCurrentPosition(
-      ({ coords }) => {
-        setLocationDispatch("근처 추천 장소");
-      },
-      (e) => {
-        console.log(e);
-      }
-    );
+  //* 추천 게시물 클릭시
+  const onClickRecommendPost = async () => {
+    try {
+      const { data } = await getRecommendPostListAPI(email);
+      dispatch(postsActions.setPosts(data));
+      setPopupOpened(false);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   //* 검색어가 변하면 포스팅을 검색
@@ -165,7 +168,12 @@ const SearchBar: React.FC = () => {
         {popupOpened && searchWord !== "추천 게시물" && (
           <ul className="search-roo-bar-searchWord-results">
             {!searchWord && (
-              <li role="presentation" onClick={onClickNearPlaces}>
+              <li
+                role="presentation"
+                onClick={() => {
+                  onClickRecommendPost();
+                }}
+              >
                 추천하는 게시물이예요!
               </li>
             )}
