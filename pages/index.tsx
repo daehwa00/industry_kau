@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import styled from "styled-components";
 import BackgroundSlider from "react-background-slider";
-import { getpostAPI } from "../lib/api/posting";
 
 const Container = styled.div`
   font-size: 21px;

@@ -38,14 +38,18 @@ app.getInitialProps = async (context: AppContext) => {
   const allCookies = cookies(ctx);
   const emailCookie = allCookies.email;
 
+  console.log(Object.keys(context.ctx));
+
   const userBody = {
     email: emailCookie,
     lastname: "대화",
-    fistname: "고",
+    firstname: "고",
+    isLogged: true,
   };
 
   const { store } = context.ctx;
   const { isLogged } = store.getState().user;
+
   try {
     if (!isLogged && emailCookie) {
       store.dispatch(userActions.setUser(userBody));

@@ -10,7 +10,7 @@ import palette from "../../styles/palette";
 import { getPostListAPI, searchWordAPI } from "../../lib/api/posting";
 import { postsActions } from "../../store/posts";
 import { getRecommendPostListAPI } from "../../lib/api/posting";
-import { postActions } from "../../store/rightPost";
+import { NextPage } from "next";
 
 const Container = styled.div`
   position: relative;
@@ -75,7 +75,7 @@ const Container = styled.div`
     }
   }
 `;
-const SearchBar: React.FC = () => {
+const SearchBar: NextPage = () => {
   const [popupOpened, setPopupOpened] = useState(false);
 
   const searchWord = useSelector((state) => state.search.searchWord);
@@ -116,7 +116,7 @@ const SearchBar: React.FC = () => {
   };
 
   //* 검색된 keyword 클릭시
-  const onClickResult = async (result: string) => {
+  const onClickResult = async (result) => {
     try {
       console.log(result);
       const { data } = await getPostListAPI(result);
@@ -180,7 +180,7 @@ const SearchBar: React.FC = () => {
             {!isEmpty(results) &&
               results.map((result) => (
                 <li role="presentation" onClick={() => onClickResult(result)}>
-                  {result}
+                  <>{result}</>
                 </li>
               ))}
           </ul>

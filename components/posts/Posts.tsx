@@ -6,7 +6,7 @@ import Comment from "../../public/static/svg/posting/comment.svg";
 import User from "../../public/static/svg/posting/user/post-user.svg";
 import { useSelector } from "../../store";
 import { useDispatch } from "react-redux";
-import { postActions, rightPostActions } from "../../store/rightPost";
+import { rightPostActions } from "../../store/rightPost";
 import RightPost from "../post/RightPost";
 import { getCommentsAPI, getPostAPI } from "../../lib/api/post";
 

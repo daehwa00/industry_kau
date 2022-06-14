@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-
 import styled from "styled-components";
 import Input from "../common/Input";
 import Button from "../common/Button";
@@ -11,6 +10,7 @@ import OpenedEyeIcon from "../../public/static/svg/logo/OpendEyeIcon.svg";
 import { loginAPI } from "../../lib/api/auth";
 import { authActions } from "../../store/auth";
 import { userActions } from "../../store/user";
+import { UserType } from "../../types/UserType";
 
 const Container = styled.div`
   z-index: 11;
@@ -85,19 +85,18 @@ const LoginModal: React.FC<IProps> = ({ closeModalPortal }: IProps) => {
     } else {
       const loginBody = { email, password };
       try {
-        const { data } = await loginAPI(loginBody);
+        const data = await loginAPI(loginBody);
         closeModalPortal();
         alert("로그인 성공");
 
         const userBody = {
-          email: data,
+          email,
           lastname: "대화",
           firstname: "고",
           isLogged: true,
         };
 
         dispatch(userActions.setUser(userBody));
-        console.log("HIHIHIHIHII");
       } catch (e) {
         console.log(e);
         if (e.message === "User is not confirmed.") {
