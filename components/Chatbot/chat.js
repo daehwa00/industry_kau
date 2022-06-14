@@ -61,13 +61,15 @@ const Chatapp = (props) => {
   const addNewMessage = (event) => {
     console.log("event message : ", event.message);
     let botResponse = Object.assign({}, event.message);
-    setMessages([...messages, event.message]);
+    botResponse.author = bot;
+    botResponse.typing = true;
+    setMessages([...messages, event.message, botResponse]);
 
-    countReplayLength(event.message.text).then(function(ret) {
+    countReplayLength(event.message.text).then(function (ret) {
       console.log("ret : ", ret);
       botResponse.text = ret; //보내는 메세지
-      botResponse.author = bot;
-      setMessages((oldMessages) => [...oldMessages, botResponse]);
+      botResponse.typing = false;
+      setMessages([...messages, event.message, botResponse]);
     });
   };
 

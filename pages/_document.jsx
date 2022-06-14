@@ -32,6 +32,31 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <title>{"내맘을 위로해조"}</title>
+          <meta
+            name="description"
+            content={
+              "내 마음에 쌓인 마음들 여기서 터놓고 얘기해봐요, 위로해줄게요."
+            }
+          />
+          <meta
+            name="viewport"
+            content="initial-scale=1.0, width=device-width"
+          />
+          <meta property="og:title" content={"내맘을 위로해조 "} />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content={"https://comfortme.shop"} />
+          <meta
+            property="og:image"
+            content={
+              "https://aws-console-project.s3.ap-northeast-2.amazonaws.com/console-post/bg3.jpg"
+            }
+          />
+          <meta property="og:article:author" content="내맘을 위로해조" />
+          <link
+            rel="shortcut icon"
+            href="https://aws-console-project.s3.ap-northeast-2.amazonaws.com/console-post/bg3.jpg"
+          />
           <link
             href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700"
             rel="stylesheet"

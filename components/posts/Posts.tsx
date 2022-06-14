@@ -80,18 +80,16 @@ const Posts = () => {
 
   const dispatch = useDispatch();
 
-  const onClickPost = (postID: number) => {
+  const onClickPost = async (postID: number) => {
     dispatch(rightPostActions.setPostClicked());
 
-    const { post } = getPostAPI(postID);
+    const { data } = await getPostAPI(1);
+    console.log(data);
+    dispatch(rightPostActions.setPostDetail(data));
 
-    dispatch(rightPostActions.setPostDetail(post));
+    // const { comments } = getCommentsAPI(1);
 
-    const { comments } = getCommentsAPI(postID);
-
-    dispatch(rightPostActions.setPostCommmets(comments));
-
-    console.log("HI");
+    // dispatch(rightPostActions.setPostCommmets(comments));
   };
 
   return (

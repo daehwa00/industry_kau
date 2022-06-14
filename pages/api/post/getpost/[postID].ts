@@ -1,11 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
+import { postType } from "../../../../types/post";
 
 //* redux-store에 넣고,
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  console.log("뭐요ㅕ");
   if (req.method === "GET") {
     const { postID } = req.query;
+
     if (!postID) {
       res.statusCode = 400;
       return res.send("postID 없습니다");
@@ -19,7 +20,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       });
 
       res.statusCode = 200;
-      return res.send(data);
+      return res.send(data[0]);
     } catch (e) {
       console.log(e);
     }
