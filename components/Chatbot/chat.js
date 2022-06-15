@@ -30,17 +30,6 @@ const bot = {
 const initialMessages = [
   {
     author: bot,
-    //선택 응답
-    suggestedActions: [
-      {
-        type: "reply",
-        value: "aa",
-      },
-      {
-        type: "reply",
-        value: "bb",
-      },
-    ],
     timestamp: new Date(),
     text: "반가워요! 보고 싶었어요!",
   },

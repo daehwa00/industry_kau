@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import styled from "styled-components";
 import BackgroundSlider from "react-background-slider";
 import { getpostAPI } from "../lib/api/posting";
+import Textra from 'react-textra';
 
 const Container = styled.div`
   font-size: 21px;
@@ -43,6 +44,7 @@ const Container = styled.div`
   }
 `;
 
+
 const Index: NextPage = () => {
   return (
     <Container>
@@ -57,7 +59,9 @@ const Index: NextPage = () => {
         transition={2}
       />
       <div className="context-wrapper">
-        <div className="first-context">모두에게 기쁨이 </div>
+        <div className="first-context">모두에게 [
+        <Textra effect='topDown' data={['기쁨', '행복', '웃음', '안정']} duration={500}/>
+        ]이 </div>
         <div className="second-context">찾아오는 그 순간까지</div>
         <div className="third-context">당신이 정말로 행복했으면 좋겠어요</div>
       </div>
