@@ -7,8 +7,10 @@ export const postAPI = (body: PostingAPIBody) =>
   axios.post("/api/post/posting", body);
 
 //* 글 리스트를 불러오는 api
-export const getPostListAPI = (keyword: string) =>
-  axios.get<GetPostAPIBody[]>(`/api/post/getPostList?keyword=${keyword}`);
+export const getPostListAPI = (keyword: string, page = 1) =>
+  axios.get<GetPostAPIBody[]>(
+    `/api/post/getPostList?keyword=${keyword}&page=${page}`
+  );
 
 //* 추천 글 리스트를 불러오는 api
 export const getRecommendPostListAPI = (email: string) =>

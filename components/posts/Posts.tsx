@@ -101,9 +101,6 @@ const Container = styled.div`
 
 const Posts = () => {
   const posts = useSelector((state) => state.posts.posts);
-
-  const clicked = useSelector((state) => state.postModal.clicked);
-
   const dispatch = useDispatch();
 
   const { closeModalPortal, openModalPortal, ModalPortal } = usePortal();

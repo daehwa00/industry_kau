@@ -5,7 +5,9 @@ import { postsActions } from "../../../../store/posts";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET") {
-    const { keyword } = req.query;
+    const { keyword, page = 1 } = req.query;
+    console.log(keyword);
+    console.log(page);
 
     if (!keyword) {
       res.statusCode = 400;
@@ -16,7 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         method: "get",
         url: `https://7f6calrfce.execute-api.ap-northeast-2.amazonaws.com/dev/getMcConsolePosts?mainCategory=${encodeURI(
           keyword
-        )}&page=1`,
+        )}&page=${page}`,
         headers: { "x-api-key": "Jkul4qNZJeatNGd9L8wdRj5qXqDhaog2FBJhtq4f" },
       });
 
