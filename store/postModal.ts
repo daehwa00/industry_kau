@@ -18,6 +18,7 @@ const initialState: postState = {
 const postModal = createSlice({
   name: "postModal",
   initialState,
+
   reducers: {
     //* 열리는 포스트 설정하기(고유 postID를 넘겨줌)
     setPostDetail(state, action: PayloadAction<postType>) {

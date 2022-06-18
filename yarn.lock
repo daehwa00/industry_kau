@@ -10824,6 +10824,14 @@ react-awesome-popover@^6.1.1:
   dependencies:
     react "^16.9.0"
 
+react-background-slider-background-fixed@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-background-slider-background-fixed/-/react-background-slider-background-fixed-1.0.4.tgz#d25a172af1f9216f26289fdbf9d0f6e94c5b3058"
+  integrity sha512-4fakr3cjjpgUcJT0dSJTtCdbdKbu+NLE3hkAOs/LekW9f5OGI0tTcMWqqN0KIKO696+8K8imNbG9nomwSG8gJQ==
+  dependencies:
+    css-vendor "^1.2.1"
+    prop-types "^15.7.2"
+
 react-background-slider@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/react-background-slider/-/react-background-slider-2.0.0.tgz"

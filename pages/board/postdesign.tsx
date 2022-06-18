@@ -6,15 +6,12 @@ import { wrapper } from "../../store";
 import { searchActions } from "../../store/search";
 import SearchBar from "../../components/common/SearchBar";
 import palette from "../../styles/palette";
-import BackgroundSlider from "react-background-slider";
+import BackgroundSlider from "react-background-slider-background-fixed";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 50px 100px 40px;
-  .background {
-    position: sticky;
-  }
 `;
 
 const PostList: NextPage = () => {

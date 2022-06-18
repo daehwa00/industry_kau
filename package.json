@@ -33,6 +33,7 @@
     "react-autosize-textarea": "^7.1.0",
     "react-awesome-popover": "^6.1.1",
     "react-background-slider": "^2.0.0",
+    "react-background-slider-background-fixed": "^1.0.4",
     "react-dom": "18.1.0",
     "react-floating-button": "^1.1.1",
     "react-floating-buttons": "^1.0.1",

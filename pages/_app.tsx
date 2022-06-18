@@ -10,14 +10,9 @@ import GlobalStyle from "../styles/GlobalStyle";
 import Header from "../components/Header";
 import { wrapper } from "../store";
 import { userActions } from "../store/user";
-import BackgroundSlider from "react-background-slider";
+import BackgroundSlider from "react-background-slider-background-fixed";
 
 const Container = styled.div`
-  .back-slider {
-    top: 0;
-    left: 0;
-    right: 0;
-  }
   .bot {
     position: fixed;
     right: 20px;
@@ -29,22 +24,20 @@ const ChatApp = dynamic(import("../components/Chatbot/widget"), { ssr: false });
 const app = ({ Component, pageProps }: AppProps) => {
   return (
     <Container>
-      <div className="back-slider">
-        <BackgroundSlider
-          images={[
-            "main/png/bg1.jpg",
-            "main/png/bg2.jpg",
-            "main/png/bg3.jpg",
-            "main/png/bg4.jpg",
-          ]}
-          duration={10}
-          transition={2}
-        />
-      </div>
+      <BackgroundSlider
+        images={[
+          "../main/png/bg1.jpg",
+          "../main/png/bg2.jpg",
+          "../main/png/bg3.jpg",
+          "../main/png/bg4.jpg",
+        ]}
+        duration={10}
+        transition={2}
+      />
       <Header />
       <GlobalStyle />
-      <div id="root-modal" />
       <Component {...pageProps} />
+      <div id="root-modal" />
       <div className="bot">
         <ChatApp />
       </div>
@@ -57,8 +50,6 @@ app.getInitialProps = async (context: AppContext) => {
   const { ctx } = context;
   const allCookies = cookies(ctx);
   const emailCookie = allCookies.email;
-
-  console.log(Object.keys(context.ctx));
 
   const userBody = {
     email: emailCookie,

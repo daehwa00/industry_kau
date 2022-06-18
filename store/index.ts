@@ -9,8 +9,8 @@ import common from "./common";
 import posting from "./posting";
 import auth from "./auth";
 import posts from "./posts";
-import post from "./rightPost";
 import search from "./search";
+import postModal from "./postModal";
 
 const rootReducer = combineReducers({
   common: common.reducer,
@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
   posting: posting.reducer,
   auth: auth.reducer,
   posts: posts.reducer,
-  post: post.reducer,
+  postModal: postModal.reducer,
   search: search.reducer,
 });
 

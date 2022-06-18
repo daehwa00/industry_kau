@@ -6,10 +6,12 @@ import Comment from "../../public/static/svg/posting/comment.svg";
 import User from "../../public/static/svg/posting/user/post-user.svg";
 import { useSelector } from "../../store";
 import { useDispatch } from "react-redux";
-import rightPost, { rightPostActions } from "../../store/rightPost";
+import rightPost, { postModalActions } from "../../store/postModal";
 import RightPost from "../post/RightPost";
 import { getCommentsAPI, getPostAPI } from "../../lib/api/post";
+import usePortal from "../../hooks/usePortal";
 import * as React from "react";
+import PostModal from "../post/PostModal";
 
 const Container = styled.div`
   width: 100%;
@@ -100,18 +102,18 @@ const Container = styled.div`
 const Posts = () => {
   const posts = useSelector((state) => state.posts.posts);
 
-  const clicked = useSelector((state) => state.post.clicked);
+  const clicked = useSelector((state) => state.postModal.clicked);
 
   const dispatch = useDispatch();
 
-  const onClickPost = async (postID: number) => {
-    dispatch(rightPostActions.setPostClicked());
-    const { data } = await getPostAPI(1);
-    console.log(data);
-    dispatch(rightPostActions.setPostDetail(data));
-    // const { comments } = getCommentsAPI(1);
+  const { closeModalPortal, openModalPortal, ModalPortal } = usePortal();
 
-    // dispatch(rightPostActions.setPostCommmets(comments));
+  const onClickPost = async (postID: number) => {
+    dispatch(postModalActions.setPostClicked());
+    const { data } = await getPostAPI(postID);
+    console.log(data);
+    dispatch(postModalActions.setPostDetail(data));
+    openModalPortal();
   };
 
   return (
@@ -160,13 +162,9 @@ const Posts = () => {
           </li>
         ))}
       </ul>
-      {clicked === true && (
-        <Container className="post-box">
-          <div className="post-detail">
-            <RightPost />
-          </div>
-        </Container>
-      )}
+      <ModalPortal>
+        <PostModal closeModalPortal={closeModalPortal} />
+      </ModalPortal>
     </Container>
   );
 };
