@@ -5,13 +5,9 @@ import Posts from "../../components/posts/Posts";
 import { useSelector, wrapper } from "../../store";
 import { searchActions } from "../../store/search";
 import SearchBar from "../../components/common/SearchBar";
-<<<<<<< HEAD
-import palette from "../../styles/palette";
-=======
 import { useDispatch } from "react-redux";
 import { getPostListAPI } from "../../lib/api/posting";
 import { postsActions } from "../../store/posts";
->>>>>>> a5b70ca730b2ff96aa3996016cd1d860a10f6822
 
 const Container = styled.div`
   display: flex;

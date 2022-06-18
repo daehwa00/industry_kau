@@ -3,38 +3,6 @@ import styled from "styled-components";
 import User from "../../public/static/svg/posting/user/post-user.svg";
 import Comment from "../../public/static/svg/posting/comment.svg";
 import { useSelector } from "../../store";
-<<<<<<< HEAD
-import UpArrow from "../../public/static/svg/posting/posting-up-arrow.svg";
-import DownArrow from "../../public/static/svg/posting/posting-down-arrow.svg";
-import Accordion from "@mui/material/Accordion";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import { Typography } from "@mui/material";
-
-const Container = styled.div`
-  overflow: auto;
-  font-size: 16px;
-  text-align: left;
-  color: #00004d;
-  fornt-weight: 300;
-  .line {
-    height: 12px;
-    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.2);
-  }
-  .line2 {
-    border: 0;
-    height: 1px;
-    margin-bottom: 10px;
-    background-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0),
-      rgba(0, 0, 0, 0.75),
-      rgba(0, 0, 0, 0)
-    );
-  }
-  .post-title {
-    font-size: 30px;
-=======
 import palette from "../../styles/palette";
 import UpArrow from "../../public/static/svg/posting/posting-up-arrow.svg";
 import DownArrow from "../../public/static/svg/posting/posting-down-arrow.svg";
@@ -52,7 +20,6 @@ const Container = styled.div`
   padding: 20px 50px 50px 0px;
   .post-left-block {
     margin: 30px 30px 0px 30px;
->>>>>>> a5b70ca730b2ff96aa3996016cd1d860a10f6822
     font-weight: 800;
     .post-likes {
       margin: 20px 0 20px 0;
@@ -141,27 +108,6 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
         <div className="post-likes">{11}</div>
         <DownArrow />
       </div>
-<<<<<<< HEAD
-      <div className="line" />
-      <div className="post-content">{post.contents}</div>
-      <div className="line2" />
-      <div className="post-left-block">
-        <UpArrow style={{ fill: "rgb(42,169,224)" }} className="post-arrow" />
-        <div className="post-likes">22</div>
-        <DownArrow className="post-arrow" />
-      </div>
-      <div className="post-passing">다음글</div>
-      <div className="post-passing">이전글</div>
-      <div className="post-comment">
-        <Comment />
-        댓글 (number)
-        <Accordion disableGutters>
-          <AccordionSummary expandIcon={<DownArrow />}>
-            <Typography>댓글</Typography>
-          </AccordionSummary>
-          <AccordionDetails>ㅁㄴㅁㄴ</AccordionDetails>
-        </Accordion>
-=======
       <div className="post-right-block">
         <div className="post-header">
           <div className="post-title-time">
@@ -205,7 +151,6 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
             )}
           </div>
         </div>
->>>>>>> a5b70ca730b2ff96aa3996016cd1d860a10f6822
       </div>
     </Container>
   );
