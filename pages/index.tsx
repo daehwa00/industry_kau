@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import styled from "styled-components";
-import BackgroundSlider from "react-background-slider";
 import { getpostAPI } from "../lib/api/posting";
 import Textra from "react-textra";
 
@@ -35,12 +34,6 @@ const Container = styled.div`
     left: 15%;
     color: white;
     font-weight: bold;
-  }
-  .bot-position {
-    display: flex;
-    justify-content: right;
-    padding-right: 20px;
-    padding-top: 20px;
   }
 `;
 
