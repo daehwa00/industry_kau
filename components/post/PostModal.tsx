@@ -3,6 +3,7 @@ import styled from "styled-components";
 import User from "../../public/static/svg/posting/user/post-user.svg";
 import Comment from "../../public/static/svg/posting/comment.svg";
 import { useSelector } from "../../store";
+<<<<<<< HEAD
 import UpArrow from "../../public/static/svg/posting/posting-up-arrow.svg";
 import DownArrow from "../../public/static/svg/posting/posting-down-arrow.svg";
 import Accordion from "@mui/material/Accordion";
@@ -33,45 +34,82 @@ const Container = styled.div`
   }
   .post-title {
     font-size: 30px;
+=======
+import palette from "../../styles/palette";
+import UpArrow from "../../public/static/svg/posting/posting-up-arrow.svg";
+import DownArrow from "../../public/static/svg/posting/posting-down-arrow.svg";
+import formatDistance from "date-fns/formatDistance";
+import ProgressBar from "@ramonak/react-progress-bar";
+
+const Container = styled.div`
+  width: 50vw;
+  cursor: pointer;
+  background-color: white;
+  display: flex;
+  padding: 12px;
+  height: auto;
+  margin-bottom: 20px;
+  padding: 20px 50px 50px 0px;
+  .post-left-block {
+    margin: 30px 30px 0px 30px;
+>>>>>>> a5b70ca730b2ff96aa3996016cd1d860a10f6822
     font-weight: 800;
-    margin-top: 20px;
-    margin-bottom: 10px;
+    .post-likes {
+      margin: 20px 0 20px 0;
+    }
   }
-  .post-user {
-    font-size: 15px;
-    padding: 0;
-    top: 0;
-    font-weight: 400;
-    margin-top: 30px;
-    display: flex;
-    .post-user-svg {
-      width: 50px;
-      height: 50px;
+  .post-right-block {
+    width: 100%;
+    .post-header {
+      display: flex;
+      justify-content: space-between;
+      height: 40px;
+      margin-bottom: 20px;
+      .post-title-time {
+        .post-title {
+          font-size: 23px;
+          font-weight: 800;
+          padding-bottom: 5px;
+        }
+        .post-time {
+          font-size: 12px;
+        }
+      }
+      .post-subCategory-bar {
+        position: relative;
+        .post-subCategory {
+          font-size: 12px;
+          font-weight: bold;
+          color: ${palette.gray_71};
+        }
+      }
+    }
+    .post-contents {
+      font-size: 14px;
+      margin-bottom: 20px;
+      line-height: 200%;
+      color: ${palette.gray};
+    }
+    .post-footer {
+      display: flex;
+      justify-content: space-between;
+      height: 40px;
+      display: flex;
       align-items: center;
-      margin-right: 10px;
+      font-size: 10px;
+      color: ${palette.gray_76};
+      .post-footer-user {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        .post-footer-user-svg {
+          margin-right: 10px;
+        }
+      }
+      .post-footer-comment {
+        margin-right: 5px;
+      }
     }
-    .post-user-date {
-      font-size: 13px;
-      margin-top: 0;
-      padding: 0;
-      top: 0;
-      font-weight: 200;
-      margin-top: 20px;
-    }
-  }
-  .post-content {
-    margin-bottom: 6px;
-    font-size: 18px;
-    font-weight: 400;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 5px;
-  }
-  .post-comment {
-    font-size: 16px;
-    font-weight: 400;
-    margin-top: 20px;
-    margin-bottom: 20px;
   }
   .post-left-block {
     justify-content: space-between;
@@ -98,12 +136,12 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
   const post = useSelector((state) => state.postModal.postDetail);
   return (
     <Container>
-      <div className="post-title">{post.title}</div>
-      <div className="post-user">
-        <User className="post-user-svg" />
-        {post.anonymous}
-        <div className="post-user-date">{post.createdAt}</div>
+      <div className="post-left-block">
+        <UpArrow style={{ fill: "rgb(42,169,224)" }} />
+        <div className="post-likes">{11}</div>
+        <DownArrow />
       </div>
+<<<<<<< HEAD
       <div className="line" />
       <div className="post-content">{post.contents}</div>
       <div className="line2" />
@@ -123,6 +161,51 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
           </AccordionSummary>
           <AccordionDetails>ㅁㄴㅁㄴ</AccordionDetails>
         </Accordion>
+=======
+      <div className="post-right-block">
+        <div className="post-header">
+          <div className="post-title-time">
+            <div className="post-title">{post.title}</div>
+            <div className="post-time">
+              {formatDistance(new Date(post.createdAt), new Date(), {
+                addSuffix: true,
+              })}
+            </div>
+          </div>
+          <div className="post-subCategory-bar">
+            <div className="post-subCategory">{post.subCategory}</div>
+          </div>
+        </div>
+        <div className="post-contents">{post.contents}</div>
+        <div className="post-footer">
+          <div className="post-footer-user">
+            <User
+              style={{ fill: "rgb(42,169,224)" }}
+              className="post-footer-user-svg"
+            />
+            Posted by {post.email}
+          </div>
+          <div className="post-footer-comments">
+            {post.negative > 0.5 ? (
+              <ProgressBar
+                completed={post.negative * 100}
+                bgColor="#ff3b1f"
+                height="5px"
+                width="200px"
+                customLabel=" "
+              />
+            ) : (
+              <ProgressBar
+                completed={post.negative * 100}
+                bgColor="#50bcdf"
+                height="5px"
+                width="200px"
+                customLabel=" "
+              />
+            )}
+          </div>
+        </div>
+>>>>>>> a5b70ca730b2ff96aa3996016cd1d860a10f6822
       </div>
     </Container>
   );

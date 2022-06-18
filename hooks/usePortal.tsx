@@ -23,8 +23,6 @@ const Container = styled.div`
   }
 
   .modal-contents {
-    width: 568px;
-    min-height: 614px;
     padding: 32px;
     background-color: white;
     z-index: 11;

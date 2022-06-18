@@ -14,6 +14,8 @@ import { authActions } from "../../store/auth";
 import Button from "../common/Button";
 
 const Container = styled.div`
+  width: 568px;
+  min-height: 614px;
   .sign-up-input-wrapper {
     position: relative;
     margin-bottom: 16px;
