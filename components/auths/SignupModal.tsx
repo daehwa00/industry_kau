@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import userPool from "../../src/userPool";
-import Input from "../common/Input";
+import Input from "../common/input";
 import MailIcon from "../../public/static/svg/auth/MailIcon.svg";
 import useValidateMode from "../../hooks/useValidateMode";
 import ClosedEyeIcon from "../../public/static/svg/logo/ClosedEyeIcon.svg";
