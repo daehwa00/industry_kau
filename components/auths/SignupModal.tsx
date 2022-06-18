@@ -136,6 +136,7 @@ const SignupModal = ({ closeModalPortal }: IProps) => {
         email,
         lastname,
         firstname,
+        isLogged: true,
       };
 
       userPool.signUp(email, password, [], [], (err) => {

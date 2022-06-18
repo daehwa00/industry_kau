@@ -9,7 +9,7 @@ import common from "./common";
 import posting from "./posting";
 import auth from "./auth";
 import posts from "./posts";
-import post from "./post";
+import post from "./rightPost";
 import search from "./search";
 
 const rootReducer = combineReducers({

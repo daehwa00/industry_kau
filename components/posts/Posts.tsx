@@ -6,11 +6,36 @@ import Comment from "../../public/static/svg/posting/comment.svg";
 import User from "../../public/static/svg/posting/user/post-user.svg";
 import { useSelector } from "../../store";
 import { useDispatch } from "react-redux";
-import { postActions } from "../../store/post";
+import rightPost, { rightPostActions } from "../../store/rightPost";
+import RightPost from "../post/RightPost";
+import { getCommentsAPI, getPostAPI } from "../../lib/api/post";
+import * as React from "react";
 
 const Container = styled.div`
   width: 100%;
   cursor: pointer;
+  .post-box {
+    border-radius: 30px;
+    width: 500px;
+    height: 50vh;
+    margin: 50px auto;
+    background: #fcebeb;
+    padding: 20px;
+    position: relative;
+    box-shadow: 2px 2px 2px 2px gray;
+    .post-detail:before {
+      content: "";
+      width: 0px;
+      height: 0px;
+      position: absolute;
+      border-left: 15px solid transparent;
+      border-right: 15px solid #fcebeb;
+      border-top: 15px solid #fcebeb;
+      border-bottom: 15px solid transparent;
+      left: -30px;
+      top: 70px;
+    }
+  }
   .post-wrapper {
     display: flex;
     padding: 12px;
@@ -71,15 +96,23 @@ const Container = styled.div`
   }
 `;
 
-const Posts = (body) => {
+const Posts = () => {
   const posts = useSelector((state) => state.posts.posts);
+
+  const clicked = useSelector((state) => state.post.clicked);
 
   const dispatch = useDispatch();
 
-  const onClickPost = (postID: number) => {
-    dispatch(postActions.setPostClicked(postID));
-    console.log("HI");
+  const onClickPost = async (postID: number) => {
+    dispatch(rightPostActions.setPostClicked());
+    const { data } = await getPostAPI(1);
+    console.log(data);
+    dispatch(rightPostActions.setPostDetail(data));
+    // const { comments } = getCommentsAPI(1);
+
+    // dispatch(rightPostActions.setPostCommmets(comments));
   };
+
   return (
     <Container>
       <ul>
@@ -95,6 +128,7 @@ const Posts = (body) => {
               <DownArrow />
             </div>
             <div className="post-right-block">
+              {/* 클릭시 포스팅 세부 내용 확인*/}
               <div className="post-header">
                 <div className="post-title">
                   {post.title.length < 25
@@ -126,6 +160,14 @@ const Posts = (body) => {
           </li>
         ))}
       </ul>
+      {clicked === true && (
+        <Container className="post-box">
+          <div className="post-detail">
+            <RightPost />
+            {/* 팝업 속 컴포넌트 +bubble-speech*/}
+          </div>
+        </Container>
+      )}
     </Container>
   );
 };

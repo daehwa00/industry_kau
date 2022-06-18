@@ -13,7 +13,7 @@ const Container = styled.div`
     overflow: auto;
     box-sizing: border-box;
   }
-`; // 어떻게 적용해야할지 아직 잘 모르겠음,, 위치 살짝 아래로 !
+`;
 
 const user = {
   id: 1,
@@ -50,18 +50,19 @@ const Chatapp = (props) => {
   const addNewMessage = (event) => {
     console.log("event message : ", event.message);
     let botResponse = Object.assign({}, event.message);
-    setMessages([...messages, event.message]);
+    botResponse.author = bot;
+    botResponse.typing = true;
+    setMessages([...messages, event.message, botResponse]);
 
-    countReplayLength(event.message.text).then(function(ret) {
+    countReplayLength(event.message.text).then(function (ret) {
       console.log("ret : ", ret);
       botResponse.text = ret; //보내는 메세지
-      botResponse.author = bot;
-      setMessages((oldMessages) => [...oldMessages, botResponse]);
+      botResponse.typing = false;
+      setMessages([...messages, event.message, botResponse]);
     });
   };
 
   return (
-    // link 수정 가능한 지
     <Container>
       <div>
         <link
@@ -80,5 +81,4 @@ const Chatapp = (props) => {
   );
 };
 
-// 위젯띄워서 사용 가능하면 좋겠음..
 export default Chatapp;
