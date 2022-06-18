@@ -10,11 +10,11 @@ import OpenedEyeIcon from "../../public/static/svg/logo/OpendEyeIcon.svg";
 import { loginAPI } from "../../lib/api/auth";
 import { authActions } from "../../store/auth";
 import { userActions } from "../../store/user";
-import { UserType } from "../../types/UserType";
 
 const Container = styled.div`
   z-index: 11;
-
+  width: 568px;
+  min-height: 614px;
   h1 {
     margin-top: 48px;
     margin-bottom: 84px;

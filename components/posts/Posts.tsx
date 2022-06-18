@@ -12,32 +12,11 @@ import { getCommentsAPI, getPostAPI } from "../../lib/api/post";
 import usePortal from "../../hooks/usePortal";
 import * as React from "react";
 import PostModal from "../post/PostModal";
+import formatDistance from "date-fns/formatDistance";
 
 const Container = styled.div`
   width: 100%;
   cursor: pointer;
-  .post-box {
-    border-radius: 30px;
-    width: 40%;
-    height: 50vh;
-    margin: 50px auto;
-    background: #fcebeb;
-    padding: 20px;
-    position: relative;
-    box-shadow: 2px 2px 2px 2px gray;
-    .post-detail:before {
-      content: "";
-      width: 0px;
-      height: 0px;
-      position: absolute;
-      border-left: 15px solid transparent;
-      border-right: 15px solid #fcebeb;
-      border-top: 15px solid #fcebeb;
-      border-bottom: 15px solid transparent;
-      left: -30px;
-      top: 70px;
-    }
-  }
   .post-wrapper {
     background-color: white;
     display: flex;
@@ -62,9 +41,15 @@ const Container = styled.div`
         justify-content: space-between;
         height: 40px;
         margin-bottom: 20px;
-        .post-title {
-          font-size: 23px;
-          font-weight: 800;
+        .post-title-time {
+          .post-title {
+            font-size: 23px;
+            font-weight: 800;
+            padding-bottom: 5px;
+          }
+          .post-time {
+            font-size: 12px;
+          }
         }
         .post-subCategory {
         }
@@ -129,10 +114,17 @@ const Posts = () => {
             </div>
             <div className="post-right-block">
               <div className="post-header">
-                <div className="post-title">
-                  {post.title.length < 25
-                    ? post.title
-                    : `${post.title.slice(0, 25)}...`}
+                <div className="post-title-time">
+                  <div className="post-title">
+                    {post.title.length < 25
+                      ? post.title
+                      : `${post.title.slice(0, 25)}...`}
+                  </div>
+                  <div className="post-time">
+                    {formatDistance(new Date(post.createdAt), new Date(), {
+                      addSuffix: true,
+                    })}
+                  </div>
                 </div>
                 <div className="post-subCategory">{post.subCategory}</div>
               </div>
