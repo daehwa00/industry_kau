@@ -13,7 +13,7 @@ const Container = styled.div`
     overflow: auto;
     box-sizing: border-box;
   }
-`; // 어떻게 적용해야할지 아직 잘 모르겠음,, 위치 살짝 아래로 !
+`;
 
 const user = {
   id: 1,
@@ -30,17 +30,6 @@ const bot = {
 const initialMessages = [
   {
     author: bot,
-    //선택 응답
-    suggestedActions: [
-      {
-        type: "reply",
-        value: "aa",
-      },
-      {
-        type: "reply",
-        value: "bb",
-      },
-    ],
     timestamp: new Date(),
     text: "반가워요! 보고 싶었어요!",
   },
@@ -74,7 +63,6 @@ const Chatapp = (props) => {
   };
 
   return (
-    // link 수정 가능한 지
     <Container>
       <div>
         <link
@@ -93,5 +81,4 @@ const Chatapp = (props) => {
   );
 };
 
-// 위젯띄워서 사용 가능하면 좋겠음..
 export default Chatapp;

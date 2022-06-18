@@ -10817,6 +10817,13 @@ react-autosize-textarea@^7.1.0:
     line-height "^0.3.1"
     prop-types "^15.5.6"
 
+react-awesome-popover@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/react-awesome-popover/-/react-awesome-popover-6.1.1.tgz#3e37d3d3d4ad49d23b0e73a8d247dc3b1a5260e0"
+  integrity sha512-jBLcTpd6NaCBwWVfONzDqry4rowBgnHh7DW4bWJAd2GxMif6XAbIIBk2UDBWLjLqjhaFeL/c0QCLGElJpyDPZg==
+  dependencies:
+    react "^16.9.0"
+
 react-background-slider@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/react-background-slider/-/react-background-slider-2.0.0.tgz"
@@ -11026,6 +11033,11 @@ react-scripts@3.4.1:
   optionalDependencies:
     fsevents "2.1.2"
 
+react-textra@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/react-textra/-/react-textra-0.1.3.tgz#8141e9edd4067bc9c42787cbcfb35bdd69bbf5db"
+  integrity sha512-r0/gnpd771vgRyaAzXdndNaL2Z1cmRPVuYlQPA9uHQ/0B45xuuaVDmA2beSUUOaVKm1/aF4PXpbe7nbcMrOT6w==
+
 react-transition-group@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.4.2.tgz#8b59a56f09ced7b55cbd53c36768b922890d5470"
@@ -11043,7 +11055,7 @@ react@18.1.0:
   dependencies:
     loose-envify "^1.1.0"
 
-react@^16.13.1:
+react@^16.13.1, react@^16.9.0:
   version "16.14.0"
   resolved "https://registry.npmjs.org/react/-/react-16.14.0.tgz"
   integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==

@@ -6,14 +6,38 @@ import Comment from "../../public/static/svg/posting/comment.svg";
 import User from "../../public/static/svg/posting/user/post-user.svg";
 import { useSelector } from "../../store";
 import { useDispatch } from "react-redux";
-import { rightPostActions } from "../../store/rightPost";
+import rightPost, { rightPostActions } from "../../store/rightPost";
 import RightPost from "../post/RightPost";
 import { getCommentsAPI, getPostAPI } from "../../lib/api/post";
+import * as React from "react";
 
 const Container = styled.div`
   width: 100%;
   cursor: pointer;
+  .post-box {
+    border-radius: 30px;
+    width: 40%;
+    height: 50vh;
+    margin: 50px auto;
+    background: #fcebeb;
+    padding: 20px;
+    position: relative;
+    box-shadow: 2px 2px 2px 2px gray;
+    .post-detail:before {
+      content: "";
+      width: 0px;
+      height: 0px;
+      position: absolute;
+      border-left: 15px solid transparent;
+      border-right: 15px solid #fcebeb;
+      border-top: 15px solid #fcebeb;
+      border-bottom: 15px solid transparent;
+      left: -30px;
+      top: 70px;
+    }
+  }
   .post-wrapper {
+    background-color: white;
     display: flex;
     padding: 12px;
     width: 70%;
@@ -82,11 +106,9 @@ const Posts = () => {
 
   const onClickPost = async (postID: number) => {
     dispatch(rightPostActions.setPostClicked());
-
     const { data } = await getPostAPI(1);
     console.log(data);
     dispatch(rightPostActions.setPostDetail(data));
-
     // const { comments } = getCommentsAPI(1);
 
     // dispatch(rightPostActions.setPostCommmets(comments));
@@ -138,7 +160,13 @@ const Posts = () => {
           </li>
         ))}
       </ul>
-      {clicked === true && <RightPost />}
+      {clicked === true && (
+        <Container className="post-box">
+          <div className="post-detail">
+            <RightPost />
+          </div>
+        </Container>
+      )}
     </Container>
   );
 };

@@ -13,6 +13,7 @@ import { getRecommendPostListAPI } from "../../lib/api/posting";
 import { NextPage } from "next";
 
 const Container = styled.div`
+  background-color: white;
   position: relative;
   width: 70%;
   height: 100px;

@@ -21,7 +21,7 @@ const Pagelist = () => {
         <a className="all">취업/진로</a>
       </Link>
 
-      <Link href="/board/daily">
+      <Link href="/board/postdesign">
         <a className="all">연애</a>
       </Link>
 
