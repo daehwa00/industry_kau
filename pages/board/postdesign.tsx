@@ -1,12 +1,10 @@
 import { NextPage } from "next";
 import styled from "styled-components";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import Posts from "../../components/posts/Posts";
 import { useSelector, wrapper } from "../../store";
 import { searchActions } from "../../store/search";
 import SearchBar from "../../components/common/SearchBar";
-import palette from "../../styles/palette";
-import BackgroundSlider from "react-background-slider-background-fixed";
 import { useDispatch } from "react-redux";
 import { getPostListAPI } from "../../lib/api/posting";
 import { postsActions } from "../../store/posts";
