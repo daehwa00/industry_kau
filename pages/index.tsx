@@ -47,16 +47,6 @@ const Container = styled.div`
 const Index: NextPage = () => {
   return (
     <Container>
-      <BackgroundSlider
-        images={[
-          "main/png/bg1.jpg",
-          "main/png/bg2.jpg",
-          "main/png/bg3.jpg",
-          "main/png/bg4.jpg",
-        ]}
-        duration={10}
-        transition={2}
-      />
       <div className="context-wrapper">
         <div className="first-context">
           모두에게 [

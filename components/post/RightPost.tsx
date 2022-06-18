@@ -83,7 +83,8 @@ const RightPost: NextPage = () => {
       </div>
       <div className="line" />
       <div className="post-content">
-        내용입니다. 팝업제작, 날짜 위치 수정, 폰트 수정
+        내용입니다. 팝업제작, 날짜 위치 수정, 폰트 수정, 포스팅 로직 좌우배치 +
+        애니메이션 추가, 폰트 크기, 뒷배경 애니메이션, 제목 디자인, 챗봇 강조
       </div>
       <div className="line2" />
       <div className="post-comment">

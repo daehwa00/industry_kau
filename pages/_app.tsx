@@ -10,25 +10,44 @@ import GlobalStyle from "../styles/GlobalStyle";
 import Header from "../components/Header";
 import { wrapper } from "../store";
 import { userActions } from "../store/user";
+import BackgroundSlider from "react-background-slider";
 
 const Container = styled.div`
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
+  .back-slider {
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .bot {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+  }
 `;
 const ChatApp = dynamic(import("../components/Chatbot/widget"), { ssr: false });
 
 const app = ({ Component, pageProps }: AppProps) => {
   return (
-    <>
+    <Container>
+      <div className="back-slider">
+        <BackgroundSlider
+          images={[
+            "main/png/bg1.jpg",
+            "main/png/bg2.jpg",
+            "main/png/bg3.jpg",
+            "main/png/bg4.jpg",
+          ]}
+          duration={10}
+          transition={2}
+        />
+      </div>
       <Header />
       <GlobalStyle />
       <Component {...pageProps} />
-      <div id="root-modal" />
-      <Container>
+      <div className="bot">
         <ChatApp />
-      </Container>
-    </>
+      </div>
+    </Container>
   );
 };
 

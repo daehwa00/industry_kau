@@ -16,7 +16,7 @@ const Container = styled.div`
   cursor: pointer;
   .post-box {
     border-radius: 30px;
-    width: 500px;
+    width: 40%;
     height: 50vh;
     margin: 50px auto;
     background: #fcebeb;
@@ -37,6 +37,7 @@ const Container = styled.div`
     }
   }
   .post-wrapper {
+    background-color: white;
     display: flex;
     padding: 12px;
     width: 70%;
@@ -128,7 +129,6 @@ const Posts = () => {
               <DownArrow />
             </div>
             <div className="post-right-block">
-              {/* 클릭시 포스팅 세부 내용 확인*/}
               <div className="post-header">
                 <div className="post-title">
                   {post.title.length < 25
@@ -164,7 +164,6 @@ const Posts = () => {
         <Container className="post-box">
           <div className="post-detail">
             <RightPost />
-            {/* 팝업 속 컴포넌트 +bubble-speech*/}
           </div>
         </Container>
       )}
