@@ -6,7 +6,6 @@ import { wrapper } from "../../store";
 import { searchActions } from "../../store/search";
 import SearchBar from "../../components/common/SearchBar";
 import palette from "../../styles/palette";
-import BackgroundSlider from "react-background-slider-background-fixed";
 
 const Container = styled.div`
   display: flex;

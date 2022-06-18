@@ -3,15 +3,19 @@ import styled from "styled-components";
 import User from "../../public/static/svg/posting/user/post-user.svg";
 import Comment from "../../public/static/svg/posting/comment.svg";
 import { useSelector } from "../../store";
+import UpArrow from "../../public/static/svg/posting/posting-up-arrow.svg";
+import DownArrow from "../../public/static/svg/posting/posting-down-arrow.svg";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import { Typography } from "@mui/material";
 
 const Container = styled.div`
   overflow: auto;
-  font-size: 20px;
+  font-size: 16px;
   text-align: left;
   color: #00004d;
-  .likes {
-    display: flex;
-  }
+  fornt-weight: 300;
   .line {
     height: 12px;
     box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.2);
@@ -69,6 +73,21 @@ const Container = styled.div`
     margin-top: 20px;
     margin-bottom: 20px;
   }
+  .post-left-block {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    width: 70%;
+    height: 6vh;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 2px gray;
+    padding: 0 140px 0 140px;
+    margin-left: 70px;
+  }
+  .post-passing {
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 interface IProps {
@@ -88,9 +107,22 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
       <div className="line" />
       <div className="post-content">{post.contents}</div>
       <div className="line2" />
+      <div className="post-left-block">
+        <UpArrow style={{ fill: "rgb(42,169,224)" }} className="post-arrow" />
+        <div className="post-likes">22</div>
+        <DownArrow className="post-arrow" />
+      </div>
+      <div className="post-passing">다음글</div>
+      <div className="post-passing">이전글</div>
       <div className="post-comment">
         <Comment />
-        댓글 1
+        댓글 (number)
+        <Accordion disableGutters>
+          <AccordionSummary expandIcon={<DownArrow />}>
+            <Typography>댓글</Typography>
+          </AccordionSummary>
+          <AccordionDetails>ㅁㄴㅁㄴ</AccordionDetails>
+        </Accordion>
       </div>
     </Container>
   );
