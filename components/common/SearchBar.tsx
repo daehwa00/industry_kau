@@ -13,9 +13,6 @@ import { getRecommendPostListAPI } from "../../lib/api/posting";
 import { NextPage } from "next";
 
 const Container = styled.div`
-  &::-webkit-scrollbar {
-    display: block;
-  }
   background-color: white;
   position: relative;
   width: 50%;
@@ -62,7 +59,7 @@ const Container = styled.div`
     width: 50vw;
     padding: 16px 0;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 32px;
+    border-radius: 16px;
     cursor: default;
     overflow: hiddden;
     z-index: 10;
@@ -79,6 +76,24 @@ const Container = styled.div`
         background-color: ${palette.gray_f7};
       }
     }
+  }
+  .search-roo-bar-searchWord-results::-webkit-scrollbar {
+    background-color: transparent;
+    width: 16px;
+  }
+
+  .search-roo-bar-searchWord-results::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  .search-roo-bar-searchWord-results::-webkit-scrollbar-thumb {
+    background-color: #babac0;
+    border-radius: 16px;
+    border: 4px solid #fff;
+  }
+
+  .search-roo-bar-searchWord-results::-webkit-scrollbar-button {
+    display: none;
   }
 `;
 const SearchBar: NextPage = () => {
