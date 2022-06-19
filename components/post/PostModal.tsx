@@ -74,7 +74,7 @@ const Container = styled.div<onClickedHeart>`
         margin-bottom: 2vh;
         .post-title-time {
           .post-title {
-            font-size: 14px;
+            font-size: 18px;
             font-weight: 800;
             padding-bottom: 5px;
           }
@@ -153,6 +153,7 @@ const Container = styled.div<onClickedHeart>`
           }
         }
         .comment-contents {
+          font-size: 11px;
         }
       }
     }

@@ -39,6 +39,7 @@ const Container = styled.div<InputContainerProps>`
     font: inherit;
     & ::placeholder {
       color: ${palette.gray_76};
+      font-size: 8px;
     }
     & :focus {
       border-color: ${palette.dark_cyan};
