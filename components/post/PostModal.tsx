@@ -74,25 +74,25 @@ const Container = styled.div<onClickedHeart>`
         margin-bottom: 2vh;
         .post-title-time {
           .post-title {
-            font-size: 23px;
+            font-size: 14px;
             font-weight: 800;
             padding-bottom: 5px;
           }
           .post-time {
-            font-size: 12px;
+            font-size: 8px;
           }
         }
         .post-subCategory-bar {
           position: relative;
           .post-subCategory {
-            font-size: 12px;
+            font-size: 8px;
             font-weight: bold;
             color: ${palette.gray_71};
           }
         }
       }
       .post-contents {
-        font-size: 14px;
+        font-size: 9px;
         margin-bottom: 3vh;
         line-height: 200%;
         color: ${palette.gray};
@@ -103,14 +103,14 @@ const Container = styled.div<onClickedHeart>`
         height: 40px;
         display: flex;
         align-items: center;
-        font-size: 10px;
+        font-size: 8px;
         padding-bottom: 40px;
         position: relative;
         color: ${palette.gray_76};
         .post-footer-user {
           display: flex;
           align-items: center;
-          font-size: 12px;
+          font-size: 8px;
           .post-footer-user-svg {
             margin-right: 10px;
           }
@@ -141,12 +141,12 @@ const Container = styled.div<onClickedHeart>`
             .comment-user-time {
               margin-left: 10px;
               .comment-user {
-                font-size: 18px;
+                font-size: 12px;
                 font-weight: bold;
                 margin-bottom: 3px;
               }
               .comment-time {
-                font-size: 10px;
+                font-size: 7px;
                 color: ${palette.gray_71};
               }
             }
