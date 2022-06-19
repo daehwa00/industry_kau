@@ -13,6 +13,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { commentActions } from "../../store/comment";
 import { FaRegFrown, FaRegSmile } from "react-icons/fa";
+import { createCheerUpAPI } from "../../lib/api/post";
 
 type onClickedHeart = { onClickedHeart: boolean };
 
@@ -132,6 +133,7 @@ interface IProps {
 const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
   const post = useSelector((state) => state.postModal.postDetail);
   const comments = useSelector((state) => state.comment.comments);
+  const email = useSelector((state) => state.user.email);
 
   const [comment, setComment] = useState("");
 
@@ -139,8 +141,9 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
 
   const dispatch = useDispatch();
 
-  const animationButton = () => {
+  const animationButton = async (postID: number) => {
     onClickedHeart(!clickedHeart);
+    await createCheerUpAPI({ consolePostId: postID, email });
   };
 
   return (
@@ -149,7 +152,7 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
         <div
           className="HeartAnimation"
           onClick={() => {
-            animationButton();
+            animationButton(post.consolePostId);
           }}
         />
       </div>
