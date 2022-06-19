@@ -10,7 +10,7 @@ import GlobalStyle from "../styles/GlobalStyle";
 import Header from "../components/Header";
 import { wrapper } from "../store";
 import { userActions } from "../store/user";
-import BackgroundSlider from "../node_modules/react-background-slider-background-fixed";
+import BackgroundSlider from "../node_modules/react-background-slider-background-fixed-mod";
 
 const Container = styled.div`
   .bot {
