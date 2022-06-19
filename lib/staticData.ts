@@ -1,5 +1,5 @@
 // * 어떤 고민인지 대분류
-export const worryOfKind = ["a", "b", "c", "d"];
+export const worryOfKind = ["증상", "감정", "배경"];
 
 export const aTypelist = ["1", "2", "3", "4"];
 export const bTypelist = ["5", "6", "7", "8"];

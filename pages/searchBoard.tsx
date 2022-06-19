@@ -1,13 +1,13 @@
 import { NextPage } from "next";
 import styled from "styled-components";
 import React, { useRef } from "react";
-import Posts from "../../components/posts/Posts";
-import { useSelector, wrapper } from "../../store";
-import { searchActions } from "../../store/search";
-import SearchBar from "../../components/common/SearchBar";
+import Posts from "../components/posts/Posts";
+import { useSelector, wrapper } from "../store";
+import { searchActions } from "../store/search";
+import SearchBar from "../components/common/SearchBar";
 import { useDispatch } from "react-redux";
-import { getPostListAPI } from "../../lib/api/posting";
-import { postsActions } from "../../store/posts";
+import { getPostListAPI } from "../lib/api/posting";
+import { postsActions } from "../store/posts";
 
 const Container = styled.div`
   display: flex;

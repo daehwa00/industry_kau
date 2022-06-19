@@ -1,4 +1,4 @@
-import RegisterPostingContents from "../../../components/register/RegisterPostingContents";
+import RegisterPostingContents from "../../components/register/RegisterPostingContents";
 
 const PostingText = () => {
   return (

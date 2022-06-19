@@ -17,7 +17,7 @@ const Container = styled.div`
   border-radius: 20px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.58);
   float: left;
-  margin: 50px 16% 80px 16%;
+  margin: 0px 16% 80px 16%;
   padding: 50px 170px 0 100px;
   justify-content: space-between;
   display: flex;
@@ -82,21 +82,17 @@ const RegisterPostingOptions: React.FC = () => {
   //대분류 안의 소분류 options
   const subCategoryOptions = useMemo(() => {
     switch (mainCategoryType) {
-      case "a": {
-        const { aTypelist } = require("../../lib/staticData");
-        return aTypelist;
+      case "증상": {
+        const { Symptom } = require("../../lib/staticData");
+        return Symptom;
       }
-      case "b": {
-        const { bTypelist } = require("../../lib/staticData");
-        return bTypelist;
+      case "감정": {
+        const { emotion } = require("../../lib/staticData");
+        return emotion;
       }
-      case "c": {
-        const { cTypelist } = require("../../lib/staticData");
-        return cTypelist;
-      }
-      case "d": {
-        const { dTypelist } = require("../../lib/staticData");
-        return dTypelist;
+      case "배경": {
+        const { background } = require("../../lib/staticData");
+        return background;
       }
       default:
         return [];
@@ -194,7 +190,6 @@ const RegisterPostingOptions: React.FC = () => {
       {
         anonymousType && <RegisterPostingContents /> // sub 수정
       }
-      {/*<RegisterPostingFooter isValid={false} prevHref="/" />*/}
     </Container>
   );
 };

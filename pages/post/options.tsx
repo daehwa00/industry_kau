@@ -1,7 +1,7 @@
 import React from "react";
 import { NextPage } from "next";
 import styled from "styled-components";
-import RegisterPostingOptions from "../../../components/register/RegisterPostingOptions";
+import RegisterPostingOptions from "../../components/register/RegisterPostingOptions";
 
 const Container = styled.div`
   clear: both;

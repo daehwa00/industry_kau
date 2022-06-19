@@ -195,10 +195,10 @@ const Header: React.FC = () => {
               </button>
               {isUsermenuOpened && (
                 <ul className="header-usermenu">
-                  <Link href="/board/postdesign">
+                  <Link href="/searchBoard">
                     <li>게시판 검색하기</li>
                   </Link>
-                  <Link href="/board/post/options">
+                  <Link href="/post/options">
                     <li>게시판 작성하기</li>
                   </Link>
                   <div className="header-usermenu-divider" />

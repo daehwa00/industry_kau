@@ -12,12 +12,19 @@ import Button from "../common/Button";
 import Link from "next/link";
 
 const Container = styled.div`
+  .subCategory {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 3vh;
+  }
+
   height: 800px;
   width: 55%;
   h2 {
     font-size: 19px;
     font-weight: 800;
-    margin-bottom: 56px;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
   }
   h3 {
     font-weight: bold;
@@ -91,8 +98,7 @@ const RegisterPostingContents: React.FC<IProps> = ({ prevHref }) => {
 
   return (
     <Container>
-      <p>{mainCategory}</p>
-      <p>{subCategory}</p>
+      <div className="subCategory">{subCategory}</div>
       <form onSubmit={onSubmitPosting}>
         <Textarea
           value={title}
