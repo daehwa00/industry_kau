@@ -4,11 +4,18 @@ import palette from "./palette";
 
 const globalStyle = css`
   ${reset};
+  @font-face {
+    font-family: "GangwonEdu_OTFBoldA";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff")
+      format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
   * {
     box-sizing: border-box;
   }
   body {
-    font-family: Noto Sans, Noto Sans KR;
+    font-family: GangwonEdu_OTFBoldA, Noto Sans, Noto Sans KR;
     color: ${palette.black};
   }
   body::-webkit-scrollbar {
