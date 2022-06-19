@@ -271,8 +271,8 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
                   <User
                     style={{ fill: "rgb(211,211,211)" }}
                     className="comment-user-svg"
-                    width="7%"
-                    height="7%"
+                    width="3%"
+                    height="3%"
                     viewBox="0 0 24 24"
                     fill="none"
                   />
