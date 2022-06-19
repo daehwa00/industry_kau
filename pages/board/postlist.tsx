@@ -76,6 +76,30 @@ const Postlist = () => {
           </Link>
         </li>
         <PostLine />
+        <li>
+          <Link href="/post/[id]/[comment]" as={`/post/${id}/first-comment`}>
+            <a>고민 내용 10</a>
+          </Link>
+        </li>
+        <PostLine />
+        <li>
+          <Link href="/post/[id]/[comment]" as={`/post/${id}/first-comment`}>
+            <a>고민 내용 11</a>
+          </Link>
+        </li>
+        <PostLine />
+        <li>
+          <Link href="/post/[id]/[comment]" as={`/post/${id}/first-comment`}>
+            <a>고민 내용 12</a>
+          </Link>
+        </li>
+        <PostLine />
+        <li>
+          <Link href="/post/[id]/[comment]" as={`/post/${id}/first-comment`}>
+            <a>고민 내용 13</a>
+          </Link>
+        </li>
+        <PostLine />
       </section>
     </>
   );

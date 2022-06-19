@@ -25,7 +25,7 @@ export default function Widget() {
     <div>
       <Button onClick={handleClick}>
         <img
-          src="../../static/svg/chatbot/chatIcon.svg"
+          src="../../img/svg/chatbot/chatIcon.svg"
           alt=""
           width={50}
           height={50}

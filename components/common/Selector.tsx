@@ -4,7 +4,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { useSelector } from "../../store";
 import palette from "../../styles/palette";
-import WarningIcon from "../../public/static/svg/logo/warningIcon.svg";
+import WarningIcon from "../../public/img/svg/logo/warningIcon.svg";
 
 const normalSelectorStyle = css`
   width: 100%;
@@ -18,7 +18,7 @@ const normalSelectorStyle = css`
     border-radius: 4px;
     outline: none;
     -webkit-appearance: none;
-    background-image: url("/static/svg/selector/selector_down_arrow.svg");
+    background-image: url("/img/svg/selector/selector_down_arrow.svg");
     background-position: right 11px center;
     background-repeat: no-repeat;
     font-size: 16px;
@@ -49,7 +49,7 @@ const RegisterSelectorStyle = css`
     appearance: none;
     outline: none;
     -webkit-appearance: none;
-    background-image: url("/static/svg/selector/register_selector_down_arrow.svg");
+    background-image: url("/img/svg/selector/register_selector_down_arrow.svg");
     background-position: right 11px center;
     background-repeat: no-repeat;
   }
@@ -85,7 +85,7 @@ const Container = styled.div<SelectorContainerProps>`
       return undefined;
     }}
     &:disabled {
-      background-image: url("/static/svg/selector/disabled_register_selector_down_arrow.svg");
+      background-image: url("/img/svg/selector/disabled_register_selector_down_arrow.svg");
       background-color: ${palette.gray_f7};
       border-color: ${palette.gray_e5};
       color: ${palette.gray_e5};

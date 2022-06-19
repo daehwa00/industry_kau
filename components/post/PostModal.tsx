@@ -1,10 +1,11 @@
 import { NextPage } from "next";
 import styled, { css } from "styled-components";
-import User from "../../public/static/svg/posting/user/post-user.svg";
+import User from "../../public/img/svg/posting/user/post-user.svg";
+import Comment from "../../public/img/svg/posting/comment.svg";
 import { useSelector } from "../../store";
 import palette from "../../styles/palette";
-import UpArrow from "../../public/static/svg/posting/posting-up-arrow.svg";
-import DownArrow from "../../public/static/svg/posting/posting-down-arrow.svg";
+import UpArrow from "../../public/img/svg/posting/posting-up-arrow.svg";
+import DownArrow from "../../public/img/svg/posting/posting-down-arrow.svg";
 import formatDistance from "date-fns/formatDistance";
 import ProgressBar from "@ramonak/react-progress-bar";
 import Textarea from "../common/Textarea";
@@ -117,6 +118,21 @@ const Container = styled.div<onClickedHeart>`
     .post-footer-comment-input {
       margin-bottom: 64px;
     }
+  }
+  .post-left-block {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    width: 70%;
+    height: 6vh;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 2px gray;
+    padding: 0 140px 0 140px;
+    margin-left: 70px;
+  }
+  .post-passing {
+    justify-content: center;
+    align-items: center;
   }
 `;
 

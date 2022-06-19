@@ -13,6 +13,7 @@ import RegisterPostingContents from "./RegisterPostingContents";
 import { optionGroupUnstyledClasses } from "@mui/base";
 
 const Container = styled.div`
+  background-color: white;
   padding: 62px 30px 100px;
   float: left;
   padding: 0 400px 0 200px;
@@ -119,7 +120,7 @@ const RegisterPostingOptions: React.FC = () => {
     const selected = event;
     dispatch(
       postingActions.setAnonymousType(
-        (selected as unknown) as "anonymous" | "nickname" | "email"
+        selected as unknown as "anonymous" | "nickname" | "email"
       )
     );
   };
@@ -180,7 +181,8 @@ const RegisterPostingOptions: React.FC = () => {
         )}
       </div>
       <div>
-        {anonymousType && <RegisterPostingContents /> // sub 수정
+        {
+          anonymousType && <RegisterPostingContents /> // sub 수정
         }
       </div>
       <RegisterPostingFooter isValid={false} prevHref="/" />

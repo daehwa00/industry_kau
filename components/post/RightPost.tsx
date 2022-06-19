@@ -1,9 +1,9 @@
 import { NextPage } from "next";
 import styled from "styled-components";
-import User from "../../public/static/svg/posting/user/post-user.svg";
-import UpArrow from "../../public/static/svg/posting/posting-up-arrow.svg";
-import DownArrow from "../../public/static/svg/posting/posting-down-arrow.svg";
-import Comment from "../../public/static/svg/posting/comment.svg";
+import User from "../../public/img/svg/posting/user/post-user.svg";
+import UpArrow from "../../public/img/svg/posting/posting-up-arrow.svg";
+import DownArrow from "../../public/img/svg/posting/posting-down-arrow.svg";
+import Comment from "../../public/img/svg/posting/comment.svg";
 
 const Container = styled.div`
   overflow: auto;

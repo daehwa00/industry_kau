@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import OutsideClickHandler from "react-outside-click-handler";
 import { useRouter } from "next/router";
-import Logo from "../public/static/svg/logo/Logo.svg";
+import Logo from "../public/img/svg/logo/Logo.svg";
 import { useSelector } from "../store";
 import palette from "../styles/palette";
-import HamburgerIcon from "../public/static/svg/logo/HamburgerIcon.svg";
+import HamburgerIcon from "../public/img/svg/logo/HamburgerIcon.svg";
 import { logoutAPI } from "../lib/api/auth";
 import { userActions } from "../store/user";
 import Pagelist from "./board/PageList";
@@ -181,7 +181,7 @@ const Header: React.FC = () => {
           >
             <HamburgerIcon />
             <img
-              src="/static/svg/logo/profile.svg"
+              src="/img/svg/logo/profile.svg"
               className="header-user-profile-image"
               alt=""
             />

@@ -4,12 +4,12 @@ const nextConfig = {
 };
 
 module.exports = {
+  env: {
+    accessKey: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY,
+    secretKey: process.env.NEXT_PUBLIC_AWS_SECRET_KEY,
+  },
   nextConfig,
   typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    // !! WARN !!
     ignoreBuildErrors: true,
   },
 };
