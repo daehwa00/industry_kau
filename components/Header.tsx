@@ -14,6 +14,7 @@ import Pagelist from "./board/PageList";
 import usePortal from "../hooks/usePortal";
 import { authActions } from "../store/auth";
 import AuthModal from "./auths/AuthModal";
+import { HidingHeader } from "hiding-header-react";
 
 const Container = styled.div`
   position: sticky;
@@ -135,75 +136,79 @@ const Header: React.FC = () => {
     }
   };
   return (
-    <Container>
-      <Link href="/">
-        <a className="header-logo-wrapper">
-          <Logo className="header-logo" />
-        </a>
-      </Link>
-      <Pagelist />
-      {!user.isLogged && (
-        <div className="header-auth-buttons">
-          <button
-            type="button"
-            className="header-sign-up-button"
-            onClick={() => {
-              dispatch(authActions.setAuthMode("signup"));
-              openModalPortal();
-            }}
-          >
-            회원가입
-          </button>
-          <button
-            type="button"
-            className="header-login-button"
-            onClick={() => {
-              dispatch(authActions.setAuthMode("login"));
-              openModalPortal();
-            }}
-          >
-            로그인
-          </button>
-        </div>
-      )}
-      {user.isLogged && (
-        <OutsideClickHandler
-          onOutsideClick={() => {
-            if (isUsermenuOpened) {
-              setIsUsermenuOpened(false);
-            }
-          }}
-        >
-          <button
-            className="header-user-profile"
-            type="button"
-            onClick={() => setIsUsermenuOpened(!isUsermenuOpened)}
-          >
-            <HamburgerIcon />
-            <img
-              src="/img/svg/logo/profile.svg"
-              className="header-user-profile-image"
-              alt=""
-            />
-          </button>
-          {isUsermenuOpened && (
-            <ul className="header-usermenu">
-              <li>내 정보</li>
-              <Link href="/board/post/options">
-                <li>게시판 작성하기</li>
-              </Link>
-              <div className="header-usermenu-divider" />
-              <li role="presentation" onClick={logout}>
-                로그아웃
-              </li>
-            </ul>
+    <HidingHeader>
+      <header>
+        <Container>
+          <Link href="/">
+            <a className="header-logo-wrapper">
+              <Logo className="header-logo" />
+            </a>
+          </Link>
+          <Pagelist />
+          {!user.isLogged && (
+            <div className="header-auth-buttons">
+              <button
+                type="button"
+                className="header-sign-up-button"
+                onClick={() => {
+                  dispatch(authActions.setAuthMode("signup"));
+                  openModalPortal();
+                }}
+              >
+                회원가입
+              </button>
+              <button
+                type="button"
+                className="header-login-button"
+                onClick={() => {
+                  dispatch(authActions.setAuthMode("login"));
+                  openModalPortal();
+                }}
+              >
+                로그인
+              </button>
+            </div>
           )}
-        </OutsideClickHandler>
-      )}
-      <ModalPortal>
-        <AuthModal closeModalPortal={closeModalPortal} />
-      </ModalPortal>
-    </Container>
+          {user.isLogged && (
+            <OutsideClickHandler
+              onOutsideClick={() => {
+                if (isUsermenuOpened) {
+                  setIsUsermenuOpened(false);
+                }
+              }}
+            >
+              <button
+                className="header-user-profile"
+                type="button"
+                onClick={() => setIsUsermenuOpened(!isUsermenuOpened)}
+              >
+                <HamburgerIcon />
+                <img
+                  src="/img/svg/logo/profile.svg"
+                  className="header-user-profile-image"
+                  alt=""
+                />
+              </button>
+              {isUsermenuOpened && (
+                <ul className="header-usermenu">
+                  <li>내 정보</li>
+                  <Link href="/board/post/options">
+                    <li>게시판 작성하기</li>
+                  </Link>
+                  <div className="header-usermenu-divider" />
+                  <li role="presentation" onClick={logout}>
+                    로그아웃
+                  </li>
+                </ul>
+              )}
+            </OutsideClickHandler>
+          )}
+          <ModalPortal>
+            <AuthModal closeModalPortal={closeModalPortal} />
+          </ModalPortal>
+        </Container>
+      </header>
+    </HidingHeader>
   );
 };
 
