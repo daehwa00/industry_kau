@@ -59,7 +59,7 @@ const Container = styled.div`
     position: absolute;
     background-color: white;
     top: 78px;
-    width: 500px;
+    width: 50vw;
     padding: 16px 0;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     border-radius: 32px;
@@ -67,7 +67,8 @@ const Container = styled.div`
     overflow: hiddden;
     z-index: 10;
     overflow-y: scroll;
-    height: 600px;
+    min-height: 64px;
+    max-height: 400px;
     li {
       display: flex;
       align-items: center;
