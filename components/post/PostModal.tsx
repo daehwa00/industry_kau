@@ -1,15 +1,21 @@
 import { NextPage } from "next";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import User from "../../public/static/svg/posting/user/post-user.svg";
-import Comment from "../../public/static/svg/posting/comment.svg";
 import { useSelector } from "../../store";
 import palette from "../../styles/palette";
 import UpArrow from "../../public/static/svg/posting/posting-up-arrow.svg";
 import DownArrow from "../../public/static/svg/posting/posting-down-arrow.svg";
 import formatDistance from "date-fns/formatDistance";
 import ProgressBar from "@ramonak/react-progress-bar";
+import Textarea from "../common/Textarea";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { commentActions } from "../../store/comment";
+import { FaRegFrown, FaRegSmile } from "react-icons/fa";
 
-const Container = styled.div`
+type onClickedHeart = { onClickedHeart: boolean };
+
+const Container = styled.div<onClickedHeart>`
   width: 50vw;
   cursor: pointer;
   background-color: white;
@@ -20,9 +26,32 @@ const Container = styled.div`
   padding: 20px 50px 50px 0px;
   .post-left-block {
     margin: 30px 30px 0px 30px;
-    font-weight: 800;
-    .post-likes {
-      margin: 20px 0 20px 0;
+    .HeartAnimation {
+      padding-top: 2em;
+      background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/66955/web_heart_animation.png");
+      background-repeat: no-repeat;
+      background-size: 2900%;
+      background-position: left;
+      height: 50px;
+      width: 50px;
+      margin: 0 auto;
+      cursor: pointer;
+      ${({ onClickedHeart }) => {
+        if (onClickedHeart) {
+          return css`
+            animation: heart-burst 0.8s steps(28) forwards;
+
+            @keyframes heart-burst {
+              0% {
+                background-position: left;
+              }
+              100% {
+                background-position: right;
+              }
+            }
+          `;
+        }
+      }}
     }
   }
   .post-right-block {
@@ -31,7 +60,7 @@ const Container = styled.div`
       display: flex;
       justify-content: space-between;
       height: 40px;
-      margin-bottom: 20px;
+      margin-bottom: 48px;
       .post-title-time {
         .post-title {
           font-size: 23px;
@@ -53,7 +82,7 @@ const Container = styled.div`
     }
     .post-contents {
       font-size: 14px;
-      margin-bottom: 20px;
+      margin-bottom: 64px;
       line-height: 200%;
       color: ${palette.gray};
     }
@@ -64,6 +93,8 @@ const Container = styled.div`
       display: flex;
       align-items: center;
       font-size: 10px;
+      padding-bottom: 40px;
+      position: relative;
       color: ${palette.gray_76};
       .post-footer-user {
         display: flex;
@@ -73,9 +104,18 @@ const Container = styled.div`
           margin-right: 10px;
         }
       }
-      .post-footer-comment {
-        margin-right: 5px;
+      .post-footer-gauge {
+        position: relative;
+        right: 0;
+        .icons {
+          display: flex;
+          justify-content: space-between;
+          padding-bottom: 5px;
+        }
       }
+    }
+    .post-footer-comment-input {
+      margin-bottom: 64px;
     }
   }
 `;
@@ -86,12 +126,27 @@ interface IProps {
 
 const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
   const post = useSelector((state) => state.postModal.postDetail);
+  const comments = useSelector((state) => state.comment.comments);
+
+  const [comment, setComment] = useState("");
+
+  const [clickedHeart, onClickedHeart] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const animationButton = () => {
+    onClickedHeart(!clickedHeart);
+  };
+
   return (
-    <Container>
+    <Container onClickedHeart={clickedHeart}>
       <div className="post-left-block">
-        <UpArrow style={{ fill: "rgb(42,169,224)" }} />
-        <div className="post-likes">{11}</div>
-        <DownArrow />
+        <div
+          className="HeartAnimation"
+          onClick={() => {
+            animationButton();
+          }}
+        />
       </div>
       <div className="post-right-block">
         <div className="post-header">
@@ -116,7 +171,11 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
             />
             Posted by {post.email}
           </div>
-          <div className="post-footer-comments">
+          <div className="post-footer-gauge">
+            <div className="icons">
+              <FaRegSmile size="18" />
+              <FaRegFrown size="18" />
+            </div>
             {post.negative > 0.5 ? (
               <ProgressBar
                 completed={post.negative * 100}
@@ -135,6 +194,27 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
               />
             )}
           </div>
+        </div>
+        <div className="post-footer-comment-input">
+          <Textarea
+            value={comment}
+            isValid={!!comment}
+            errorMessage="입력해줘요~"
+            type="title"
+            style={{ backgroundColor: "#FAFAFA" }}
+            onChange={(e) => {
+              setComment(e.target.value);
+              dispatch(commentActions.setInputComment(e.target.value));
+            }}
+            placeholder="댓글을 입력해주세요"
+          />
+        </div>
+        <div className="post-footer-comments">
+          <ul>
+            {comments.map((comment) => (
+              <div>{comment.contents}</div>
+            ))}
+          </ul>
         </div>
       </div>
     </Container>

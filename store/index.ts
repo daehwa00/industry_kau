@@ -11,6 +11,7 @@ import auth from "./auth";
 import posts from "./posts";
 import search from "./search";
 import postModal from "./postModal";
+import comment from "./comment";
 
 const rootReducer = combineReducers({
   common: common.reducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   posts: posts.reducer,
   postModal: postModal.reducer,
   search: search.reducer,
+  comment: comment.reducer,
 });
 
 //* 스토어의 타입

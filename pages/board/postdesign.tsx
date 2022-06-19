@@ -12,7 +12,7 @@ import { postsActions } from "../../store/posts";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 50px 100px 40px;
+  align-items: center;
   .pagination {
     border: 1px solid rgba(27, 31, 35, 0.15);
     border-radius: 3px;

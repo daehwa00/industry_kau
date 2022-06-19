@@ -4,7 +4,6 @@ import axios from "axios";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET") {
     const { postID } = req.query;
-
     if (!postID) {
       res.statusCode = 400;
       return res.send("postID가 없습니다.");
@@ -17,7 +16,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         headers: { "x-api-key": "Jkul4qNZJeatNGd9L8wdRj5qXqDhaog2FBJhtq4f" },
       });
       res.statusCode = 200;
-      console.log(data);
       return res.send(data);
     } catch (e) {
       res.statusCode = 404;

@@ -13,19 +13,21 @@ import usePortal from "../../hooks/usePortal";
 import * as React from "react";
 import PostModal from "../post/PostModal";
 import formatDistance from "date-fns/formatDistance";
+import comment, { commentActions } from "../../store/comment";
 
 const Container = styled.div`
+  margin-left: 50%;
   width: 100%;
   cursor: pointer;
   .post-wrapper {
     background-color: white;
     display: flex;
     padding: 12px;
-    width: 70%;
+    width: 50%;
     height: auto;
     border-radius: 20px;
-    box-shadow: 2px 2px 2px 2px gray;
-    margin-bottom: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.58);
+    margin-bottom: 35px;
     padding: 50px 50px 50px 0px;
     .post-left-block {
       margin: 30px 30px 0px 30px;
@@ -36,6 +38,7 @@ const Container = styled.div`
     }
     .post-right-block {
       width: 100%;
+      padding-left: 50px;
       .post-header {
         display: flex;
         justify-content: space-between;
@@ -93,8 +96,9 @@ const Posts = () => {
   const onClickPost = async (postID: number) => {
     dispatch(postModalActions.setPostClicked());
     const { data } = await getPostAPI(postID);
-    console.log(data);
     dispatch(postModalActions.setPostDetail(data));
+    const comments = await getCommentsAPI(postID);
+    dispatch(commentActions.setcomments(comments.data));
     openModalPortal();
   };
 
@@ -107,11 +111,11 @@ const Posts = () => {
             key={post.consolePostId}
             onClick={() => onClickPost(post.consolePostId)}
           >
-            <div className="post-left-block">
-              <UpArrow style={{ fill: "rgb(42,169,224)" }} />
+            {/* <div className="post-left-block">
+              <UpArrow />
               <div className="post-likes">{11}</div>
               <DownArrow />
-            </div>
+            </div> */}
             <div className="post-right-block">
               <div className="post-header">
                 <div className="post-title-time">

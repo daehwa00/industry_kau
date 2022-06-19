@@ -6,6 +6,6 @@ import { commentType } from "../../types/comment";
 export const getPostAPI = (postID: number) =>
   axios.get<postType>(`/api/post/getpost/${postID}`);
 
-//* 글의 댓글을 불러오는 api
+//* 글의 댓글 모두을 불러오는 api
 export const getCommentsAPI = (postID: number) =>
-  axios.get<commentType[]>(`api/post/comments/${postID}`);
+  axios.get<commentType[]>(`/api/post/comments/${postID}`);

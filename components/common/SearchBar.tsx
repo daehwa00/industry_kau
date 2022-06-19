@@ -15,14 +15,15 @@ import { NextPage } from "next";
 const Container = styled.div`
   background-color: white;
   position: relative;
-  width: 70%;
+  width: 50%;
   height: 100px;
   display: flex;
   border: 2px solid transparent;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.58);
   border-radius: 12px;
   cursor: pointer;
-  margin-bottom: 50px;
+  margin-top: 100px;
+  margin-bottom: 100px;
   &:hover {
     border-color: ${palette.gray_dd};
   }
@@ -32,21 +33,21 @@ const Container = styled.div`
     top: 16px;
     left: 20px;
     .search-mainCategory-bar-label {
-      font-size: 10px;
+      font-size: 15px;
       font-weight: 800;
       margin-bottom: 4px;
     }
     input {
       width: 100%;
       border: 0;
-      font-size: 14px;
+      font-size: 30px;
       font-weight: 600;
       outline: none;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
       &::placeholder {
-        font-size: 14px;
+        font-size: 30px;
         opacity: 0.7;
       }
     }
@@ -158,7 +159,7 @@ const SearchBar: NextPage = () => {
     <Container onClick={onClickInput}>
       <OutsideClickHandler onOutsideClick={() => setPopupOpened(false)}>
         <div className="search-mainCategory-bar-texts">
-          <p className="search-mainCategory-bar-label">안녕</p>
+          <p className="search-mainCategory-bar-label">항상 응원하고 있어요!</p>
           <input
             value={searchWord}
             onChange={(e) => setsearchWordDispatch(e.target.value)}

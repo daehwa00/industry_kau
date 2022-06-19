@@ -18,7 +18,7 @@ const Container = styled.div<InputContainerProps>`
   }
   textarea {
     position: relative;
-    min-width: 800px;
+    width: 100%;
     ${({ type }) => {
       if (type === "title") {
         return css`

@@ -41,14 +41,17 @@ const Container = styled.div`
       width: 100%;
       height: 48px;
       border: 1px solid;
-      border-color: #3b613b;
+      border-color: #f2b001;
       border-radius: 4px;
       font-weight: 600;
-      background-color: #3b613b;
+      background-color: #f2b001;
       cursor: pointer;
       color: #fff;
       margin-top: 12px;
       border-radius: 15px;
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 `;
