@@ -145,7 +145,7 @@ const Posts = () => {
               <div className="post-footer">
                 <div className="post-footer-user">
                   <User
-                    style={{ fill: "rgb(42,169,224)" }}
+                    style={{ fill: "rgb(150,150,150)" }}
                     className="post-footer-user-svg"
                   />
                   Posted by {post.email}

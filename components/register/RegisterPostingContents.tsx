@@ -111,7 +111,7 @@ const RegisterPostingContents: React.FC<IProps> = ({ prevHref }) => {
           type="title"
         />
         <h2>어떤 상황인지 자세히 말해볼래요?</h2>
-        <h3>다 들어줄게요</h3>
+        <h3>하고싶은 만큼 이야기해 봐요. 우리가 들어줄게요.</h3>
         <p className="register-posting-text-wrapper">
           당신의 이야기, 하고 싶은만큼 해요. 다 들어주려고, 여백을 많이
           내어뒀어요.

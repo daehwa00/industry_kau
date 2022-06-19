@@ -74,26 +74,27 @@ const Container = styled.div<onClickedHeart>`
         margin-bottom: 2vh;
         .post-title-time {
           .post-title {
-            font-size: 22px;
+            font-size: 30px;
             font-weight: 800;
             padding-bottom: 5px;
           }
           .post-time {
-            font-size: 8px;
+            font-size: 10px;
           }
         }
         .post-subCategory-bar {
           position: relative;
           .post-subCategory {
-            font-size: 8px;
+            font-size: 16px;
             font-weight: bold;
             color: ${palette.gray_71};
           }
         }
       }
       .post-contents {
-        font-size: 14px;
-        margin-bottom: 3vh;
+        font-size: 18px;
+        margin-top: 5vh;
+        margin-bottom: 10vh;
         line-height: 200%;
         color: ${palette.gray};
       }
@@ -170,8 +171,9 @@ const Container = styled.div<onClickedHeart>`
     .subPost {
       display: inline-block;
       width: 20vw;
-      height: 20vh;
+      max-height: 20vh;
       margin-bottom: 1vh;
+      margin-top: 3vh;
       .subPost-header {
         display: flex;
         justify-content: space-between;
@@ -179,18 +181,18 @@ const Container = styled.div<onClickedHeart>`
         margin-bottom: 2vh;
         .subPost-title-time {
           .subPost-title {
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 800;
             padding-bottom: 5px;
           }
           .subPost-time {
-            font-size: 12px;
+            font-size: 10px;
           }
         }
-        .post-subCategory-bar {
+        .subPost-subCategory-bar {
           position: relative;
-          .post-subCategory {
-            font-size: 8px;
+          .subPost-subCategory {
+            font-size: 13px;
             font-weight: bold;
             color: ${palette.gray_71};
           }
@@ -272,7 +274,7 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
           <div className="post-footer">
             <div className="post-footer-user">
               <User
-                style={{ fill: "rgb(42,169,224)" }}
+                style={{ fill: "rgb(150,150,150)" }}
                 className="post-footer-user-svg"
               />
               Posted by {post.email}
@@ -356,26 +358,31 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
       <div className="subPost-wrapper">
         <div className="subPost-label">이 글이 마음에 드셨나요?</div>
         {subPosts.map((subPost) => (
-          <div className="subPost">
-            <div className="subPost-header">
-              <div className="subPost-title-time">
-                <div className="subPost-title">
-                  {subPost.title.length < 25
-                    ? subPost.title
-                    : `${subPost.title.slice(0, 25)}...`}
+          <>
+            <div className="subPost">
+              <div className="subPost-header">
+                <div className="subPost-title-time">
+                  <div className="subPost-title">
+                    {subPost.title.length < 10
+                      ? subPost.title
+                      : `${subPost.title.slice(0, 10)}...`}
+                  </div>
+                  <div className="subPost-time">
+                    {formatDistance(new Date(subPost.createdAt), new Date(), {
+                      addSuffix: true,
+                    })}
+                  </div>
                 </div>
-                <div className="subPost-time">
-                  {formatDistance(new Date(subPost.createdAt), new Date(), {
-                    addSuffix: true,
-                  })}
+                <div className="subPost-subCategory-bar">
+                  <div className="subPost-subCategory">
+                    {subPost.subCategory}
+                  </div>
                 </div>
               </div>
-              <div className="subPost-subCategory-bar">
-                <div className="subPost-subCategory">{subPost.subCategory}</div>
-              </div>
+              <div className="subPost-contents">{subPost.contents}</div>
             </div>
-            <div className="subPost-contents">{subPost.contents}</div>
-          </div>
+            <hr />
+          </>
         ))}
       </div>
     </Container>
