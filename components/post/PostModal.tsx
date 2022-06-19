@@ -26,12 +26,12 @@ const Container = styled.div<onClickedHeart>`
   margin-bottom: 20px;
   padding: 20px 50px 50px 0px;
   .post-left-block {
-    margin: 30px 30px 0px 30px;
+    margin: 0px 32px 0px 30px;
     .HeartAnimation {
       padding-top: 2em;
       background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/66955/web_heart_animation.png");
       background-repeat: no-repeat;
-      background-size: 2900%;
+      background-size: 3000%;
       background-position: left;
       height: 50px;
       width: 50px;
@@ -118,17 +118,6 @@ const Container = styled.div<onClickedHeart>`
     .post-footer-comment-input {
       margin-bottom: 64px;
     }
-  }
-  .post-left-block {
-    justify-content: space-between;
-    align-items: center;
-    display: flex;
-    width: 70%;
-    height: 6vh;
-    border-radius: 5px;
-    box-shadow: 2px 2px 2px 2px gray;
-    padding: 0 140px 0 140px;
-    margin-left: 70px;
   }
   .post-passing {
     justify-content: center;

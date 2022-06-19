@@ -38,7 +38,10 @@
     "react-background-slider": "^2.0.0",
     "react-background-slider-background-fixed": "^1.0.4",
     "react-dom": "18.1.0",
+<<<<<<< HEAD
     "react-icons": "^4.4.0",
+=======
+>>>>>>> dde0c32202ca99c4aff390b835113d55a315dbd0
     "react-new-window": "^0.2.1",
     "react-no-ssr": "^1.1.0",
     "react-outside-click-handler": "^1.3.0",
