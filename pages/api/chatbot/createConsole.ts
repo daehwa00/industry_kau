@@ -13,8 +13,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     },
   });
   res.statusCode = 200;
+  if (data.simRate < 0.6) {
+    return res.send(
+      "제가 답변드릴 수 없는 이야기 같아요ㅠㅠ 게시판에서 고민을 나눠봐요!"
+    );
+  }
   const result = data.response;
 
-  console.log(result);
   return res.send(result);
 };
