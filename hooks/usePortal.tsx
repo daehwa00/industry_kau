@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
-import CloseXIcon from "../public/static/svg/auth/CloseXIcon.svg";
+import CloseXIcon from "../public/img/svg/auth/CloseXIcon.svg";
 
 const Container = styled.div`
   width: 100%;

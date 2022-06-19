@@ -1,8 +1,8 @@
 /* eslint-disable no-confusing-arrow */
 import React from "react";
 import styled from "styled-components";
-import RedXIcon from "../../public/static/svg/logo/red_x_icon.svg";
-import GreenCheckIcon from "../../public/static/svg/logo/green_check_icon.svg";
+import RedXIcon from "../../public/img/svg/logo/red_x_icon.svg";
+import GreenCheckIcon from "../../public/img/svg/logo/green_check_icon.svg";
 import palette from "../../styles/palette";
 
 const Container = styled.p<{ isValid: boolean }>`

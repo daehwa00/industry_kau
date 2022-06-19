@@ -4,7 +4,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import palette from "../../styles/palette";
 import { useSelector } from "../../store";
-import WarningIcon from "../../public/static/svg/logo/warningIcon.svg";
+import WarningIcon from "../../public/img/svg/logo/warningIcon.svg";
 
 const Container = styled.div<{ isValid: boolean; validateMode: boolean }>`
   .radio-label {
