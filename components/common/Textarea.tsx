@@ -22,7 +22,7 @@ const Container = styled.div<InputContainerProps>`
     ${({ type }) => {
       if (type === "title") {
         return css`
-          min-height: 50px;
+          min-height: 2vh;
         `;
       }
       return css`

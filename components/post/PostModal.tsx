@@ -18,6 +18,7 @@ import {
   createCommentAPI,
   getCommentsAPI,
 } from "../../lib/api/post";
+import { height } from "@mui/system";
 
 type onClickedHeart = { onClickedHeart: boolean };
 
@@ -67,7 +68,7 @@ const Container = styled.div<onClickedHeart>`
       display: flex;
       justify-content: space-between;
       height: 40px;
-      margin-bottom: 48px;
+      margin-bottom: 2vh;
       .post-title-time {
         .post-title {
           font-size: 23px;
@@ -89,7 +90,7 @@ const Container = styled.div<onClickedHeart>`
     }
     .post-contents {
       font-size: 14px;
-      margin-bottom: 64px;
+      margin-bottom: 3vh;
       line-height: 200%;
       color: ${palette.gray};
     }
