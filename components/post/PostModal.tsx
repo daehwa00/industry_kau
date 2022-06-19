@@ -13,12 +13,17 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { commentActions } from "../../store/comment";
 import { FaRegFrown, FaRegSmile } from "react-icons/fa";
-import { createCheerUpAPI } from "../../lib/api/post";
+import {
+  createCheerUpAPI,
+  createCommentAPI,
+  getCommentsAPI,
+} from "../../lib/api/post";
 
 type onClickedHeart = { onClickedHeart: boolean };
 
 const Container = styled.div<onClickedHeart>`
   width: 50vw;
+  height: 800px;
   cursor: pointer;
   background-color: white;
   display: flex;
@@ -119,10 +124,33 @@ const Container = styled.div<onClickedHeart>`
     .post-footer-comment-input {
       margin-bottom: 64px;
     }
-  }
-  .post-passing {
-    justify-content: center;
-    align-items: center;
+    .post-footer-comments {
+      overflow-y: auto;
+      max-height: 50vh;
+      .comment-wrapper {
+        margin-bottom: 20px;
+        .comment-header {
+          display: flex;
+          .comment-user-svg {
+          }
+          .comment-user-time {
+            margin-left: 10px;
+            .comment-user {
+              font-size: 18px;
+              font-weight: bold;
+              margin-bottom: 3px;
+            }
+            .comment-time {
+              font-size: 10px;
+              color: ${palette.gray_71};
+            }
+          }
+          margin-bottom: 20px;
+        }
+      }
+      .comment-contents {
+      }
+    }
   }
 `;
 
@@ -144,6 +172,21 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
   const animationButton = async (postID: number) => {
     onClickedHeart(!clickedHeart);
     await createCheerUpAPI({ consolePostId: postID, email });
+  };
+
+  const onSubmitComment = async (e) => {
+    if (e.code == "Enter" && e.ctrlKey) {
+      createCommentAPI({
+        contents: comment,
+        consolePostId: post.consolePostId,
+        email,
+        anonymous: 0,
+      });
+      setComment("");
+      dispatch(commentActions.setInitInputComment());
+      const comments = await getCommentsAPI(post.consolePostId);
+      dispatch(commentActions.setcomments(comments.data));
+    }
   };
 
   return (
@@ -204,23 +247,48 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
           </div>
         </div>
         <div className="post-footer-comment-input">
-          <Textarea
-            value={comment}
-            isValid={!!comment}
-            errorMessage="입력해줘요~"
-            type="title"
-            style={{ backgroundColor: "#FAFAFA" }}
-            onChange={(e) => {
-              setComment(e.target.value);
-              dispatch(commentActions.setInputComment(e.target.value));
-            }}
-            placeholder="댓글을 입력해주세요"
-          />
+          <form>
+            <Textarea
+              value={comment}
+              isValid={!!comment}
+              errorMessage="입력해줘요~"
+              type="title"
+              style={{ backgroundColor: "#FAFAFA" }}
+              onChange={(e) => {
+                setComment(e.target.value);
+                dispatch(commentActions.setInputComment(e.target.value));
+              }}
+              placeholder="댓글을 입력해주세요"
+              onKeyPress={onSubmitComment}
+            />
+          </form>
         </div>
         <div className="post-footer-comments">
           <ul>
             {comments.map((comment) => (
-              <div>{comment.contents}</div>
+              <div className="comment-wrapper">
+                <div className="comment-header">
+                  <User
+                    style={{ fill: "rgb(211,211,211)" }}
+                    className="comment-user-svg"
+                    width="3%"
+                    height="3%"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  />
+                  <div className="comment-user-time">
+                    <div className="comment-user">
+                      {comment.email.split("@")[0]}
+                    </div>
+                    <div className="comment-time">
+                      {formatDistance(new Date(comment.createdAt), new Date(), {
+                        addSuffix: true,
+                      })}
+                    </div>
+                  </div>
+                </div>
+                <div className="comment-contents">{comment.contents}</div>
+              </div>
             ))}
           </ul>
         </div>

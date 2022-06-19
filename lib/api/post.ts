@@ -6,6 +6,13 @@ import { commentType } from "../../types/comment";
 export const getPostAPI = (postID: number) =>
   axios.get<postType>(`/api/post/getpost/${postID}`);
 
+export const createCommentAPI = (body: {
+  contents: string;
+  consolePostId: number;
+  email: string;
+  anonymous: number;
+}) => axios.post("/api/post/createComment", body);
+
 //* 글의 댓글 모두을 불러오는 api
 export const getCommentsAPI = (postID: number) =>
   axios.get<commentType[]>(`/api/post/comments/${postID}`);
