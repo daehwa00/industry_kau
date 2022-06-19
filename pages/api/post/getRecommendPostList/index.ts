@@ -17,8 +17,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         url: `https://7f6calrfce.execute-api.ap-northeast-2.amazonaws.com/dev/console-post-user-recommend-container?email=${keyword}`,
         headers: { "x-api-key": "Jkul4qNZJeatNGd9L8wdRj5qXqDhaog2FBJhtq4f" },
       });
-      console.log("HI");
-      console.log(data);
       delete data.similarity; //유사도는 제외시킴
 
       res.statusCode = 200;

@@ -9,3 +9,9 @@ export const getPostAPI = (postID: number) =>
 //* 글의 댓글 모두을 불러오는 api
 export const getCommentsAPI = (postID: number) =>
   axios.get<commentType[]>(`/api/post/comments/${postID}`);
+
+//* 힘내요 API
+export const createCheerUpAPI = (body: {
+  consolePostId: number;
+  email: string;
+}) => axios.post("/api/post/createCheerUp", body);
