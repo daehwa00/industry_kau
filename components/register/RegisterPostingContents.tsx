@@ -17,8 +17,7 @@ const Container = styled.div`
     font-weight: bold;
     margin-bottom: 3vh;
   }
-
-  height: 800px;
+  height: 720px;
   width: 55%;
   h2 {
     font-size: 19px;
@@ -44,6 +43,7 @@ const Container = styled.div`
   .submit-button {
     display: flex;
     width: 100%;
+    margin-top: 30px;
     .submit-button-post {
       margin-right: 50px;
       margin-left: 50px;
