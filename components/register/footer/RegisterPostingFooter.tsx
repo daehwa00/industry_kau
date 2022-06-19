@@ -20,6 +20,9 @@ const Container = styled.footer`
   height: 62px;
   z-index: 10;
   border-top: 1px solid ${palette.gray_dd};
+  .prev-next {
+    display: flex;
+  }
   .register-posting-footer-back {
     display: flex;
     align-items: center;
@@ -50,28 +53,32 @@ const RegisterPostingFooter: React.FC<IProps> = ({
 
   return (
     <Container>
-      <Link href={prevHref || ""}>
-        <a className="register-posting-footer-back">
-          <BackArrowIcon />
-          뒤로
-        </a>
-      </Link>
-      <Link href={nextHref || ""}>
-        <a>
-          <Button
-            // onClick={(e) => {
-            //   if (!isValid) {
-            //     //유효하지 않다면 가지 않습니다.
-            //     e.preventDefault();
-            //     setValidateMode(true);
-            //   }
-            // }}
-            color="dark_cyan"
-          >
-            다음
-          </Button>
-        </a>
-      </Link>
+      <div className="prev-next">
+        <Link href={prevHref || ""}>
+          <a className="register-posting-footer-back">
+            <BackArrowIcon />
+            뒤로
+          </a>
+        </Link>
+      </div>
+      <div className="prev-next">
+        <Link href={nextHref || ""}>
+          <a>
+            <Button
+              // onClick={(e) => {
+              //   if (!isValid) {
+              //     //유효하지 않다면 가지 않습니다.
+              //     e.preventDefault();
+              //     setValidateMode(true);
+              //   }
+              // }}
+              color="dark_cyan"
+            >
+              다음
+            </Button>
+          </a>
+        </Link>
+      </div>
     </Container>
   );
 };

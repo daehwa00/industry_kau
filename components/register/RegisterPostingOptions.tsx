@@ -17,27 +17,32 @@ const Container = styled.div`
   border-radius: 20px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.58);
   float: left;
-  margin-left: 18%;
-  margin-top: 50px;
-  margin-bottom: 100px;
-  padding: 50px 400px 0 100px;
-  h2 {
-    font-size: 19px;
-    font-weight: 800;
-    margin-bottom: 56px;
-  }
-  h3 {
-    font-weight: bold;
-    color: ${palette.gray_76};
-    margin-bottom: 6px;
-  }
-  .register-posting-wrapper {
-    width: 320px;
-    margin-bottom: 32px;
-  }
-  .anonymous-posting-radio {
-    max-width: 485px;
-    margin-bottom: 50px;
+  margin: 50px 16% 80px 16%;
+  padding: 50px 170px 0 100px;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  .left {
+    display: block;
+    padding-right: 10%;
+    h2 {
+      font-size: 19px;
+      font-weight: 800;
+      margin-bottom: 56px;
+    }
+    h3 {
+      font-weight: bold;
+      color: ${palette.gray_76};
+      margin-bottom: 6px;
+    }
+    .register-posting-wrapper {
+      width: 320px;
+      margin-bottom: 32px;
+    }
+    .anonymous-posting-radio {
+      max-width: 485px;
+      margin-bottom: 50px;
+    }
   }
 `;
 
@@ -142,53 +147,53 @@ const RegisterPostingOptions: React.FC = () => {
 
   return (
     <Container>
-      <h2>어떤 고민이 있어요?</h2>
-      <h3>힘들다 그쵸?</h3>
-      <div className="register-posting-wrapper">
-        <Selector
-          isValid={!!mainCategoryType}
-          type="register"
-          value={mainCategoryType || undefined}
-          defaultValue={options}
-          disabledOptions={options}
-          label="우선 뭐가 힘든지 말해볼래요?"
-          options={worryOfKind}
-          onChange={onChangeMainCategoryType}
-        />
-      </div>
-      <div className="register-posting-wrapper">
-        {mainCategoryType && (
+      <div className="left">
+        <h2>어떤 고민이 있어요?</h2>
+        <h3>힘들다 그쵸?</h3>
+        <div className="register-posting-wrapper">
           <Selector
-            isValid={!!subCategoryType}
+            isValid={!!mainCategoryType}
             type="register"
-            value={subCategoryType || undefined}
+            value={mainCategoryType || undefined}
             defaultValue={options}
-            disabled={!mainCategoryType}
             disabledOptions={options}
-            label="좀 더 자세하게 알고 싶어요"
-            options={subCategoryOptions}
-            onChange={onChangeSubCategoryType}
+            label="우선 뭐가 힘든지 말해볼래요?"
+            options={worryOfKind}
+            onChange={onChangeMainCategoryType}
           />
-        )}
+        </div>
+        <div className="register-posting-wrapper">
+          {mainCategoryType && (
+            <Selector
+              isValid={!!subCategoryType}
+              type="register"
+              value={subCategoryType || undefined}
+              defaultValue={options}
+              disabled={!mainCategoryType}
+              disabledOptions={options}
+              label="좀 더 자세하게 알고 싶어요"
+              options={subCategoryOptions}
+              onChange={onChangeSubCategoryType}
+            />
+          )}
+        </div>
+        <div className="anonymous-posting-radio">
+          {subCategoryType && (
+            <RadioGroup
+              isValid={!!anonymousType}
+              type="register"
+              label="어떻게 말하고 싶어요?"
+              value={anonymousType || undefined}
+              disabled={!subCategoryType}
+              options={anonymousTypeRadioOptions}
+              onChange={onChangeAnonymousType}
+            />
+          )}
+        </div>
       </div>
-      <div className="anonymous-posting-radio">
-        {subCategoryType && (
-          <RadioGroup
-            isValid={!!anonymousType}
-            type="register"
-            label="어떻게 말하고 싶어요?"
-            value={anonymousType || undefined}
-            disabled={!subCategoryType}
-            options={anonymousTypeRadioOptions}
-            onChange={onChangeAnonymousType}
-          />
-        )}
-      </div>
-      <div>
-        {
-          anonymousType && <RegisterPostingContents /> // sub 수정
-        }
-      </div>
+      {
+        anonymousType && <RegisterPostingContents /> // sub 수정
+      }
       <RegisterPostingFooter isValid={false} prevHref="/" />
     </Container>
   );

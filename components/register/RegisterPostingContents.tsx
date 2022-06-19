@@ -10,7 +10,7 @@ import { postAPI } from "../../lib/api/posting";
 import { postingActions } from "../../store/posting";
 
 const Container = styled.div`
-  height: 1200px;
+  height: 800px;
   width: 55%;
   h2 {
     font-size: 19px;

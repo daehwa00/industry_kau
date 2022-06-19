@@ -17,6 +17,9 @@ import AuthModal from "./auths/AuthModal";
 import { HidingHeader } from "hiding-header-react";
 
 const Container = styled.div`
+  &::-webkit-scrollbar {
+    display: block;
+  }
   position: sticky;
   top: 0;
   width: 100%;

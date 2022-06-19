@@ -6,7 +6,6 @@ import RegisterPostingOptions from "../../../components/register/RegisterPosting
 const Container = styled.div`
   clear: both;
   content: "";
-  display: block;
 `;
 const posting: NextPage = () => {
   return (

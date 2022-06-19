@@ -11,6 +11,9 @@ const globalStyle = css`
     font-family: Noto Sans, Noto Sans KR;
     color: ${palette.black};
   }
+  body::-webkit-scrollbar {
+    display: none;
+  }
   a {
     text-decoration: none;
     color: ${palette.black};

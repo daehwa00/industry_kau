@@ -13,6 +13,9 @@ import { getRecommendPostListAPI } from "../../lib/api/posting";
 import { NextPage } from "next";
 
 const Container = styled.div`
+  &::-webkit-scrollbar {
+    display: block;
+  }
   background-color: white;
   position: relative;
   width: 50%;
