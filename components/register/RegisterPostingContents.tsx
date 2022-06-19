@@ -10,8 +10,6 @@ import { postAPI } from "../../lib/api/posting";
 import { postingActions } from "../../store/posting";
 
 const Container = styled.div`
-  padding: 62px 30px 100px;
-  display: inline-block;
   height: 1200px;
   width: 55%;
   h2 {

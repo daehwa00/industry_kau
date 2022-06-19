@@ -15,8 +15,8 @@ import BackgroundSlider from "react-background-slider-background-fixed";
 const Container = styled.div`
   .bot {
     position: fixed;
-    right: 20px;
-    bottom: 20px;
+    right: 35px;
+    bottom: 35px;
   }
 `;
 const ChatApp = dynamic(import("../components/Chatbot/widget"), { ssr: false });

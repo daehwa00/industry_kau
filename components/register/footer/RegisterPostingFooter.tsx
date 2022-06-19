@@ -8,15 +8,16 @@ import palette from "../../../styles/palette";
 import useValidateMode from "../../../hooks/useValidateMode";
 
 const Container = styled.footer`
+  border-radius: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.58);
+  background-color: white;
   position: fixed;
-  bottom: 0;
+  bottom: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 548px;
-  height: 82px;
-  padding: 14px 30px 20px;
-  background-color: white;
+  width: 55%;
+  height: 62px;
   z-index: 10;
   border-top: 1px solid ${palette.gray_dd};
   .register-posting-footer-back {

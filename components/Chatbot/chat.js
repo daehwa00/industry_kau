@@ -8,8 +8,8 @@ const Container = styled.div`
   justify-content: right;
   align-items: bottom;
   .all {
-    height: 65vh;
-    width: 50vh;
+    height: 90vh;
+    width: 60vh;
     overflow: auto;
     box-sizing: border-box;
   }

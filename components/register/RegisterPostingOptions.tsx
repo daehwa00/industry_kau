@@ -14,9 +14,13 @@ import { optionGroupUnstyledClasses } from "@mui/base";
 
 const Container = styled.div`
   background-color: white;
-  padding: 62px 30px 100px;
+  border-radius: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.58);
   float: left;
-  padding: 0 400px 0 200px;
+  margin-left: 18%;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  padding: 50px 400px 0 100px;
   h2 {
     font-size: 19px;
     font-weight: 800;
