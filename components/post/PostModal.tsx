@@ -126,7 +126,7 @@ const Container = styled.div<onClickedHeart>`
     }
     .post-footer-comments {
       overflow-y: auto;
-      max-height: 50vh;
+      max-height: 30vh;
       .comment-wrapper {
         margin-bottom: 20px;
         .comment-header {
