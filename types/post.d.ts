@@ -1,4 +1,5 @@
 export type postType = {
+  slice?: any;
   consolePostId: number;
   createdAt: string;
   updatedAt: string;

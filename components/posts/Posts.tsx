@@ -8,12 +8,19 @@ import { useSelector } from "../../store";
 import { useDispatch } from "react-redux";
 import rightPost, { postModalActions } from "../../store/postModal";
 import RightPost from "../post/RightPost";
-import { getCommentsAPI, getPostAPI } from "../../lib/api/post";
+import {
+  getCommentsAPI,
+  getPostAPI,
+  getRecommendPostAPI,
+} from "../../lib/api/post";
 import usePortal from "../../hooks/usePortal";
 import * as React from "react";
 import PostModal from "../post/PostModal";
 import formatDistance from "date-fns/formatDistance";
 import comment, { commentActions } from "../../store/comment";
+import { getRecommendPostListAPI } from "../../lib/api/posting";
+import { subPostsActions } from "../../store/subPost";
+import { postType } from "../../types/post";
 
 const Container = styled.div`
   margin-left: 50%;
@@ -89,6 +96,7 @@ const Container = styled.div`
 
 const Posts = () => {
   const posts = useSelector((state) => state.posts.posts);
+
   const dispatch = useDispatch();
 
   const { closeModalPortal, openModalPortal, ModalPortal } = usePortal();
@@ -99,6 +107,8 @@ const Posts = () => {
     dispatch(postModalActions.setPostDetail(data));
     const comments = await getCommentsAPI(postID);
     dispatch(commentActions.setcomments(comments.data));
+    const RecommendPost = await getRecommendPostAPI(postID);
+    dispatch(subPostsActions.setsubPosts(RecommendPost.data.slice(0, 2)));
     openModalPortal();
   };
 
@@ -127,7 +137,6 @@ const Posts = () => {
                 </div>
                 <div className="post-subCategory">{post.subCategory}</div>
               </div>
-              {/* <div className="post-time"></div> */}
               <div className="post-contents">
                 {post.contents.length < 500
                   ? post.contents

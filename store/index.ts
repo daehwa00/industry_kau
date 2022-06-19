@@ -12,6 +12,7 @@ import posts from "./posts";
 import search from "./search";
 import postModal from "./postModal";
 import comment from "./comment";
+import subPosts from "./subPost";
 
 const rootReducer = combineReducers({
   common: common.reducer,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   postModal: postModal.reducer,
   search: search.reducer,
   comment: comment.reducer,
+  subPosts: subPosts.reducer,
 });
 
 //* 스토어의 타입

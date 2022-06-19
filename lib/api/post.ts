@@ -22,3 +22,6 @@ export const createCheerUpAPI = (body: {
   consolePostId: number;
   email: string;
 }) => axios.post("/api/post/createCheerUp", body);
+
+export const getRecommendPostAPI = (postID: number) =>
+  axios.get<postType>(`/api/post/getRecommendPostList/${postID}`);

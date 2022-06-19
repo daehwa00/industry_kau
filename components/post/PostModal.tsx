@@ -23,8 +23,8 @@ import { height } from "@mui/system";
 type onClickedHeart = { onClickedHeart: boolean };
 
 const Container = styled.div<onClickedHeart>`
-  width: 80vw;
-  height: 70vh;
+  width: 75vw;
+  height: 65vh;
   .mainPost {
     float: left;
     width: 50vw;
@@ -158,12 +158,53 @@ const Container = styled.div<onClickedHeart>`
       }
     }
   }
-  .subPost {
+
+  .subPost-wrapper {
+    width: 22vw;
     float: right;
-    display: inline-block;
-    width: 20vw;
-    height: 100%;
-    background-color: black;
+    .subPost-label {
+      sont-size: 18px;
+      font-weight: bold;
+      margin-bottom: 3vh;
+    }
+    .subPost {
+      display: inline-block;
+      width: 20vw;
+      height: 20vh;
+      background-color: gray;
+      margin-bottom: 1vh;
+      .subPost-header {
+        display: flex;
+        justify-content: space-between;
+        height: 40px;
+        margin-bottom: 2vh;
+        .subPost-title-time {
+          .subPost-title {
+            font-size: 18px;
+            font-weight: 800;
+            padding-bottom: 5px;
+          }
+          .subPost-time {
+            font-size: 8px;
+          }
+        }
+        .post-subCategory-bar {
+          position: relative;
+          .post-subCategory {
+            font-size: 8px;
+            font-weight: bold;
+            color: ${palette.gray_71};
+          }
+        }
+      }
+      .post-contents {
+        font-size: 9px;
+        margin-bottom: 3vh;
+        line-height: 200%;
+        color: ${palette.gray};
+      }
+      }
+    }
   }
 `;
 
@@ -175,6 +216,7 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
   const post = useSelector((state) => state.postModal.postDetail);
   const comments = useSelector((state) => state.comment.comments);
   const email = useSelector((state) => state.user.email);
+  const subPosts = useSelector((state) => state.subPosts.subPosts);
 
   const [comment, setComment] = useState("");
 
@@ -312,7 +354,31 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
           </div>
         </div>
       </div>
-      <div className="subPost">안녕</div>
+      <div className="subPost-wrapper">
+        <div className="subPost-label">이 글이 마음에 드셨나요?</div>
+        {subPosts.map((subPost) => (
+          <div className="subPost">
+            <div className="subPost-header">
+              <div className="subPost-title-time">
+                <div className="subPost-title">
+                  {subPost.title.length < 25
+                    ? subPost.title
+                    : `${subPost.title.slice(0, 25)}...`}
+                </div>
+                <div className="subPost-time">
+                  {formatDistance(new Date(subPost.createdAt), new Date(), {
+                    addSuffix: true,
+                  })}
+                </div>
+              </div>
+              <div className="subPost-subCategory-bar">
+                <div className="subPost-subCategory">{subPost.subCategory}</div>
+              </div>
+            </div>
+            <div className="subPost-contents">{subPost.contents}</div>
+          </div>
+        ))}
+      </div>
     </Container>
   );
 };
