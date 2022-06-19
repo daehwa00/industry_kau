@@ -111,7 +111,7 @@ const RegisterPostingContents: React.FC = () => {
           />
         </div>
         <Button type="submit" color="dark_cyan">
-          제출
+          작성하기
         </Button>
         {/*<RegisterPostingFooter isValid={false} prevHref="/" nextHref="/" />*/}
       </form>

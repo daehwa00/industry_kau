@@ -12,4 +12,12 @@ module.exports = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: "https://www.comfortme.shop/:path*",
+        destination: `https://comfortme.shop/:path*`,
+      },
+    ];
+  },
 };

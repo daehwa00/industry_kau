@@ -36,7 +36,7 @@ class MyDocument extends Document {
           <meta
             name="description"
             content={
-              "내 마음에 쌓인 마음들 여기서 터놓고 얘기해봐요, 위로해줄게요."
+              "내 마음에 쌓인 것들 여기서 터놓고 얘기해봐요, 위로해줄게요."
             }
           />
           <meta
@@ -47,7 +47,7 @@ class MyDocument extends Document {
           <meta
             property="og:description"
             content={
-              "내 마음에 쌓인 마음들 여기서 터놓고 얘기해봐요, 위로해줄게요."
+              "내 마음에 쌓인 것들 여기서 터놓고 얘기해봐요, 위로해줄게요."
             }
           />
           <meta property="og:type" content="website" />
@@ -61,7 +61,7 @@ class MyDocument extends Document {
           <meta property="og:article:author" content="내맘을 위로해조" />
           <link
             rel="shortcut icon"
-            href="https://aws-console-project.s3.ap-northeast-2.amazonaws.com/console-post/bg3.jpg"
+            href="https://comfortme-static.s3.ap-northeast-2.amazonaws.com/20220619_141617.png"
           />
           <link
             href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700"
