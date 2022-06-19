@@ -26,13 +26,13 @@ const app = ({ Component, pageProps }: AppProps) => {
     <Container>
       <BackgroundSlider
         images={[
-          "../main/png/bg1.jpg",
-          "../main/png/bg2.jpg",
-          "../main/png/bg3.jpg",
-          "../main/png/bg4.jpg",
+          "../main/png/bg1mod.png",
+          "../main/png/bg2mod.png",
+          "../main/png/bg3mod.png",
+          "../main/png/bg4mod.png",
         ]}
-        duration={10}
-        transition={2}
+        duration={5}
+        transition={3}
       />
       <Header />
       <GlobalStyle />
