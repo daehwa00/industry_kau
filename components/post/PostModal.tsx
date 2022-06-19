@@ -23,135 +23,146 @@ import { height } from "@mui/system";
 type onClickedHeart = { onClickedHeart: boolean };
 
 const Container = styled.div<onClickedHeart>`
-  width: 50vw;
-  height: 800px;
-  cursor: pointer;
-  background-color: white;
-  display: flex;
-  padding: 12px;
-  height: auto;
-  margin-bottom: 20px;
-  padding: 20px 50px 50px 0px;
-  .post-left-block {
-    margin: 0px 32px 0px 30px;
-    .HeartAnimation {
-      padding-top: 2em;
-      background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/66955/web_heart_animation.png");
-      background-repeat: no-repeat;
-      background-size: 3000%;
-      background-position: left;
-      height: 50px;
-      width: 50px;
-      margin: 0 auto;
-      cursor: pointer;
-      ${({ onClickedHeart }) => {
-        if (onClickedHeart) {
-          return css`
-            animation: heart-burst 0.8s steps(28) forwards;
+  width: 80vw;
+  height: 70vh;
+  .mainPost {
+    float: left;
+    width: 50vw;
+    height: 800px;
+    cursor: pointer;
+    background-color: white;
+    display: flex;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 0px 50px 50px 0px;
+    .post-left-block {
+      margin: 0px 32px 0px 30px;
+      .HeartAnimation {
+        padding-top: 2em;
+        background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/66955/web_heart_animation.png");
+        background-repeat: no-repeat;
+        background-size: 3000%;
+        background-position: left;
+        height: 50px;
+        width: 50px;
+        margin: 0 auto;
+        cursor: pointer;
+        ${({ onClickedHeart }) => {
+          if (onClickedHeart) {
+            return css`
+              animation: heart-burst 0.8s steps(28) forwards;
 
-            @keyframes heart-burst {
-              0% {
-                background-position: left;
+              @keyframes heart-burst {
+                0% {
+                  background-position: left;
+                }
+                100% {
+                  background-position: right;
+                }
               }
-              100% {
-                background-position: right;
-              }
-            }
-          `;
-        }
-      }}
-    }
-  }
-  .post-right-block {
-    width: 100%;
-    .post-header {
-      display: flex;
-      justify-content: space-between;
-      height: 40px;
-      margin-bottom: 2vh;
-      .post-title-time {
-        .post-title {
-          font-size: 23px;
-          font-weight: 800;
-          padding-bottom: 5px;
-        }
-        .post-time {
-          font-size: 12px;
-        }
-      }
-      .post-subCategory-bar {
-        position: relative;
-        .post-subCategory {
-          font-size: 12px;
-          font-weight: bold;
-          color: ${palette.gray_71};
-        }
+            `;
+          }
+        }}
       }
     }
-    .post-contents {
-      font-size: 14px;
-      margin-bottom: 3vh;
-      line-height: 200%;
-      color: ${palette.gray};
-    }
-    .post-footer {
-      display: flex;
-      justify-content: space-between;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      font-size: 10px;
-      padding-bottom: 40px;
-      position: relative;
-      color: ${palette.gray_76};
-      .post-footer-user {
+    .post-right-block {
+      width: 100%;
+      .post-header {
+        display: flex;
+        justify-content: space-between;
+        height: 40px;
+        margin-bottom: 2vh;
+        .post-title-time {
+          .post-title {
+            font-size: 23px;
+            font-weight: 800;
+            padding-bottom: 5px;
+          }
+          .post-time {
+            font-size: 12px;
+          }
+        }
+        .post-subCategory-bar {
+          position: relative;
+          .post-subCategory {
+            font-size: 12px;
+            font-weight: bold;
+            color: ${palette.gray_71};
+          }
+        }
+      }
+      .post-contents {
+        font-size: 14px;
+        margin-bottom: 3vh;
+        line-height: 200%;
+        color: ${palette.gray};
+      }
+      .post-footer {
+        display: flex;
+        justify-content: space-between;
+        height: 40px;
         display: flex;
         align-items: center;
-        font-size: 12px;
-        .post-footer-user-svg {
-          margin-right: 10px;
-        }
-      }
-      .post-footer-gauge {
+        font-size: 10px;
+        padding-bottom: 40px;
         position: relative;
-        right: 0;
-        .icons {
+        color: ${palette.gray_76};
+        .post-footer-user {
           display: flex;
-          justify-content: space-between;
-          padding-bottom: 5px;
-        }
-      }
-    }
-    .post-footer-comment-input {
-      margin-bottom: 3vh;
-    }
-    .post-footer-comments {
-      overflow-y: auto;
-      max-height: 30vh;
-      .comment-wrapper {
-        margin-bottom: 1.5vh;
-        .comment-header {
-          display: flex;
-          margin-bottom: 1vh;
-          .comment-user-svg {
+          align-items: center;
+          font-size: 12px;
+          .post-footer-user-svg {
+            margin-right: 10px;
           }
-          .comment-user-time {
-            margin-left: 10px;
-            .comment-user {
-              font-size: 18px;
-              font-weight: bold;
-              margin-bottom: 3px;
-            }
-            .comment-time {
-              font-size: 10px;
-              color: ${palette.gray_71};
-            }
+        }
+        .post-footer-gauge {
+          position: relative;
+          right: 0;
+          .icons {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 5px;
           }
         }
       }
-      .comment-contents {
+      .post-footer-comment-input {
+        margin-bottom: 3vh;
+      }
+      .post-footer-comments {
+        overflow-y: auto;
+        max-height: 30vh;
+        .comment-wrapper {
+          margin-bottom: 1.5vh;
+          .comment-header {
+            display: flex;
+            margin-bottom: 1vh;
+            .comment-user-svg {
+            }
+            .comment-user-time {
+              margin-left: 10px;
+              .comment-user {
+                font-size: 18px;
+                font-weight: bold;
+                margin-bottom: 3px;
+              }
+              .comment-time {
+                font-size: 10px;
+                color: ${palette.gray_71};
+              }
+            }
+          }
+        }
+        .comment-contents {
+        }
       }
     }
+  }
+  .subPost {
+    float: right;
+    display: inline-block;
+    width: 20vw;
+    height: 100%;
+    background-color: black;
   }
 `;
 
@@ -192,108 +203,115 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
 
   return (
     <Container onClickedHeart={clickedHeart}>
-      <div className="post-left-block">
-        <div
-          className="HeartAnimation"
-          onClick={() => {
-            animationButton(post.consolePostId);
-          }}
-        />
-      </div>
-      <div className="post-right-block">
-        <div className="post-header">
-          <div className="post-title-time">
-            <div className="post-title">{post.title}</div>
-            <div className="post-time">
-              {formatDistance(new Date(post.createdAt), new Date(), {
-                addSuffix: true,
-              })}
+      <div className="mainPost">
+        <div className="post-left-block">
+          <div
+            className="HeartAnimation"
+            onClick={() => {
+              animationButton(post.consolePostId);
+            }}
+          />
+        </div>
+        <div className="post-right-block">
+          <div className="post-header">
+            <div className="post-title-time">
+              <div className="post-title">{post.title}</div>
+              <div className="post-time">
+                {formatDistance(new Date(post.createdAt), new Date(), {
+                  addSuffix: true,
+                })}
+              </div>
+            </div>
+            <div className="post-subCategory-bar">
+              <div className="post-subCategory">{post.subCategory}</div>
             </div>
           </div>
-          <div className="post-subCategory-bar">
-            <div className="post-subCategory">{post.subCategory}</div>
-          </div>
-        </div>
-        <div className="post-contents">{post.contents}</div>
-        <div className="post-footer">
-          <div className="post-footer-user">
-            <User
-              style={{ fill: "rgb(42,169,224)" }}
-              className="post-footer-user-svg"
-            />
-            Posted by {post.email}
-          </div>
-          <div className="post-footer-gauge">
-            <div className="icons">
-              <FaRegSmile size="18" />
-              <FaRegFrown size="18" />
+          <div className="post-contents">{post.contents}</div>
+          <div className="post-footer">
+            <div className="post-footer-user">
+              <User
+                style={{ fill: "rgb(42,169,224)" }}
+                className="post-footer-user-svg"
+              />
+              Posted by {post.email}
             </div>
-            {post.negative > 0.5 ? (
-              <ProgressBar
-                completed={post.negative * 100}
-                bgColor="#ff3b1f"
-                height="5px"
-                width="200px"
-                customLabel=" "
-              />
-            ) : (
-              <ProgressBar
-                completed={post.negative * 100}
-                bgColor="#50bcdf"
-                height="5px"
-                width="200px"
-                customLabel=" "
-              />
-            )}
+            <div className="post-footer-gauge">
+              <div className="icons">
+                <FaRegSmile size="18" />
+                <FaRegFrown size="18" />
+              </div>
+              {post.negative > 0.5 ? (
+                <ProgressBar
+                  completed={post.negative * 100}
+                  bgColor="#ff3b1f"
+                  height="5px"
+                  width="200px"
+                  customLabel=" "
+                />
+              ) : (
+                <ProgressBar
+                  completed={post.negative * 100}
+                  bgColor="#50bcdf"
+                  height="5px"
+                  width="200px"
+                  customLabel=" "
+                />
+              )}
+            </div>
           </div>
-        </div>
-        <div className="post-footer-comment-input">
-          <form>
-            <Textarea
-              value={comment}
-              isValid={!!comment}
-              errorMessage="입력해줘요~"
-              type="title"
-              style={{ backgroundColor: "#FAFAFA" }}
-              onChange={(e) => {
-                setComment(e.target.value);
-                dispatch(commentActions.setInputComment(e.target.value));
-              }}
-              placeholder="댓글을 입력해주세요"
-              onKeyPress={onSubmitComment}
-            />
-          </form>
-        </div>
-        <div className="post-footer-comments">
-          <ul>
-            {comments.map((comment) => (
-              <div className="comment-wrapper">
-                <div className="comment-header">
-                  <User
-                    style={{ fill: "rgb(211,211,211)" }}
-                    className="comment-user-svg"
-                    width="3%"
-                    height="3%"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  />
-                  <div className="comment-user-time">
-                    <div className="comment-user">
-                      {comment.email.split("@")[0]}
-                    </div>
-                    <div className="comment-time">
-                      {formatDistance(new Date(comment.createdAt), new Date(), {
-                        addSuffix: true,
-                      })}
+          <div className="post-footer-comment-input">
+            <form>
+              <Textarea
+                value={comment}
+                isValid={!!comment}
+                errorMessage="입력해줘요~"
+                type="title"
+                style={{ backgroundColor: "#FAFAFA" }}
+                onChange={(e) => {
+                  setComment(e.target.value);
+                  dispatch(commentActions.setInputComment(e.target.value));
+                }}
+                placeholder="댓글을 입력해주세요"
+                onKeyPress={onSubmitComment}
+              />
+            </form>
+          </div>
+          <div className="post-footer-comments">
+            <ul>
+              {comments.map((comment) => (
+                <div className="comment-wrapper">
+                  <div className="comment-header">
+                    <User
+                      style={{ fill: "rgb(211,211,211)" }}
+                      className="comment-user-svg"
+                      width="3%"
+                      height="3%"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    />
+                    <div className="comment-user-time">
+                      <div className="comment-user">
+                        {comment.email.split("@")[0]}
+                      </div>
+                      <div className="comment-time">
+                        {formatDistance(
+                          new Date(comment.createdAt),
+                          new Date(),
+                          {
+                            addSuffix: true,
+                          }
+                        )}
+                      </div>
                     </div>
                   </div>
+                  <div className="comment-contents">{comment.contents}</div>
                 </div>
-                <div className="comment-contents">{comment.contents}</div>
-              </div>
-            ))}
-          </ul>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
+      <div className="subPost">안녕</div>
     </Container>
   );
 };
