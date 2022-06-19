@@ -111,11 +111,6 @@ const Posts = () => {
             key={post.consolePostId}
             onClick={() => onClickPost(post.consolePostId)}
           >
-            {/* <div className="post-left-block">
-              <UpArrow />
-              <div className="post-likes">{11}</div>
-              <DownArrow />
-            </div> */}
             <div className="post-right-block">
               <div className="post-header">
                 <div className="post-title-time">

@@ -25,7 +25,7 @@ const comment = createSlice({
       state.inputComment = action.payload;
     },
     setInitInputComment(state) {
-      state = initialState;
+      state.inputComment = "";
       return state;
     },
   },
