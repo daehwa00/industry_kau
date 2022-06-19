@@ -8,6 +8,7 @@ import useValidateMode from "../../hooks/useValidateMode";
 import { useSelector } from "../../store";
 import { postAPI } from "../../lib/api/posting";
 import { postingActions } from "../../store/posting";
+import Button from "../common/Button";
 
 const Container = styled.div`
   height: 800px;
@@ -109,8 +110,10 @@ const RegisterPostingContents: React.FC = () => {
             }}
           />
         </div>
-        <button type="submit">제출</button>
-        <RegisterPostingFooter isValid={false} prevHref="/" nextHref="/" />
+        <Button type="submit" color="dark_cyan">
+          제출
+        </Button>
+        {/*<RegisterPostingFooter isValid={false} prevHref="/" nextHref="/" />*/}
       </form>
     </Container>
   );

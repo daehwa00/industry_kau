@@ -194,7 +194,7 @@ const RegisterPostingOptions: React.FC = () => {
       {
         anonymousType && <RegisterPostingContents /> // sub 수정
       }
-      <RegisterPostingFooter isValid={false} prevHref="/" />
+      {/*<RegisterPostingFooter isValid={false} prevHref="/" />*/}
     </Container>
   );
 };
