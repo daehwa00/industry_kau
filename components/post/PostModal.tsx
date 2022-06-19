@@ -122,15 +122,16 @@ const Container = styled.div<onClickedHeart>`
       }
     }
     .post-footer-comment-input {
-      margin-bottom: 64px;
+      margin-bottom: 3vh;
     }
     .post-footer-comments {
       overflow-y: auto;
       max-height: 30vh;
       .comment-wrapper {
-        margin-bottom: 20px;
+        margin-bottom: 1.5vh;
         .comment-header {
           display: flex;
+          margin-bottom: 1vh;
           .comment-user-svg {
           }
           .comment-user-time {
@@ -145,7 +146,6 @@ const Container = styled.div<onClickedHeart>`
               color: ${palette.gray_71};
             }
           }
-          margin-bottom: 20px;
         }
       }
       .comment-contents {

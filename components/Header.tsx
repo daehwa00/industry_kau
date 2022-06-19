@@ -129,6 +129,7 @@ const Header: React.FC = () => {
   //* 로그아웃 하기
   const logout = async () => {
     try {
+      console.log("HI");
       await logoutAPI();
       dispatch(userActions.initUser());
     } catch (e) {
