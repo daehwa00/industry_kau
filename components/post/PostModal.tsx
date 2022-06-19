@@ -74,7 +74,7 @@ const Container = styled.div<onClickedHeart>`
         margin-bottom: 2vh;
         .post-title-time {
           .post-title {
-            font-size: 18px;
+            font-size: 22px;
             font-weight: 800;
             padding-bottom: 5px;
           }
@@ -92,7 +92,7 @@ const Container = styled.div<onClickedHeart>`
         }
       }
       .post-contents {
-        font-size: 9px;
+        font-size: 14px;
         margin-bottom: 3vh;
         line-height: 200%;
         color: ${palette.gray};
@@ -171,7 +171,6 @@ const Container = styled.div<onClickedHeart>`
       display: inline-block;
       width: 20vw;
       height: 20vh;
-      background-color: gray;
       margin-bottom: 1vh;
       .subPost-header {
         display: flex;
@@ -180,12 +179,12 @@ const Container = styled.div<onClickedHeart>`
         margin-bottom: 2vh;
         .subPost-title-time {
           .subPost-title {
-            font-size: 18px;
+            font-size: 22px;
             font-weight: 800;
             padding-bottom: 5px;
           }
           .subPost-time {
-            font-size: 8px;
+            font-size: 12px;
           }
         }
         .post-subCategory-bar {

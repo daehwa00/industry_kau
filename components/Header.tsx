@@ -148,7 +148,7 @@ const Header: React.FC = () => {
               <Logo className="header-logo" />
             </a>
           </Link>
-          <Pagelist />
+
           {!user.isLogged && (
             <div className="header-auth-buttons">
               <button
@@ -195,7 +195,9 @@ const Header: React.FC = () => {
               </button>
               {isUsermenuOpened && (
                 <ul className="header-usermenu">
-                  <li>내 정보</li>
+                  <Link href="/board/postdesign">
+                    <li>게시판 검색하기</li>
+                  </Link>
                   <Link href="/board/post/options">
                     <li>게시판 작성하기</li>
                   </Link>

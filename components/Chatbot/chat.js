@@ -23,7 +23,6 @@ const user = {
 };
 const bot = {
   id: 0,
-  // 봇 아이콘 수정
   avatarUrl:
     "https://w7.pngwing.com/pngs/358/978/png-transparent-chatbot-robot-computer-icons-internet-bot-robot-electronics-logo-cable.png",
 };
@@ -41,7 +40,7 @@ const Chatapp = (props) => {
     new Promise(async (res) => {
       const email = "daehwa001210@gmail.com";
       const { data } = await chatbotAPI({ request: text, email });
-      console.log("data : ", data);
+      console.log(data);
       res(data);
     });
 
