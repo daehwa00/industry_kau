@@ -38,13 +38,6 @@
     "react-background-slider": "^2.0.0",
     "react-background-slider-background-fixed": "^1.0.4",
     "react-dom": "18.1.0",
-<<<<<<< HEAD
-    "react-floating-button": "^1.1.1",
-    "react-floating-buttons": "^1.0.1",
-    "react-floating-component": "^1.0.1",
-    "react-icons": "^4.4.0",
-=======
->>>>>>> 780459d2f3d29d6d70a6f96e9a906e4a91e6359e
     "react-new-window": "^0.2.1",
     "react-no-ssr": "^1.1.0",
     "react-outside-click-handler": "^1.3.0",

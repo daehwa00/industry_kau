@@ -44,12 +44,18 @@ class MyDocument extends Document {
             content="initial-scale=1.0, width=device-width"
           />
           <meta property="og:title" content={"내맘을 위로해조 "} />
+          <meta
+            property="og:description"
+            content={
+              "내 마음에 쌓인 마음들 여기서 터놓고 얘기해봐요, 위로해줄게요."
+            }
+          />
           <meta property="og:type" content="website" />
           <meta property="og:url" content={"https://comfortme.shop"} />
           <meta
             property="og:image"
             content={
-              "https://aws-console-project.s3.ap-northeast-2.amazonaws.com/console-post/bg3.jpg"
+              "https://comfortme-static.s3.ap-northeast-2.amazonaws.com/20220619_141617.png"
             }
           />
           <meta property="og:article:author" content="내맘을 위로해조" />
