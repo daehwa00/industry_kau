@@ -12,7 +12,7 @@ import Button from "../common/Button";
 import Link from "next/link";
 
 const Container = styled.div`
-  height: 800px;
+  height: 720px;
   width: 55%;
   h2 {
     font-size: 19px;
