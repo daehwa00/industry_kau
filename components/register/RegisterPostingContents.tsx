@@ -9,6 +9,7 @@ import { useSelector } from "../../store";
 import { postAPI } from "../../lib/api/posting";
 import { postingActions } from "../../store/posting";
 import Button from "../common/Button";
+import Link from "next/link";
 
 const Container = styled.div`
   height: 800px;
@@ -33,9 +34,19 @@ const Container = styled.div`
     font-size: 14px;
     margin-bottom: 16px;
   }
+  .submit-button {
+    display: flex;
+    width: 100%;
+    .submit-button-post {
+      margin-right: 50px;
+      margin-left: 50px;
+    }
+  }
 `;
-
-const RegisterPostingContents: React.FC = () => {
+interface IProps {
+  prevHref?: string;
+}
+const RegisterPostingContents: React.FC<IProps> = ({ prevHref }) => {
   const dispatch = useDispatch();
 
   const { setValidateMode } = useValidateMode();
@@ -110,9 +121,20 @@ const RegisterPostingContents: React.FC = () => {
             }}
           />
         </div>
-        <Button type="submit" color="dark_cyan">
-          작성하기
-        </Button>
+        <div className="submit-button">
+          <Button
+            type="submit"
+            color="dark_cyan"
+            className="submit-button-post"
+          >
+            작성하기
+          </Button>
+          <Link href={"/"}>
+            <Button color="dark_cyan" className="submit-button-prev">
+              돌아가기
+            </Button>
+          </Link>
+        </div>
         {/*<RegisterPostingFooter isValid={false} prevHref="/" nextHref="/" />*/}
       </form>
     </Container>
