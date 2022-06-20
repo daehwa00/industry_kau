@@ -23,6 +23,8 @@ import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
+import { AiOutlineEnter } from "react-icons/Ai";
+
 type onClickedHeart = { onClickedHeart: boolean };
 
 const Container = styled.div<onClickedHeart>`
@@ -130,6 +132,13 @@ const Container = styled.div<onClickedHeart>`
         }
       }
       .post-footer-comment-input {
+        position: relative;
+        .icon {
+          position: absolute;
+          right: 15px;
+          top: 13px;
+          z-index: 100;
+        }
         margin-bottom: 3vh;
       }
       .post-footer-comments {
@@ -285,6 +294,20 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
     }
   };
 
+  const onSubmitCommentClick = async (e) => {
+    createCommentAPI({
+      contents: comment,
+      consolePostId: post.consolePostId,
+      email,
+      anonymous: 0,
+    });
+    setComment("");
+    dispatch(commentActions.setInitInputComment());
+    const comments = await getCommentsAPI(post.consolePostId);
+    dispatch(commentActions.setcomments(comments.data));
+    CommentSucess();
+  };
+
   return (
     <Container onClickedHeart={clickedHeart}>
       <div className="mainPost">
@@ -346,10 +369,14 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
           </div>
           <div className="post-footer-comment-input">
             <form>
+              <AiOutlineEnter
+                className="icon"
+                onClick={(e) => onSubmitCommentClick(e)}
+              />
               <Textarea
                 value={comment}
                 isValid={!!comment}
-                errorMessage="입력해줘요~"
+                errorMessage="위로해줘요."
                 type="title"
                 style={{ backgroundColor: "#FAFAFA" }}
                 onChange={(e) => {
