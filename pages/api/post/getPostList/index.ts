@@ -26,7 +26,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return res.send(data);
     } catch (e) {
       res.statusCode = 404;
-      return res.end();
+      return res.end("마지막 페이지입니다.");
     }
   }
 

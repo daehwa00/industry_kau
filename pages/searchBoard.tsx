@@ -1,13 +1,17 @@
 import { NextPage } from "next";
 import styled from "styled-components";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Posts from "../components/posts/Posts";
 import { useSelector, wrapper } from "../store";
 import SearchBar from "../components/common/SearchBar";
 import { useDispatch } from "react-redux";
 import { getPostListAPI } from "../lib/api/posting";
 import { postsActions } from "../store/posts";
+<<<<<<< HEAD
 import { NotificationContainer } from "../components/post/PostModal";
+=======
+import AWN from "awesome-notifications";
+>>>>>>> caef807c0421c3ff9109d4078f1dcde4a8f31371
 
 const Container = styled.div`
   display: flex;
@@ -38,16 +42,22 @@ const PostList: NextPage = () => {
 
   const page = useRef<number>(0);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
+
   const onPagiNation = async (order: string) => {
     try {
-      console.log("현재페이지", page);
+      console.log("현재페이지", page.current);
       order === "Prev" && (page.current -= 1);
       order === "Next" && (page.current += 1);
-      const { data } = await getPostListAPI(
-        posts[0].mainCategory.concat("/", posts[0].subCategory),
-        page.current
-      );
-      dispatch(postsActions.setPosts(data));
+      const { data } = await getPostListAPI(posts[0].subCategory, page.current);
+      if (data.length == 0) {
+        alert("마지막 페이지입니다!");
+        page.current -= 1;
+      } else {
+        dispatch(postsActions.setPosts(data));
+      }
     } catch (e) {
       console.log(e);
     }
@@ -68,8 +78,8 @@ const PostList: NextPage = () => {
           </button>
           <button
             type="button"
-            disabled={posts.length < 10}
             onClick={() => onPagiNation("Next")}
+            disabled={posts.length < 10}
           >
             Next
           </button>

@@ -18,6 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         url: `https://7f6calrfce.execute-api.ap-northeast-2.amazonaws.com/dev/getConsolePostById?consolePostId=${postID}`,
         headers: { "x-api-key": "Jkul4qNZJeatNGd9L8wdRj5qXqDhaog2FBJhtq4f" },
       });
+      console.log(data);
 
       res.statusCode = 200;
       return res.send(data[0]);

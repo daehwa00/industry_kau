@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import userPool from "../../src/userPool";
-import Input from "../common/input";
+import Input from "../common/Input";
 import MailIcon from "../../public/img/svg/auth/MailIcon.svg";
 import useValidateMode from "../../hooks/useValidateMode";
 import ClosedEyeIcon from "../../public/img/svg/logo/ClosedEyeIcon.svg";
@@ -12,6 +12,7 @@ import PersonIcon from "../../public/img/svg/auth/PersonIcon.svg";
 import { userActions } from "../../store/user";
 import { authActions } from "../../store/auth";
 import Button from "../common/Button";
+import { logoutAPI } from "../../lib/api/auth";
 
 const Container = styled.div`
   width: 568px;
@@ -154,16 +155,15 @@ const SignupModal = ({ closeModalPortal }: IProps) => {
             return;
           }
         }
-        dispatch(userActions.setUser(signUpBody));
         closeModalPortal();
-        alert("가입 완료");
+        alert("이메일 인증을 완료 후 로그인 해주세요.");
       });
     }
   };
   return (
     <Container>
       <form onSubmit={onSubmitSignUp}>
-        <h1>SIGNUP</h1>
+        <h1>회원가입</h1>
         <div className="sign-up-input-wrapper">
           <Input
             name="email"
