@@ -3,7 +3,6 @@ import styled from "styled-components";
 import React, { useRef } from "react";
 import Posts from "../components/posts/Posts";
 import { useSelector, wrapper } from "../store";
-import { searchActions } from "../store/search";
 import SearchBar from "../components/common/SearchBar";
 import { useDispatch } from "react-redux";
 import { getPostListAPI } from "../lib/api/posting";
@@ -36,11 +35,11 @@ const PostList: NextPage = () => {
 
   const dispatch = useDispatch();
 
-  const page = useRef<number>(1);
+  const page = useRef<number>(0);
 
-  //* 검색된 keyword 클릭시
   const onPagiNation = async (order: string) => {
     try {
+      console.log("현재페이지", page);
       order === "Prev" && (page.current -= 1);
       order === "Next" && (page.current += 1);
       const { data } = await getPostListAPI(
@@ -62,7 +61,7 @@ const PostList: NextPage = () => {
           <button
             type="button"
             onClick={() => onPagiNation("Prev")}
-            disabled={page.current == 1}
+            disabled={page.current === 0}
           >
             Previous
           </button>

@@ -43,8 +43,8 @@ const Container = styled.div<onClickedHeart>`
         background-repeat: no-repeat;
         background-size: 3000%;
         background-position: left;
-        height: 50px;
-        width: 50px;
+        height: 75px;
+        width: 75px;
         margin: 0 auto;
         cursor: pointer;
         ${({ onClickedHeart }) => {
@@ -79,7 +79,7 @@ const Container = styled.div<onClickedHeart>`
             padding-bottom: 5px;
           }
           .post-time {
-            font-size: 10px;
+            font-size: 13px;
           }
         }
         .post-subCategory-bar {
@@ -111,7 +111,7 @@ const Container = styled.div<onClickedHeart>`
         .post-footer-user {
           display: flex;
           align-items: center;
-          font-size: 8px;
+          font-size: 12px;
           .post-footer-user-svg {
             margin-right: 10px;
           }
@@ -164,7 +164,7 @@ const Container = styled.div<onClickedHeart>`
     width: 22vw;
     float: right;
     .subPost-label {
-      sont-size: 18px;
+      font-size: 22px;
       font-weight: bold;
       margin-bottom: 3vh;
     }
@@ -181,29 +181,28 @@ const Container = styled.div<onClickedHeart>`
         margin-bottom: 2vh;
         .subPost-title-time {
           .subPost-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 800;
             padding-bottom: 5px;
           }
           .subPost-time {
-            font-size: 10px;
+            font-size: 12px;
           }
         }
         .subPost-subCategory-bar {
           position: relative;
           .subPost-subCategory {
-            font-size: 13px;
+            font-size: 15px;
             font-weight: bold;
             color: ${palette.gray_71};
           }
         }
       }
-      .post-contents {
-        font-size: 9px;
+      .subPost-contents {
+        font-size: 15px;
         margin-bottom: 3vh;
         line-height: 200%;
         color: ${palette.gray};
-      }
       }
     }
   }

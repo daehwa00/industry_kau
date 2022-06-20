@@ -72,6 +72,7 @@ const RegisterPostingContents: React.FC<IProps> = ({ prevHref }) => {
   const anonymous = useSelector((state) => state.posting.anonymousType);
   const mainCategory = useSelector((state) => state.posting.mainCategoryType);
   const subCategory = useSelector((state) => state.posting.subCategoryType);
+  const email = useSelector((state) => state.user.email);
 
   //* 포스팅 폼 제출하기
   const onSubmitPosting = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -84,7 +85,7 @@ const RegisterPostingContents: React.FC<IProps> = ({ prevHref }) => {
         const postingBody = {
           title,
           contents,
-          email: "daehwa001210@gmail.com",
+          email,
           anonymous,
           mainCategory,
           subCategory,

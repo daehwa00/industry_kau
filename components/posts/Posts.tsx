@@ -32,17 +32,11 @@ const Container = styled.div`
     padding: 12px;
     width: 50%;
     height: auto;
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.58);
     margin-bottom: 35px;
     padding: 50px 50px 50px 0px;
-    .post-left-block {
-      margin: 30px 30px 0px 30px;
-      font-weight: 800;
-      .post-likes {
-        margin: 20px 0 20px 0;
-      }
-    }
+
     .post-right-block {
       width: 100%;
       padding-left: 50px;
