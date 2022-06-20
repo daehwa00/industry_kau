@@ -293,17 +293,12 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
       dispatch(commentActions.setInitInputComment());
       console.log("1");
       const comments = await getCommentsAPI(post.consolePostId);
-<<<<<<< HEAD
-      dispatch(commentActions.setcomments(comments.data));
-      CommentSuccess();
-=======
       setTimeout(() => {
         console.log(comments.data);
         console.log("2");
         dispatch(commentActions.setcomments(comments.data));
-        CommentSucess();
+        CommentSuccess();
       }, 2000);
->>>>>>> 0afa008092e5f9d86fac2cc6015e9ae55f0fa826
     }
   };
 
@@ -318,7 +313,7 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
     dispatch(commentActions.setInitInputComment());
     const comments = await getCommentsAPI(post.consolePostId);
     dispatch(commentActions.setcomments(comments.data));
-    CommentSucess();
+    CommentSuccess();
   };
 
   return (
