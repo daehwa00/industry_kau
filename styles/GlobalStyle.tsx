@@ -15,7 +15,7 @@ const globalStyle = css`
     box-sizing: border-box;
   }
   body {
-    font-family: GangwonEdu_OTFBoldA, Noto Sans, Noto Sans KR;
+    font-family: GangwonEdu_OTFBoldA, SUIT-Medium, Noto Sans, Noto Sans KR;
     color: ${palette.black};
   }
   body::-webkit-scrollbar {
