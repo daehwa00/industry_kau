@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import palette from "../../styles/palette";
@@ -55,6 +56,7 @@ interface IProps {
   prevHref?: string;
 }
 const RegisterPostingContents: React.FC<IProps> = ({ prevHref }) => {
+  // let navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { setValidateMode } = useValidateMode();
@@ -92,7 +94,7 @@ const RegisterPostingContents: React.FC<IProps> = ({ prevHref }) => {
           subCategory,
         };
         await postAPI(postingBody);
-        alert("글을 작성했어요 !");
+        router.push("/searchBoard");
       } catch (e) {
         console.log(e);
       }
@@ -135,7 +137,6 @@ const RegisterPostingContents: React.FC<IProps> = ({ prevHref }) => {
             type="submit"
             color="dark_cyan"
             className="submit-button-post"
-            onClick={() => router.push("/searchBoard")}
           >
             작성하고 다른 글 보기!
           </Button>
