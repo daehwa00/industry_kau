@@ -288,9 +288,14 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
       });
       setComment("");
       dispatch(commentActions.setInitInputComment());
+      console.log("1");
       const comments = await getCommentsAPI(post.consolePostId);
-      dispatch(commentActions.setcomments(comments.data));
-      CommentSucess();
+      setTimeout(() => {
+        console.log(comments.data);
+        console.log("2");
+        dispatch(commentActions.setcomments(comments.data));
+        CommentSucess();
+      }, 2000);
     }
   };
 
@@ -376,7 +381,6 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
               <Textarea
                 value={comment}
                 isValid={!!comment}
-                errorMessage="위로해줘요."
                 type="title"
                 style={{ backgroundColor: "#FAFAFA" }}
                 onChange={(e) => {
