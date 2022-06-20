@@ -18,8 +18,11 @@ import {
   createCommentAPI,
   getCommentsAPI,
 } from "../../lib/api/post";
-import { height } from "@mui/system";
-
+import React from "react";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
 type onClickedHeart = { onClickedHeart: boolean };
 
 const Container = styled.div<onClickedHeart>`
@@ -157,6 +160,24 @@ const Container = styled.div<onClickedHeart>`
           font-size: 11px;
         }
       }
+      .post-footer-comments::-webkit-scrollbar {
+        background-color: transparent;
+        width: 16px;
+      }
+
+      .post-footer-comments::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+
+      .post-footer-comments::-webkit-scrollbar-thumb {
+        background-color: #babac0;
+        border-radius: 16px;
+        border: 4px solid #fff;
+      }
+
+      .post-footer-comments::-webkit-scrollbar-button {
+        display: none;
+      }
     }
   }
 
@@ -207,6 +228,12 @@ const Container = styled.div<onClickedHeart>`
     }
   }
 `;
+const CommentSucess = () => {
+  NotificationManager.success(
+    "다른 고민도 함께 보러 가볼까요?",
+    "댓글 작성 완료!"
+  );
+};
 
 interface IProps {
   closeModalPortal: () => void;
@@ -241,6 +268,7 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
       dispatch(commentActions.setInitInputComment());
       const comments = await getCommentsAPI(post.consolePostId);
       dispatch(commentActions.setcomments(comments.data));
+      CommentSucess();
     }
   };
 
@@ -394,3 +422,4 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
 };
 
 export default PostModal;
+export { NotificationContainer };
