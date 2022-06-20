@@ -10,6 +10,7 @@ import { postAPI } from "../../lib/api/posting";
 import { postingActions } from "../../store/posting";
 import Button from "../common/Button";
 import Link from "next/link";
+import { NotificationContainer, PostingSuccess } from "../post/PostModal";
 
 const Container = styled.div`
   .subCategory {
@@ -92,6 +93,7 @@ const RegisterPostingContents: React.FC<IProps> = ({ prevHref }) => {
         };
         await postAPI(postingBody);
         alert("글을 작성했어요 !");
+        PostingSuccess();
       } catch (e) {
         console.log(e);
       }
@@ -145,6 +147,7 @@ const RegisterPostingContents: React.FC<IProps> = ({ prevHref }) => {
         </div>
         {/*<RegisterPostingFooter isValid={false} prevHref="/" nextHref="/" />*/}
       </form>
+      <NotificationContainer />
     </Container>
   );
 };

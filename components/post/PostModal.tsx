@@ -228,10 +228,23 @@ const Container = styled.div<onClickedHeart>`
     }
   }
 `;
+const PostingSuccess = () => {
+  NotificationManager.success(
+    "다른 고민도 함께 보러 가볼까요?",
+    "글 작성 완료!"
+  );
+};
+
 const CommentSucess = () => {
   NotificationManager.success(
     "다른 고민도 함께 보러 가볼까요?",
     "댓글 작성 완료!"
+  );
+};
+const CheerupFail = () => {
+  NotificationManager.warning(
+    "다른 고민도 함께 위로해주세요 !",
+    "이미 힘내요를 누르셨습니다"
   );
 };
 
@@ -422,4 +435,9 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
 };
 
 export default PostModal;
-export { NotificationContainer };
+export {
+  NotificationContainer,
+  NotificationManager,
+  CheerupFail,
+  PostingSuccess,
+};

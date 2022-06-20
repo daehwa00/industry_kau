@@ -7,7 +7,10 @@ import SearchBar from "../components/common/SearchBar";
 import { useDispatch } from "react-redux";
 import { getPostListAPI } from "../lib/api/posting";
 import { postsActions } from "../store/posts";
-import { NotificationContainer } from "../components/post/PostModal";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "../components/post/PostModal";
 import AWN from "awesome-notifications";
 
 const Container = styled.div`
@@ -31,6 +34,12 @@ const Container = styled.div`
     outline: none;
   }
 `;
+const CheerupFail = () => {
+  NotificationManager.warning(
+    "다른 고민도 함께 위로해주세요 !",
+    "이미 힘내요를 누르셨습니다"
+  );
+};
 
 const PostList: NextPage = () => {
   const posts = useSelector((state) => state.posts.posts);
