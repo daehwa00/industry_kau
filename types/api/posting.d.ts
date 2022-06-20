@@ -21,4 +21,5 @@ export type GetPostAPIBody = {
   subCategory: string;
   negative: number;
   positive: number;
+  commentCount: number;
 };

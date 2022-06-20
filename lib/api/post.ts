@@ -23,5 +23,6 @@ export const createCheerUpAPI = (body: {
   email: string;
 }) => axios.post("/api/post/createCheerUp", body);
 
+//* 추천 게시물 API
 export const getRecommendPostAPI = (postID: number) =>
   axios.get<postType>(`/api/post/getRecommendPostList/${postID}`);

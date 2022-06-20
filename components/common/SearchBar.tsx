@@ -141,6 +141,7 @@ const SearchBar: NextPage = () => {
     try {
       console.log(result);
       const { data } = await getPostListAPI(result);
+      console.log(data);
       dispatch(postsActions.setPosts(data));
       setPopupOpened(false);
     } catch (e) {

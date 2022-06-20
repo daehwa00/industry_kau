@@ -12,4 +12,5 @@ export type postType = {
   subCategory: string;
   negative: number;
   positive: number;
+  commentCount: number;
 };

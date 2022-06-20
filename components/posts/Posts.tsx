@@ -18,9 +18,7 @@ import * as React from "react";
 import PostModal from "../post/PostModal";
 import formatDistance from "date-fns/formatDistance";
 import comment, { commentActions } from "../../store/comment";
-import { getRecommendPostListAPI } from "../../lib/api/posting";
 import { subPostsActions } from "../../store/subPost";
-import { postType } from "../../types/post";
 
 const Container = styled.div`
   margin-left: 50%;
@@ -109,7 +107,7 @@ const Posts = () => {
   return (
     <Container>
       <ul>
-        {posts.map((post) => (
+        {posts.slice(0, 9).map((post) => (
           <li
             className="post-wrapper"
             key={post.consolePostId}
@@ -144,10 +142,7 @@ const Posts = () => {
                   />
                   Posted by {post.email}
                 </div>
-                <div className="post-footer-comments">
-                  <Comment />
-                  {100 > 99 ? "99+" : 11}
-                </div>
+                <div className="post-footer-comments"></div>
               </div>
             </div>
           </li>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import Input from "../common/input";
+import Input from "../common/Input";
 import Button from "../common/Button";
 import MailIcon from "../../public/img/svg/auth/MailIcon.svg";
 import useValidateMode from "../../hooks/useValidateMode";
@@ -114,7 +114,7 @@ const LoginModal: React.FC<IProps> = ({ closeModalPortal }: IProps) => {
   return (
     <Container>
       <form onSubmit={onSubmitLogin}>
-        <h1>LOGIN</h1>
+        <h1>로그인</h1>
         <div className="inputContainer">
           <Input
             placeholder="이메일 주소"

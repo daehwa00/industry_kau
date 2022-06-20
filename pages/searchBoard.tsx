@@ -7,6 +7,7 @@ import SearchBar from "../components/common/SearchBar";
 import { useDispatch } from "react-redux";
 import { getPostListAPI } from "../lib/api/posting";
 import { postsActions } from "../store/posts";
+import AWN from "awesome-notifications";
 
 const Container = styled.div`
   display: flex;
@@ -39,14 +40,19 @@ const PostList: NextPage = () => {
 
   const onPagiNation = async (order: string) => {
     try {
-      console.log("현재페이지", page);
+      console.log("현재페이지", page.current);
       order === "Prev" && (page.current -= 1);
       order === "Next" && (page.current += 1);
       const { data } = await getPostListAPI(
-        posts[0].mainCategory.concat("/", posts[0].subCategory),
+        // posts[0].mainCategory.concat("/", posts[0].subCategory),
+        posts[0].subCategory,
         page.current
       );
-      dispatch(postsActions.setPosts(data));
+      if (data.length == 0) {
+        alert("마지막 페이지입니다!");
+      } else {
+        dispatch(postsActions.setPosts(data));
+      }
     } catch (e) {
       console.log(e);
     }
@@ -67,8 +73,8 @@ const PostList: NextPage = () => {
           </button>
           <button
             type="button"
-            disabled={posts.length < 10}
             onClick={() => onPagiNation("Next")}
+            disabled={posts.length < 10}
           >
             Next
           </button>
