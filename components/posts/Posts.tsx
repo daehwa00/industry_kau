@@ -140,7 +140,8 @@ const Posts = () => {
                     style={{ fill: "rgb(150,150,150)" }}
                     className="post-footer-user-svg"
                   />
-                  Posted by {post.email}
+                  {post.anonymous == 0 && `익명`}
+                  {post.anonymous == 1 && `Posted by ${post.email}`}
                 </div>
                 <div className="post-footer-comments"></div>
               </div>

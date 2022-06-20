@@ -276,7 +276,8 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
                 style={{ fill: "rgb(150,150,150)" }}
                 className="post-footer-user-svg"
               />
-              Posted by {post.email}
+              {post.anonymous == 0 && `익명`}
+              {post.anonymous == 1 && `Posted by ${post.email}`}
             </div>
             <div className="post-footer-gauge">
               <div className="icons">
@@ -378,7 +379,11 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
                   </div>
                 </div>
               </div>
-              <div className="subPost-contents">{subPost.contents}</div>
+              <div className="subPost-contents">
+                {subPost.contents.length < 100
+                  ? subPost.contents
+                  : `${subPost.contents.slice(0, 150)}...`}
+              </div>
             </div>
             <hr />
           </>
