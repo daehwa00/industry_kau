@@ -39,6 +39,7 @@ const Container = styled.div`
       width: 320px;
       margin-bottom: 32px;
     }
+
     .anonymous-posting-radio {
       max-width: 485px;
       margin-bottom: 50px;
