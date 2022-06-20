@@ -12,7 +12,7 @@ import Textarea from "../common/Textarea";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { commentActions } from "../../store/comment";
-import { FaRegFrown, FaRegSmile } from "react-icons/fa";
+import { FaRegFrown, FaRegSmile, FaReply } from "react-icons/fa";
 import {
   createCheerUpAPI,
   createCommentAPI,
@@ -23,7 +23,6 @@ import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
-import { AiOutlineEnter } from "react-icons/Ai";
 
 type onClickedHeart = { onClickedHeart: boolean };
 
@@ -374,7 +373,7 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
           </div>
           <div className="post-footer-comment-input">
             <form>
-              <AiOutlineEnter
+              <FaReply
                 className="icon"
                 onClick={(e) => onSubmitCommentClick(e)}
               />
