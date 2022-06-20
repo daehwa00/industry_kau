@@ -17,7 +17,7 @@ const Container = styled.div`
     font-weight: bold;
     margin-bottom: 3vh;
   }
-  height: 720px;
+  height: 750px;
   width: 55%;
   h2 {
     font-size: 19px;
