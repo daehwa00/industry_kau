@@ -7,7 +7,7 @@ export const postAPI = (body: PostingAPIBody) =>
   axios.post("/api/post/posting", body);
 
 //* 글 리스트를 불러오는 api
-export const getPostListAPI = (keyword: string, page = 1) =>
+export const getPostListAPI = (keyword: string, page = 0) =>
   axios.get<GetPostAPIBody[]>(
     `/api/post/getPostList?keyword=${keyword}&page=${page}`
   );

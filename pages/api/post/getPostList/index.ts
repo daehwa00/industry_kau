@@ -5,8 +5,9 @@ import { postsActions } from "../../../../store/posts";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET") {
-    const { keyword, page = 1 } = req.query;
+    const { keyword, page = 0 } = req.query;
     const search = keyword as string;
+    console.log(search);
 
     if (!keyword) {
       res.statusCode = 400;
