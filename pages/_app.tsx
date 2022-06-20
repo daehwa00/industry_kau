@@ -11,6 +11,7 @@ import Header from "../components/Header";
 import { wrapper } from "../store";
 import { userActions } from "../store/user";
 import BackgroundSlider from "../components/background-slider";
+import "react-notifications/lib/notifications.css";
 
 const Container = styled.div`
   .bot {

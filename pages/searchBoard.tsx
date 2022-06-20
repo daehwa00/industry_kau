@@ -7,6 +7,7 @@ import SearchBar from "../components/common/SearchBar";
 import { useDispatch } from "react-redux";
 import { getPostListAPI } from "../lib/api/posting";
 import { postsActions } from "../store/posts";
+import { NotificationContainer } from "../components/post/PostModal";
 
 const Container = styled.div`
   display: flex;
@@ -74,6 +75,7 @@ const PostList: NextPage = () => {
           </button>
         </div>
       )}
+      <NotificationContainer />
     </Container>
   );
 };
