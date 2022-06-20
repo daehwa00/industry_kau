@@ -243,7 +243,7 @@ const PostingSuccess = () => {
   );
 };
 
-const CommentSucess = () => {
+const CommentSuccess = () => {
   NotificationManager.success(
     "다른 고민도 함께 보러 가볼까요?",
     "댓글 작성 완료!"
@@ -254,6 +254,10 @@ const CheerupFail = () => {
     "다른 고민도 함께 위로해주세요 !",
     "이미 힘내요를 누르셨습니다"
   );
+};
+
+const LoginSuccess = () => {
+  NotificationManager.info("로그인 성공");
 };
 
 interface IProps {
@@ -289,12 +293,17 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
       dispatch(commentActions.setInitInputComment());
       console.log("1");
       const comments = await getCommentsAPI(post.consolePostId);
+<<<<<<< HEAD
+      dispatch(commentActions.setcomments(comments.data));
+      CommentSuccess();
+=======
       setTimeout(() => {
         console.log(comments.data);
         console.log("2");
         dispatch(commentActions.setcomments(comments.data));
         CommentSucess();
       }, 2000);
+>>>>>>> 0afa008092e5f9d86fac2cc6015e9ae55f0fa826
     }
   };
 
@@ -470,4 +479,5 @@ export {
   NotificationManager,
   CheerupFail,
   PostingSuccess,
+  LoginSuccess,
 };
