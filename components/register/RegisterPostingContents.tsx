@@ -90,6 +90,7 @@ const RegisterPostingContents: React.FC<IProps> = ({ prevHref }) => {
           subCategory,
         };
         await postAPI(postingBody);
+        alert("글을 작성했어요 !");
       } catch (e) {
         console.log(e);
       }
