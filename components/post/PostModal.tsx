@@ -12,7 +12,7 @@ import Textarea from "../common/Textarea";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { commentActions } from "../../store/comment";
-import { FaRegFrown, FaRegSmile } from "react-icons/fa";
+import { FaRegFrown, FaRegSmile, FaReply } from "react-icons/fa";
 import {
   createCheerUpAPI,
   createCommentAPI,
@@ -23,7 +23,6 @@ import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
-import { AiOutlineEnter } from "react-icons/Ai";
 
 type onClickedHeart = { onClickedHeart: boolean };
 
@@ -103,24 +102,6 @@ const Container = styled.div<onClickedHeart>`
         margin-bottom: 6vh;
         line-height: 200%;
         color: ${palette.gray};
-      }
-      .post-contents::-webkit-scrollbar {
-        background-color: transparent;
-        width: 16px;
-      }
-
-      .post-contents::-webkit-scrollbar-track {
-        background-color: transparent;
-      }
-
-      .post-contents::-webkit-scrollbar-thumb {
-        background-color: #babac0;
-        border-radius: 16px;
-        border: 4px solid #fff;
-      }
-
-      .post-contents::-webkit-scrollbar-button {
-        display: none;
       }
       .post-footer {
         display: flex;
