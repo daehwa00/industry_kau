@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import palette from "../../styles/palette";
@@ -11,6 +12,7 @@ import { postingActions } from "../../store/posting";
 import Button from "../common/Button";
 import Link from "next/link";
 import { NotificationContainer, PostingSuccess } from "../post/PostModal";
+import router from "next/router";
 
 const Container = styled.div`
   .subCategory {
@@ -55,6 +57,7 @@ interface IProps {
   prevHref?: string;
 }
 const RegisterPostingContents: React.FC<IProps> = ({ prevHref }) => {
+  // let navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { setValidateMode } = useValidateMode();
@@ -92,8 +95,8 @@ const RegisterPostingContents: React.FC<IProps> = ({ prevHref }) => {
           subCategory,
         };
         await postAPI(postingBody);
-        alert("글을 작성했어요 !");
         PostingSuccess();
+        router.push("/searchBoard");
       } catch (e) {
         console.log(e);
       }
@@ -137,7 +140,7 @@ const RegisterPostingContents: React.FC<IProps> = ({ prevHref }) => {
             color="dark_cyan"
             className="submit-button-post"
           >
-            작성하기
+            작성하고 다른 글 보기!
           </Button>
           <Link href={"/"}>
             <Button color="dark_cyan" className="submit-button-prev">
@@ -145,7 +148,6 @@ const RegisterPostingContents: React.FC<IProps> = ({ prevHref }) => {
             </Button>
           </Link>
         </div>
-        {/*<RegisterPostingFooter isValid={false} prevHref="/" nextHref="/" />*/}
       </form>
       <NotificationContainer />
     </Container>

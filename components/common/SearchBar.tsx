@@ -53,6 +53,7 @@ const Container = styled.div`
       }
     }
   }
+
   .search-roo-bar-searchWord-results {
     position: absolute;
     background-color: white;
