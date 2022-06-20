@@ -18,7 +18,10 @@ import * as React from "react";
 import PostModal from "../post/PostModal";
 import formatDistance from "date-fns/formatDistance";
 import comment, { commentActions } from "../../store/comment";
+import { getRecommendPostListAPI } from "../../lib/api/posting";
 import { subPostsActions } from "../../store/subPost";
+import { postType } from "../../types/post";
+import { array, arrayOf } from "prop-types";
 
 const Container = styled.div`
   margin-left: 50%;
@@ -107,47 +110,47 @@ const Posts = () => {
   return (
     <Container>
       <ul>
-        {posts.slice(0, 9).map((post) => (
-          <li
-            className="post-wrapper"
-            key={post.consolePostId}
-            onClick={() => onClickPost(post.consolePostId)}
-          >
-            <div className="post-right-block">
-              <div className="post-header">
-                <div className="post-title-time">
-                  <div className="post-title">
-                    {post.title.length < 25
-                      ? post.title
-                      : `${post.title.slice(0, 25)}...`}
+        {Array.isArray(posts) &&
+          posts.map((post) => (
+            <li
+              className="post-wrapper"
+              key={post.consolePostId}
+              onClick={() => onClickPost(post.consolePostId)}
+            >
+              <div className="post-right-block">
+                <div className="post-header">
+                  <div className="post-title-time">
+                    <div className="post-title">
+                      {post.title.length < 25
+                        ? post.title
+                        : `${post.title.slice(0, 25)}...`}
+                    </div>
+                    <div className="post-time">
+                      {formatDistance(new Date(post.createdAt), new Date(), {
+                        addSuffix: true,
+                      })}
+                    </div>
                   </div>
-                  <div className="post-time">
-                    {formatDistance(new Date(post.createdAt), new Date(), {
-                      addSuffix: true,
-                    })}
+                  <div className="post-subCategory">{post.subCategory}</div>
+                </div>
+                <div className="post-contents">
+                  {post.contents.length < 500
+                    ? post.contents
+                    : `${post.contents.slice(0, 500)}...`}
+                </div>
+                <div className="post-footer">
+                  <div className="post-footer-user">
+                    <User
+                      style={{ fill: "rgb(150,150,150)" }}
+                      className="post-footer-user-svg"
+                    />
+                    Posted by {post.email}
                   </div>
+                  <div className="post-footer-comments"></div>
                 </div>
-                <div className="post-subCategory">{post.subCategory}</div>
               </div>
-              <div className="post-contents">
-                {post.contents.length < 500
-                  ? post.contents
-                  : `${post.contents.slice(0, 500)}...`}
-              </div>
-              <div className="post-footer">
-                <div className="post-footer-user">
-                  <User
-                    style={{ fill: "rgb(150,150,150)" }}
-                    className="post-footer-user-svg"
-                  />
-                  {post.anonymous == 0 && `익명`}
-                  {post.anonymous == 1 && `Posted by ${post.email}`}
-                </div>
-                <div className="post-footer-comments"></div>
-              </div>
-            </div>
-          </li>
-        ))}
+            </li>
+          ))}
       </ul>
       <ModalPortal>
         <PostModal closeModalPortal={closeModalPortal} />

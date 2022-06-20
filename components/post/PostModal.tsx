@@ -38,7 +38,6 @@ const Container = styled.div<onClickedHeart>`
     display: flex;
     height: auto;
     margin-bottom: 20px;
-    padding: 0px 50px 50px 0px;
     .post-left-block {
       margin: 0px 32px 0px 30px;
       .HeartAnimation {
@@ -96,9 +95,11 @@ const Container = styled.div<onClickedHeart>`
         }
       }
       .post-contents {
+        max-height: 30vh;
+        overflow-y: auto;
         font-size: 18px;
         margin-top: 5vh;
-        margin-bottom: 10vh;
+        margin-bottom: 6vh;
         line-height: 200%;
         color: ${palette.gray};
       }
