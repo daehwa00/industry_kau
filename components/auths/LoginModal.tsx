@@ -10,6 +10,7 @@ import OpenedEyeIcon from "../../public/img/svg/logo/OpendEyeIcon.svg";
 import { loginAPI } from "../../lib/api/auth";
 import { authActions } from "../../store/auth";
 import { userActions } from "../../store/user";
+import { LoginSuccess, NotificationContainer } from "../post/PostModal";
 
 const Container = styled.div`
   z-index: 11;
@@ -91,6 +92,7 @@ const LoginModal: React.FC<IProps> = ({ closeModalPortal }: IProps) => {
         const data = await loginAPI(loginBody);
         closeModalPortal();
         alert("로그인 성공");
+        LoginSuccess();
 
         const userBody = {
           email,
@@ -157,6 +159,7 @@ const LoginModal: React.FC<IProps> = ({ closeModalPortal }: IProps) => {
           회원가입
         </Button>
       </form>
+      <NotificationContainer />
     </Container>
   );
 };
