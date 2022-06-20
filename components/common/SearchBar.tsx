@@ -154,8 +154,10 @@ const SearchBar: NextPage = () => {
   //* 추천 게시물 클릭시
   const onClickRecommendPost = async () => {
     try {
-      console.log("HIHIHIHHIHI");
       const { data } = await getRecommendUserPostAPI(email);
+      if (!Array.isArray(data)) {
+        alert("아직 글이나 추천을 하지 않았어요! 이후에 추천해드릴게요!");
+      }
       dispatch(postsActions.setPosts(data));
       setPopupOpened(false);
     } catch (e) {

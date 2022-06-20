@@ -39,7 +39,6 @@ const Container = styled.div<onClickedHeart>`
     display: flex;
     height: auto;
     margin-bottom: 20px;
-    padding: 0px 50px 50px 0px;
     .post-left-block {
       margin: 0px 32px 0px 30px;
       .HeartAnimation {
@@ -97,11 +96,31 @@ const Container = styled.div<onClickedHeart>`
         }
       }
       .post-contents {
+        max-height: 30vh;
+        overflow-y: auto;
         font-size: 18px;
         margin-top: 5vh;
-        margin-bottom: 10vh;
+        margin-bottom: 6vh;
         line-height: 200%;
         color: ${palette.gray};
+      }
+      .post-contents::-webkit-scrollbar {
+        background-color: transparent;
+        width: 16px;
+      }
+
+      .post-contents::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+
+      .post-contents::-webkit-scrollbar-thumb {
+        background-color: #babac0;
+        border-radius: 16px;
+        border: 4px solid #fff;
+      }
+
+      .post-contents::-webkit-scrollbar-button {
+        display: none;
       }
       .post-footer {
         display: flex;
@@ -284,6 +303,23 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
 
   const onSubmitComment = async (e) => {
     if (e.code == "Enter" && e.ctrlKey) {
+      const now = new Date();
+      const at = now.toString();
+      dispatch(
+        commentActions.setcomments([
+          ...comments,
+          {
+            commentId: 0,
+            createdAt: at,
+            updatedAt: at,
+            status: "ACTIVE",
+            contents: comment,
+            email,
+            anonymous: 0,
+            consolePostId: post.consolePostId,
+          },
+        ])
+      );
       createCommentAPI({
         contents: comment,
         consolePostId: post.consolePostId,
@@ -292,14 +328,7 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
       });
       setComment("");
       dispatch(commentActions.setInitInputComment());
-      console.log("1");
-      const comments = await getCommentsAPI(post.consolePostId);
-      setTimeout(() => {
-        console.log(comments.data);
-        console.log("2");
-        dispatch(commentActions.setcomments(comments.data));
-        CommentSuccess();
-      }, 2000);
+      CommentSuccess();
     }
   };
 
@@ -314,7 +343,7 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
     dispatch(commentActions.setInitInputComment());
     const comments = await getCommentsAPI(post.consolePostId);
     dispatch(commentActions.setcomments(comments.data));
-    CommentSucess();
+    CommentSuccess();
   };
 
   return (
