@@ -7,11 +7,8 @@ import SearchBar from "../components/common/SearchBar";
 import { useDispatch } from "react-redux";
 import { getPostListAPI } from "../lib/api/posting";
 import { postsActions } from "../store/posts";
-<<<<<<< HEAD
 import { NotificationContainer } from "../components/post/PostModal";
-=======
 import AWN from "awesome-notifications";
->>>>>>> caef807c0421c3ff9109d4078f1dcde4a8f31371
 
 const Container = styled.div`
   display: flex;
