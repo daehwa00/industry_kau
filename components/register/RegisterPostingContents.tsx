@@ -10,6 +10,7 @@ import { postAPI } from "../../lib/api/posting";
 import { postingActions } from "../../store/posting";
 import Button from "../common/Button";
 import Link from "next/link";
+import router from "next/router";
 
 const Container = styled.div`
   .subCategory {
@@ -134,8 +135,9 @@ const RegisterPostingContents: React.FC<IProps> = ({ prevHref }) => {
             type="submit"
             color="dark_cyan"
             className="submit-button-post"
+            onClick={() => router.push("/searchBoard")}
           >
-            작성하기
+            작성하고 다른 글 보기!
           </Button>
           <Link href={"/"}>
             <Button color="dark_cyan" className="submit-button-prev">
@@ -143,7 +145,6 @@ const RegisterPostingContents: React.FC<IProps> = ({ prevHref }) => {
             </Button>
           </Link>
         </div>
-        {/*<RegisterPostingFooter isValid={false} prevHref="/" nextHref="/" />*/}
       </form>
     </Container>
   );
