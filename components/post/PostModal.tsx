@@ -283,6 +283,23 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
 
   const onSubmitComment = async (e) => {
     if (e.code == "Enter" && e.ctrlKey) {
+      const now = new Date();
+      const at = now.toString();
+      dispatch(
+        commentActions.setcomments([
+          ...comments,
+          {
+            commentId: 0,
+            createdAt: at,
+            updatedAt: at,
+            status: "ACTIVE",
+            contents: comment,
+            email,
+            anonymous: 0,
+            consolePostId: post.consolePostId,
+          },
+        ])
+      );
       createCommentAPI({
         contents: comment,
         consolePostId: post.consolePostId,
@@ -291,14 +308,7 @@ const PostModal: NextPage<IProps> = ({ closeModalPortal }) => {
       });
       setComment("");
       dispatch(commentActions.setInitInputComment());
-      console.log("1");
-      const comments = await getCommentsAPI(post.consolePostId);
-      setTimeout(() => {
-        console.log(comments.data);
-        console.log("2");
-        dispatch(commentActions.setcomments(comments.data));
-        CommentSuccess();
-      }, 2000);
+      CommentSuccess();
     }
   };
 
