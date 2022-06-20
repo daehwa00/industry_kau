@@ -11,6 +11,7 @@ import { getPostListAPI, searchWordAPI } from "../../lib/api/posting";
 import { postsActions } from "../../store/posts";
 import { getRecommendPostListAPI } from "../../lib/api/posting";
 import { NextPage } from "next";
+import { getRecommendUserPostAPI } from "../../lib/api/post";
 
 const Container = styled.div`
   background-color: white;
@@ -152,7 +153,8 @@ const SearchBar: NextPage = () => {
   //* 추천 게시물 클릭시
   const onClickRecommendPost = async () => {
     try {
-      const { data } = await getRecommendPostListAPI(email);
+      console.log("HIHIHIHHIHI");
+      const { data } = await getRecommendUserPostAPI(email);
       dispatch(postsActions.setPosts(data));
       setPopupOpened(false);
     } catch (e) {
@@ -190,12 +192,7 @@ const SearchBar: NextPage = () => {
         {popupOpened && searchWord !== "추천 게시물" && (
           <ul className="search-roo-bar-searchWord-results">
             {!searchWord && (
-              <li
-                role="presentation"
-                onClick={() => {
-                  onClickRecommendPost();
-                }}
-              >
+              <li role="presentation" onClick={() => onClickRecommendPost()}>
                 추천하는 게시물이예요!
               </li>
             )}
