@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import Input from "../common/Input";
+import Input from "../common/input";
 import Button from "../common/Button";
 import MailIcon from "../../public/img/svg/auth/MailIcon.svg";
 import useValidateMode from "../../hooks/useValidateMode";
